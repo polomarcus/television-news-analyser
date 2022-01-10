@@ -18,7 +18,7 @@ You can check metabase here
 
 To scrap data from 3 pages from France 2 website
 ```
-sbt "runMain com.github.polomarcus.main.RadioStationsApp 3"
+sbt "run 3"
 ```
 
 ## Test
