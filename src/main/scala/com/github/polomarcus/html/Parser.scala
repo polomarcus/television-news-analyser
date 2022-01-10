@@ -58,7 +58,7 @@ object Parser {
           val title = x >> text(".title")
           val order = x >> text(".number")
           val linkToDescription = x >> element(".title") >> attr("href")
-          val description = parseDescription(linkToDescription)
+          val (description, authors) = parseDescriptionAuthors(linkToDescription)
 
           logger.debug(
             s"""
@@ -69,8 +69,12 @@ object Parser {
         """)
 
           Some(
-            News(title, description, DateService.getTimestampFrance2(publishedDate), order.toInt, presenter)
-          )
+            News(title, description, DateService.getTimestampFrance2(publishedDate),
+              order.toInt,
+              presenter,
+              authors,
+              defaultUrl + linkToDescription
+          ))
         })
       } catch {
         case e: Exception => {
@@ -81,17 +85,20 @@ object Parser {
     }
   }
 
-  def parseDescription(url: String, defaultFrance2URL : String =  "https://www.francetvinfo.fr") = {
+  def parseDescriptionAuthors(url: String, defaultFrance2URL : String =  "https://www.francetvinfo.fr") = {
     try {
       val doc = browser.get(defaultFrance2URL + url)
       val description = doc >> text(".c-body")
-      logger.debug(s"parseDescription from $url", description)
+      val authors = doc >> text(".c-signature__names span")
+      //@ TODO val redactor = doc >> text(".from-same-show__info-team p:nth-of-type(2)")
+      // @TODO val publisher = doc >> text(".from-same-show__info-team-item p:nth-of-type(2)")
+      logger.debug(s"parseDescriptionAuthors from $url", description)
 
-      description
+      (description, authors.split(", ").toList)
     } catch {
       case e: Exception => {
         logger.error(s"Error parsing this date $defaultFrance2URL + $url " + e.toString)
-        ""
+        ("", Nil)
       }
   }
   }
