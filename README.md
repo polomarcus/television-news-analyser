@@ -1,4 +1,4 @@
-# Radio Stations Analyser
+# TV news analyser
 Scrap France 2 Tv news to analyse humanity's biggest challenge : fossil energies and climate change.
 
 Data source: HTMLs pages : example https://www.francetvinfo.fr/replay-jt/france-2/20-heures/jt-de-20h-du-jeudi-30-decembre-2021_4876025.html
