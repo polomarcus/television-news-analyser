@@ -1,0 +1,16 @@
+sudo: required
+
+language: scala
+scala:
+- 2.12.15
+
+services:
+- docker
+
+before_install:
+- ./init-stack-with-data.sh
+
+script:
+- sbt test
+- sbt run & read -t 120 || kill $!
+- ./test-message-kafka.sh
