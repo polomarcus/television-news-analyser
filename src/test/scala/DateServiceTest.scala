@@ -1,10 +1,10 @@
-import org.scalatest.FunSuite
 import com.github.polomarcus.utils.DateService
+import org.scalatest.funsuite.AnyFunSuite
 
-class DateServiceTest extends FunSuite {
+import java.util.Date
 
-
-  test("getTimestamp") {
-    assert(DateService.getTimestamp("2018/02/20 10:45") == 1519119900)
+class DateServiceTest extends AnyFunSuite {
+  test("getTimestampFrance2") {
+    assert(DateService.getTimestampFrance2  ("Diffusé le 08/01/2022") == new Date("01/08/2022"))
   }
 }
