@@ -20,11 +20,14 @@ object TelevisionNewsAnalyser {
       (firstNews, args(0).toInt)
     }
 
-    //Get HTML or JSON, transform into radio.Song, and write parquet file
+    // Parsed HTML to extract metadata about news
     val newsList = Getter.getFrance2News(start, end)
-    //val path = ParquetService.write(listNova, name)
 
-    logger.info("This is what i got :", newsList.length)
+    logger.info(s"Number of news parsed : ${newsList.length}")
+
+    //@TODO save as JSON
+    // jsonWrite(newsList)
+
     System.exit(0)
   }
 }

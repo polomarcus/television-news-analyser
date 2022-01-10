@@ -1,9 +1,15 @@
 version: '3.9'
 services:
+  nginx: # to test locally webpages
+    image: nginx:latest
+    ports:
+      - 8000:80
+    volumes:
+      - './resources:/usr/share/nginx/html'  # Volumes where Metabase data will be persisted
   metabase:
     image: metabase/metabase:latest
     volumes:
-      - 'mb-data:/metabase-data'  # Volumes where Metabase data will be persisted
+      - './mb-data:/metabase-data'  # Volumes where Metabase data will be persisted
     ports:
       - 3000:3000
     environment:

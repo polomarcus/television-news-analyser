@@ -3,7 +3,6 @@ package com.github.polomarcus.utils
 import java.util.concurrent.Executors
 
 import com.github.polomarcus.html.{Getter, Parser}
-import com.github.polomarcus.html.Getter.browser
 import com.typesafe.scalalogging.Logger
 
 import scala.concurrent.duration._
@@ -27,24 +26,5 @@ object FutureService {
     val result = Await.result(allFutures, Duration(20, "minutes"))
     logger.info("waitFuture: done")
     result
-  }
-
-
-  // Future.sequence(documentList).map(_.flatten).map { x => x.flatten}
-  // @param parallelizeFactor simulataneous queries (skyrock with 4 --> maybe 20 minutes, 16 --> 7 MIN but lost 6K songs )
-  def parallelizeQueries[T](start: Long,
-                               end: Long,
-                               apiCall: (Long, Long, String) => List[T],
-                               parallelizeFactor : Int = 4) = {
-    val diff = (end - start) / parallelizeFactor
-
-    val futureList = (0 to (parallelizeFactor - 1) by 1).map { step =>
-      logger.debug("parallelizeQueries step:" + step)
-      Future {
-        apiCall(start + (diff * step), start + (diff * (step + 1)), "future " + step.toString)
-      }
-    }.toList
-
-    waitFuture[T](futureList)
   }
 }

@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-screen -dmS "server test" http-server
-
 # Init values
 container_name='tests'
 

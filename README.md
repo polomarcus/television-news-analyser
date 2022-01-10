@@ -6,8 +6,6 @@ Data sink: JSON data to be store inside MySQL and displayed on a metabase dashbo
 
 ## Requirements
 * [docker compose](https://docs.docker.com/compose/install/)
-* for test: npm `npm install http-server -g`
-* screen, `sudo apt-get install screen`
 
 ## Run
 ###  Spin up 1 Postgres, Metabase
@@ -16,7 +14,7 @@ Data sink: JSON data to be store inside MySQL and displayed on a metabase dashbo
 ```
 
 You can check metabase here
-* http://localhost:3000/#/cluster/default/topic/n/songs/
+* http://localhost:3000/
 
 To scrap data from 3 pages from France 2 website
 ```
@@ -25,9 +23,13 @@ sbt "runMain com.github.polomarcus.main.RadioStationsApp 3"
 
 ## Test
 ```
-killall screen # sorry if you have already running screen
-screen -dmS "server" http-server # server src/test/resources/radionova.html to localhost
+# ./init-stack-with-data.sh
 sbt test
+```
+
+### Test only one method
+```aidl
+sbt> testOnly ParserTest -- -z parseFrance2Home
 ```
 
 ## Libraries documentation
