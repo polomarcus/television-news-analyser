@@ -11,4 +11,6 @@ case class News (title: String,
                  authors: List[String],
                  editor: String,
                  editorDeputy: List[String],
-                 url: String)
+                 url: String,
+                 urlTvNews: String,
+                 containsClimate: Boolean)
