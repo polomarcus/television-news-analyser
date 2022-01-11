@@ -18,7 +18,10 @@ class ParserTest extends AnyFunSuite {
       "Laurent Delahousse", List("C.Verove", "O.Sauvayre"),
       "Elsa Pallot",
       List("Thibaud de Barbeyrac"),
-      "http://localhost:8000/monde/bresil/bresil-effondrement-meurtrier-d-une-falaise-sur-un-groupe-de-touristes_4910403.html")
+      "http://localhost:8000/monde/bresil/bresil-effondrement-meurtrier-d-une-falaise-sur-un-groupe-de-touristes_4910403.html",
+      "http://localhost:8000/replay.html",
+      containsClimate = false)
+
 
     assert(news == listNews.head)
   }
@@ -35,7 +38,9 @@ class ParserTest extends AnyFunSuite {
       List("S. Soubane", "J. Ricco", "M. Mullot", "C.-M. Denis", "B. Vignais", "L. Lavieille"),
        "Elsa Pallot",
       List("Thibaud de Barbeyrac"),
-      "http://localhost:8000/sante/maladie/coronavirus/ecoles-un-nouveau-protocole-pour-une-rentree-marquee-par-l-incertitude_4903195.html"
+      "http://localhost:8000/sante/maladie/coronavirus/ecoles-un-nouveau-protocole-pour-une-rentree-marquee-par-l-incertitude_4903195.html",
+      "http://localhost:8000/one-day-tv-news-fr2.html",
+      containsClimate = false
     )
     assert(listNews.contains(Some(news)))
   }

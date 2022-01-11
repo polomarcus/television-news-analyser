@@ -27,7 +27,7 @@ object Parser {
 
     logger.debug(s"""
       I got ${allTelevisionNews.length} days of news
-      """)
+    """)
 
     val parsedTelevisionNews = allTelevisionNews.map(televisionNewsForOneDay => {
       logger.info(s"Parsing this day of news : $televisionNewsForOneDay")
@@ -40,20 +40,21 @@ object Parser {
   def parseFrance2News(url: String, defaultUrl : String = "https://www.francetvinfo.fr"): Future[List[Option[News]]] = {
     Future {
       try {
-        val completeUrl = defaultUrl + url
-        logger.debug("France 2 Url: " + completeUrl)
-        val doc = browser.get(completeUrl)
+        val tvNewsURL = defaultUrl + url
+        logger.debug("France 2 Url: " + tvNewsURL)
+
+        val doc = browser.get(tvNewsURL)
         val news = doc >> elementList(".subjects-list li")
         val publishedDate = doc >> text(".schedule span:nth-of-type(1)") // Diffusé le 08/01/2022
         val presenter = doc >> text(".presenter .by")
 
         logger.info(
           s"""
-      This is what i got for this day $url:
-      number of news: ${news.length}
-      date : $publishedDate
-      getTimestampFrance2 : ${DateService.getTimestampFrance2(publishedDate)}
-      """)
+            This is what i got for this day $url:
+            number of news: ${news.length}
+            date : $publishedDate
+            getTimestampFrance2 : ${DateService.getTimestampFrance2(publishedDate)}
+          """)
 
         news.map(x => {
           val title = x >> text(".title")
@@ -63,11 +64,11 @@ object Parser {
 
           logger.debug(
             s"""
-        I got a news in order $order :
-        news: $title
-        link to description : $linkToDescription
-        description (30 first char): ${description.take(30)}
-        """)
+              I got a news in order $order :
+              news: $title
+              link to description : $linkToDescription
+              description (30 first char): ${description.take(30)}
+            """)
 
           Some(
             News(title, description, DateService.getTimestampFrance2(publishedDate),
@@ -77,6 +78,8 @@ object Parser {
               editor,
               editorDeputy,
               defaultUrl + linkToDescription,
+              tvNewsURL,
+              containsWordClimate(description)
           ))
         })
       } catch {
@@ -86,6 +89,10 @@ object Parser {
         }
       }
     }
+  }
+
+  def containsWordClimate(description: String) : Boolean = {
+    description.toLowerCase().contains("climat")
   }
 
   def parseDescriptionAuthors(url: String, defaultFrance2URL : String =  "https://www.francetvinfo.fr") = {
