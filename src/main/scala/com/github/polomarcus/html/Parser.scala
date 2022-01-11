@@ -40,8 +40,9 @@ object Parser {
   def parseFrance2News(url: String, defaultUrl : String = "https://www.francetvinfo.fr"): Future[List[Option[News]]] = {
     Future {
       try {
-        logger.debug("France 2 Url: " + defaultUrl + url)
-        val doc = browser.get(defaultUrl + url)
+        val completeUrl = defaultUrl + url
+        logger.debug("France 2 Url: " + completeUrl)
+        val doc = browser.get(completeUrl)
         val news = doc >> elementList(".subjects-list li")
         val publishedDate = doc >> text(".schedule span:nth-of-type(1)") // Diffusé le 08/01/2022
         val presenter = doc >> text(".presenter .by")
@@ -58,7 +59,7 @@ object Parser {
           val title = x >> text(".title")
           val order = x >> text(".number")
           val linkToDescription = x >> element(".title") >> attr("href")
-          val (description, authors) = parseDescriptionAuthors(linkToDescription)
+          val (description, authors, editor, editorDeputy) = parseDescriptionAuthors(linkToDescription)
 
           logger.debug(
             s"""
@@ -73,7 +74,9 @@ object Parser {
               order.toInt,
               presenter,
               authors,
-              defaultUrl + linkToDescription
+              editor,
+              editorDeputy,
+              defaultUrl + linkToDescription,
           ))
         })
       } catch {
@@ -90,16 +93,25 @@ object Parser {
       val doc = browser.get(defaultFrance2URL + url)
       val description = doc >> text(".c-body")
       val authors = doc >> text(".c-signature__names span")
-      //@ TODO val redactor = doc >> text(".from-same-show__info-team p:nth-of-type(2)")
-      // @TODO val publisher = doc >> text(".from-same-show__info-team-item p:nth-of-type(2)")
-      logger.debug(s"parseDescriptionAuthors from $url", description)
 
-      (description, authors.split(", ").toList)
+      val weekTeam = doc >> elementList(".from-same-show__info-team ")
+      val editor = weekTeam.head >> text("p:nth-of-type(2)")
+      val editorDeputy = weekTeam.tail.head >> text("p:nth-of-type(2)")
+
+      logger.debug(s"""
+      parseDescriptionAuthors from $url:
+        $authors
+        $editor
+        $editorDeputy
+        $description
+      """)
+
+      (description, authors.split(", ").toList, editor, editorDeputy.split(", ").toList)
     } catch {
       case e: Exception => {
         logger.error(s"Error parsing this date $defaultFrance2URL + $url " + e.toString)
-        ("", Nil)
+        ("", Nil, "", Nil)
       }
-  }
+    }
   }
 }
