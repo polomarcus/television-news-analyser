@@ -20,8 +20,7 @@ object Parser {
   val browser = JsoupBrowser()
   implicit val ec = FutureService.ec
 
-  def parseFrance2Home(url: String, defaultUrl : String = "https://www.francetvinfo.fr") = {
-    logger.debug("France 2 Url: " + url)
+  def parseFrance2HomeHelper(url: String, defaultUrl : String = "https://www.francetvinfo.fr"): List[News] = {
     val doc = browser.get(url)
     val allTelevisionNews = doc >> elementList("h2.title a") >> attr("href")
 
@@ -35,6 +34,26 @@ object Parser {
     })
 
     waitFuture[Option[News]](parsedTelevisionNews).flatten
+  }
+  def parseFrance2Home(url: String, defaultUrl : String = "https://www.francetvinfo.fr") = {
+    logger.debug("France 2 Url: " + url)
+
+    try {
+      parseFrance2HomeHelper(url,defaultUrl)
+    } catch {
+      case e: Exception =>
+        logger.info(e.toString)
+        try {
+          //Try a second time in case of timeout
+          Thread.sleep(2000L)
+          parseFrance2HomeHelper(url,defaultUrl)
+        } catch {
+          case e: Exception => {
+            logger.warn(s"Second exception in a row for, giving up $url " + e.toString)
+            Nil
+          }
+        }
+    }
   }
 
   def parseFrance2News(url: String, defaultUrl : String = "https://www.francetvinfo.fr"): Future[List[Option[News]]] = {
@@ -65,13 +84,15 @@ object Parser {
           logger.debug(
             s"""
               I got a news in order $order :
-              news: $title
+              title: $title
               link to description : $linkToDescription
               description (30 first char): ${description.take(30)}
             """)
 
           Some(
-            News(title, description, DateService.getTimestampFrance2(publishedDate),
+            News(title,
+              description,
+              DateService.getTimestampFrance2(publishedDate),
               order.toInt,
               presenter,
               authors,
@@ -79,7 +100,7 @@ object Parser {
               editorDeputy,
               defaultUrl + linkToDescription,
               tvNewsURL,
-              containsWordClimate(description)
+              containsWordGlobalWarming(title + description)
           ))
         })
       } catch {
@@ -91,19 +112,31 @@ object Parser {
     }
   }
 
-  def containsWordClimate(description: String) : Boolean = {
-    description.toLowerCase().contains("climat")
+  def containsWordGlobalWarming(description: String) : Boolean = {
+    description.toLowerCase().contains("réchauffement climatique")
   }
 
   def parseDescriptionAuthors(url: String, defaultFrance2URL : String =  "https://www.francetvinfo.fr") = {
     try {
       val doc = browser.get(defaultFrance2URL + url)
-      val description = doc >> text(".c-body")
-      val authors = doc >> text(".c-signature__names span")
+      val descriptionOption = doc >?> text(".c-body")
+      val description = descriptionOption match {
+        case Some(descriptionValue) => descriptionValue
+        case None => {
+          val oldDescription = (doc >?> text("#col-middle")).getOrElse("")
+          oldDescription.split("Le JT")(0) // hack to proper extract description from old pages @see https://www.francetvinfo.fr/attaque-chimique-en-syrie-quelles-consequences_397173.html
+        } // old tv news
+      }
+      val authors = doc >?> text(".c-signature__names span")
 
-      val weekTeam = doc >> elementList(".from-same-show__info-team ")
-      val editor = weekTeam.head >> text("p:nth-of-type(2)")
-      val editorDeputy = weekTeam.tail.head >> text("p:nth-of-type(2)")
+      val weekTeam = (doc >> elementList(".from-same-show__info-team"))
+
+      val (editor, editorDeputy) = weekTeam.isEmpty match {
+        case false => val editor = (weekTeam.head >?> text("p:nth-of-type(2)")).getOrElse("")
+          val editorDeputy = (weekTeam.tail.head >?> text("p:nth-of-type(2)")).getOrElse("")
+          (editor, editorDeputy)
+        case true => ("", "")
+      }
 
       logger.debug(s"""
       parseDescriptionAuthors from $url:
@@ -113,10 +146,10 @@ object Parser {
         $description
       """)
 
-      (description, authors.split(", ").toList, editor, editorDeputy.split(", ").toList)
+      (description, authors.getOrElse("").split(", ").toList, editor, editorDeputy.split(", ").toList)
     } catch {
       case e: Exception => {
-        logger.error(s"Error parsing this date $defaultFrance2URL + $url " + e.toString)
+        logger.error(s"Error parsing this subject $defaultFrance2URL + $url " + e.toString)
         ("", Nil, "", Nil)
       }
     }
