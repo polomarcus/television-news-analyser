@@ -1,11 +1,11 @@
 package com.github.polomarcus.model
 
-import java.util.Date
+import java.sql.Timestamp
 
 
 case class News (title: String,
                  description: String,
-                 date: Date,
+                 date: Timestamp,
                  order: Integer,
                  presenter: String,
                  authors: List[String],
@@ -13,4 +13,4 @@ case class News (title: String,
                  editorDeputy: List[String],
                  url: String,
                  urlTvNews: String,
-                 containsClimate: Boolean)
+                 containsWordGlobalWarming: Boolean)

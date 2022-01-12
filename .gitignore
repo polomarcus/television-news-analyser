@@ -4,4 +4,5 @@
 target/
 project/
 .bsp
-
+spark-warehouse/
+archived-json/

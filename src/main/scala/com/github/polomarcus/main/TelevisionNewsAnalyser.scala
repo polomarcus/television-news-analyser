@@ -1,14 +1,16 @@
 package com.github.polomarcus.main
 
 import com.github.polomarcus.html.Getter
-import com.github.polomarcus.utils.{DateService}
+import com.github.polomarcus.storage.StorageService
+import com.github.polomarcus.utils.{DateService, SparkService}
 import com.typesafe.scalalogging.Logger
 
 
 object TelevisionNewsAnalyser {
   def main(args: Array[String]) {
     val logger = Logger(this.getClass)
-
+    val spark = SparkService.getAndConfigureSparkSession()
+    val sqlContext = spark.sqlContext
     logger.info(s"args $args")
 
     val firstNews = 1
@@ -26,8 +28,8 @@ object TelevisionNewsAnalyser {
     logger.info(s"Number of news parsed : ${newsList.length}")
 
     //@TODO save as JSON
-    // jsonWrite(newsList)
-
+    StorageService.write(newsList, "myFirstTest")
+    spark.stop()
     System.exit(0)
   }
 }
