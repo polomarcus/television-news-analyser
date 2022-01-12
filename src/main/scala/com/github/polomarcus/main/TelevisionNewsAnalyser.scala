@@ -28,7 +28,8 @@ object TelevisionNewsAnalyser {
     logger.info(s"Number of news parsed : ${newsList.length}")
 
     //@TODO save as JSON
-    StorageService.write(newsList, "myFirstTest")
+    val r = scala.util.Random
+    StorageService.write(newsList, s"output-tv-news-${r.nextInt}")
     spark.stop()
     System.exit(0)
   }
