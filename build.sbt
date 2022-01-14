@@ -50,3 +50,5 @@ libraryDependencies += ("org.apache.spark" %% "spark-sql" % sparkVersion)
   .exclude("org.slf4j", "log4j")
 
 dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-databind" % "2.6.7"
+
+libraryDependencies += "org.postgresql" % "postgresql" % "42.2.5"

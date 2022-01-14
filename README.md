@@ -20,7 +20,12 @@ You can check metabase here
 
 To scrap data from 3 pages from France 2 website
 ```
-sbt "run 3"
+sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 3"
+```
+
+To store the JSON data to PG and explore it with Metabase 
+```
+sbt "runMain com.github.polomarcus.main.SaveTVNewsToPostgres"
 ```
 
 ## Test
