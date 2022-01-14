@@ -5,7 +5,7 @@ services:
     ports:
       - 8000:80
     volumes:
-      - './resources:/usr/share/nginx/html'  # Volumes where Metabase data will be persisted
+      - './resources:/usr/share/nginx/html'
   metabase:
     image: metabase/metabase:latest
     volumes:
@@ -19,13 +19,18 @@ services:
       MB_DB_USER: user
       MB_DB_PASS: password
       MB_DB_HOST: postgres
+      MB_DB_FILE: "/metabase-data/metabase.db" # https://www.metabase.com/docs/latest/operations-guide/running-metabase-on-docker.html#mounting-a-mapped-file-storage-volume
       JAVA_TIMEZONE: Europe/Paris
     depends_on:
       - postgres
   postgres:
     image: postgres:latest
     container_name: postgres
+    ports:
+      - 5432:5432
     hostname: postgres
+    volumes:
+      - './pgdata:/var/lib/postgresql/data' # persist data https://stackoverflow.com/a/41650891/3535853
     environment:
       POSTGRES_USER: user
       POSTGRES_DB: metabase

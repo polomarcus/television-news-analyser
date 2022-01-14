@@ -6,7 +6,7 @@ import java.sql.Timestamp
 case class News (title: String,
                  description: String,
                  date: Timestamp,
-                 order: Integer,
+                 order: Long,
                  presenter: String,
                  authors: List[String],
                  editor: String,

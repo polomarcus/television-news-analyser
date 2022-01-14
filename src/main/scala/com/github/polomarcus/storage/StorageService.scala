@@ -1,9 +1,9 @@
 package com.github.polomarcus.storage
 
 import com.github.polomarcus.model.News
-import com.github.polomarcus.utils.{DateService, SparkService}
+import com.github.polomarcus.utils.SparkService
 import com.typesafe.scalalogging.Logger
-import org.apache.spark.sql.functions.year
+import org.apache.spark.sql.functions.{col, to_timestamp, year}
 
 object StorageService {
   val logger = Logger(this.getClass)
@@ -33,5 +33,10 @@ object StorageService {
       .json(s"$path-json")
 
     path
+  }
+
+  def read(path: String)  = {
+    spark.read.json(path).withColumn("date",
+      to_timestamp(col("date")))
   }
 }
