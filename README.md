@@ -4,6 +4,7 @@ Scrap France 2 Tv news to analyse humanity's biggest challenge : fossil energies
 Data source: HTMLs pages : example https://www.francetvinfo.fr/replay-jt/france-2/20-heures/jt-de-20h-du-jeudi-30-decembre-2021_4876025.html
 
 Data sink: JSON data to be store inside MySQL and displayed on a metabase dashboard
+* JSON data: https://github.com/polomarcus/television-news-analyser/tree/main/tv-2013-2021-json
 
 ## Requirements
 * scala built tool : sbt
@@ -32,7 +33,7 @@ sbt "runMain com.github.polomarcus.main.SaveTVNewsToPostgres"
 ```
 
 #### Jupyter Notebook
-Some examples are inside example.ipynb, but I prefered to use Metabase dashboard and visualisation using SQL
+Some examples are inside [example.ipynb](https://github.com/polomarcus/television-news-analyser/blob/main/example.ipynb), but I prefered to use Metabase dashboard and visualisation using SQL
 
 ## Test
 ```
