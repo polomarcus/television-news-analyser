@@ -10,23 +10,29 @@ Data sink: JSON data to be store inside MySQL and displayed on a metabase dashbo
 * [docker compose](https://docs.docker.com/compose/install/)
 
 ## Run
-###  Spin up 1 Postgres, Metabase
-```dtd
+###  Spin up 1 Postgres, Metabase, and load data to PG via SBT
+```
 ./init-stack-with-data.sh
 ```
 
 You can check metabase here
 * http://localhost:3000/
+* configure an account
+* configure PostgreSQL data source: (user/password - host : postgres - database name : metabase)
+* You're good to go : "Ask a simple question", then select your data source and the "News" table
 
-To scrap data from 3 pages from France 2 website
+#### To scrap data from 3 pages from France 2 website
 ```
 sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 3"
 ```
 
-To store the JSON data to PG and explore it with Metabase 
+#### To store the JSON data to PG and explore it with Metabase 
 ```
 sbt "runMain com.github.polomarcus.main.SaveTVNewsToPostgres"
 ```
+
+#### Jupyter Notebook
+Some examples are inside example.ipynb, but I prefered to use Metabase dashboard and visualisation using SQL
 
 ## Test
 ```
@@ -35,7 +41,7 @@ sbt test # it will parsed some localhost pages from test/resources/
 ```
 
 ### Test only one method
-```aidl
+```
 sbt> testOnly ParserTest -- -z parseFrance2Home
 ```
 
