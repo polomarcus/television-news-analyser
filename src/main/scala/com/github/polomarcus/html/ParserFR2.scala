@@ -6,11 +6,11 @@ import com.github.polomarcus.utils.FutureService.waitFuture
 import java.util.concurrent.Executors
 import net.ruippeixotog.scalascraper.dsl.DSL._
 import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
-import com.github.polomarcus.utils.{DateService, FutureService}
+import com.github.polomarcus.utils.{DateService, FutureService, TextService}
 import com.typesafe.scalalogging.Logger
 import net.ruippeixotog.scalascraper.browser.JsoupBrowser
 
-import scala.concurrent.{Future}
+import scala.concurrent.Future
 
 // For implicit conversions from RDDs to DataFrames
 import scala.concurrent.ExecutionContext
@@ -101,7 +101,7 @@ object ParserFR2 {
               editorDeputy,
               defaultUrl + linkToDescription,
               tvNewsURL,
-              containsWordGlobalWarming(title + description),
+              TextService.containsWordGlobalWarming(title + description),
               FRANCE2
           ))
         })
@@ -112,10 +112,6 @@ object ParserFR2 {
         }
       }
     }
-  }
-
-  def containsWordGlobalWarming(description: String) : Boolean = {
-    description.toLowerCase().contains("réchauffement climatique")
   }
 
   def parseDescriptionAuthors(url: String, defaultFrance2URL : String =  "https://www.francetvinfo.fr") = {

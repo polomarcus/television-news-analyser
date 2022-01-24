@@ -2,7 +2,7 @@ package com.github.polomarcus.html
 
 import com.github.polomarcus.model.News
 import com.github.polomarcus.utils.FutureService.{waitFuture, waitFutureTF1}
-import com.github.polomarcus.utils.{DateService, FutureService}
+import com.github.polomarcus.utils.{DateService, FutureService, TextService}
 import com.typesafe.scalalogging.Logger
 import net.ruippeixotog.scalascraper.browser.JsoupBrowser
 import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
@@ -56,7 +56,7 @@ object ParserTF1 {
                 editorDeputy,
                 defaultUrl + linkToDescription,
                 tvNewsURL,
-                containsWordGlobalWarming(title + description),
+                TextService.containsWordGlobalWarming(title + description),
                 TF1
               ))
           }
@@ -92,10 +92,6 @@ object ParserTF1 {
           }
         }
     }
-  }
-
-  def containsWordGlobalWarming(description: String) : Boolean = {
-    description.toLowerCase().contains("réchauffement climatique") || description.toLowerCase().contains("changement climatique")
   }
 
   /**
