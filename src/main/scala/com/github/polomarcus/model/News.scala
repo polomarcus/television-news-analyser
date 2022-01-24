@@ -13,4 +13,5 @@ case class News (title: String,
                  editorDeputy: List[String],
                  url: String,
                  urlTvNews: String,
-                 containsWordGlobalWarming: Boolean)
+                 containsWordGlobalWarming: Boolean,
+                 media: String)
