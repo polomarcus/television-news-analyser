@@ -17,7 +17,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Run France 2
+      - name: Run France 22
         run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 france2"
       - name: list new data
         run: ls output*
