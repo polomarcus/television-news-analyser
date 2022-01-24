@@ -1,12 +1,8 @@
 name: Data CI
 
 on:
-  #   schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
-  # * is a special character in YAML so you have to quote this string
-  # - cron:  '0 11 * * *'
-  pull_request:
-    branches: [ main ]
-    types: [opened, closed]
+  schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+  - cron:  '0 5 * * *'
 jobs:
   data:
     runs-on: ubuntu-latest
@@ -21,11 +17,10 @@ jobs:
         run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 france2"
       - name: list new data
         run: ls output*
-      - uses: actions/checkout@v2
-      - run: |
-          date > generated.txt
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "saved news"
-          git push
+#      - uses: actions/checkout@v2
+#      - run: |
+#          git config user.name github-actions
+#          git config user.email github-actions@github.com
+#          git add .
+#          git commit -m "saved news"
+#          git push
