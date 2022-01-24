@@ -15,9 +15,10 @@ import scala.concurrent.{Future}
 // For implicit conversions from RDDs to DataFrames
 import scala.concurrent.ExecutionContext
 
-object Parser {
+object ParserFR2 {
   val logger = Logger(this.getClass)
   val browser = JsoupBrowser()
+  val FRANCE2 = "France 2"
   implicit val ec = FutureService.ec
 
   def parseFrance2HomeHelper(url: String, defaultUrl : String = "https://www.francetvinfo.fr"): List[News] = {
@@ -100,7 +101,8 @@ object Parser {
               editorDeputy,
               defaultUrl + linkToDescription,
               tvNewsURL,
-              containsWordGlobalWarming(title + description)
+              containsWordGlobalWarming(title + description),
+              FRANCE2
           ))
         })
       } catch {

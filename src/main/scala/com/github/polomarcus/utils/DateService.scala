@@ -18,4 +18,40 @@ object DateService {
       }
     }
   }
+
+  def parseFrenchMonth(month: String) = {
+    month match {
+      case "janvier" => "01"
+      case "février" => "02"
+      case "mars" => "03"
+      case "avril" => "04"
+      case "mai" => "05"
+      case "juin" => "06"
+      case "juillet" => "07"
+      case "août" => "08"
+      case "septembre" => "09"
+      case "octobre" => "10"
+      case "novembre" => "11"
+      case "décembre" => "12"
+      case _  =>
+        logger.error("Error parsign month", month)
+        "Invalid month"  // the default, catch-all
+    }
+  }
+  //"Publié le 10 décembre 2020 à 20h08"
+  def getTimestampTF1(date: String): Timestamp = {
+    try {
+      val format = new SimpleDateFormat("d/MM/yyyy")
+      val dateSplit = date.split(" ")
+      val day = dateSplit(2)
+      val month = parseFrenchMonth(dateSplit(3))
+      val year = dateSplit(4)
+      new Timestamp(format.parse(s"$day/$month/$year").getTime)
+    } catch {
+      case e: Exception => {
+        logger.error(s"Error parsing this date $date " + e.toString)
+        new Timestamp(System.currentTimeMillis())
+      }
+    }
+  }
 }

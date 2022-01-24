@@ -1,6 +1,6 @@
-import com.github.polomarcus.html.{Getter, Parser}
+import com.github.polomarcus.html
+import com.github.polomarcus.html.ParserFR2
 import com.github.polomarcus.model.News
-import com.github.polomarcus.utils.FutureService
 import org.scalatest.funsuite.AnyFunSuite
 
 import java.sql.Timestamp
@@ -9,10 +9,10 @@ import java.util.Date
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 
-class ParserTest extends AnyFunSuite {
+class ParserFR2Test extends AnyFunSuite {
   val localhost = "http://localhost:8000"
   test("parseFrance2Home") {
-    val listNews = Parser.parseFrance2Home(s"$localhost/home-tv-news-fr2.html", localhost)
+    val listNews = ParserFR2.parseFrance2Home(s"$localhost/home-tv-news-fr2.html", localhost)
 
     val description = "Au Brésil, un pan de falaise s'est détaché et a percuté des bateaux de touristes, samedi 8 janvier. Quelques minutes plus tôt, les touristes profitaient des décors sur le lac Furnas (Brésil). Soudain, un premier éboulement inquiète, suivi d'un autre. Les passagers d'un bateau tentent alors de donner l'alerte, en vain. Il est trop tard : un pan entier de la falaise s'effondre, et écrase les bateaux les plus proches. Le bilan est lourd : sept morts, et trois disparus. Les recherches ont repris Interrompues durant la nuit, les recherches se sont poursuivies dimanche. \"Nous pouvons voir maintenant des débris de bateau, qui ont été touchés dans l'accident\", a précisé l'un des pompiers. Deux heures avant la catastrophe, la protection civile avait recommandé d'éviter les cascades, en raison des fortes pluies. Une enquête devra déterminer si les compagnies de tourisme ont fait preuve de négligence."
     val news = News("Brésil : effondrement meurtrier d'une falaise sur un groupe de touristes", description, new Timestamp(new Date("01/09/2022").getTime), 1,
@@ -21,14 +21,15 @@ class ParserTest extends AnyFunSuite {
       List("Thibaud de Barbeyrac"),
       "http://localhost:8000/monde/bresil/bresil-effondrement-meurtrier-d-une-falaise-sur-un-groupe-de-touristes_4910403.html",
       "http://localhost:8000/replay.html",
-      containsWordGlobalWarming = false)
+      containsWordGlobalWarming = false,
+        ParserFR2.FRANCE2)
 
 
     assert(news == listNews.head)
   }
 
   test("parseFrance2News") {
-    val listNews = Await.result(Parser.parseFrance2News(s"/one-day-tv-news-fr2.html", localhost),
+    val listNews = Await.result(ParserFR2.parseFrance2News(s"/one-day-tv-news-fr2.html", localhost),
       Duration(1, "minutes")
     )
 
@@ -41,13 +42,14 @@ class ParserTest extends AnyFunSuite {
       List("Thibaud de Barbeyrac"),
       "http://localhost:8000/sante/maladie/coronavirus/ecoles-un-nouveau-protocole-pour-une-rentree-marquee-par-l-incertitude_4903195.html",
       "http://localhost:8000/one-day-tv-news-fr2.html",
-      containsWordGlobalWarming = false
-    )
+      containsWordGlobalWarming = false,
+      ParserFR2.FRANCE2)
+
     assert(listNews.contains(Some(news)))
   }
 
   test("parseDescriptionAuthors") {
-    val (description, authors, editor, editorDeputy) = Parser.parseDescriptionAuthors("/one-subject-tv-news-fr2.html", localhost)
+    val (description, authors, editor, editorDeputy) = ParserFR2.parseDescriptionAuthors("/one-subject-tv-news-fr2.html", localhost)
 
     assert("Les centrales à gaz et les centrales nucléaires, bénéfiques au climat ? C’est une décision très controversée que s’apprête à adopter la Commission européenne. Elle propose en effet de classer le gaz et le nucléaire comme des énergies oeuvrant à la transition climatique, une position défendue par la France. \"On a besoin de toutes les énergies décarbonées pour lutter contre le réchauffement climatique\", avance Pascal Canfin, président de la commission Environnement au Parlement européen. Des pays anti-nucléaires vent debout contre la proposition Grâce à ce label, les investisseurs seraient encouragés à placer leur argent dans le gaz et le nucléaire. Mais certains pays anti-nucléaires, comme l’Allemagne, l’Autriche ou encore le Luxembourg, font entendre leur voix, et dénoncent une \"provocation\". \"On ne peut pas dire que le nucléaire est une énergie durable. N’allons pas investir de l’argent pour de nouvelles folies nucléaires\", annonce Damien Carème, eurodéputé. Pour que la mesure soit abandonnée, il faudrait que 20 pays s’y opposent." == description)
     assert(List("J.Gasparutto", "C.Vanpée", "H.Huet", "F.Ducobu", "S.Giaume", "S.Carter") == authors)
@@ -56,7 +58,7 @@ class ParserTest extends AnyFunSuite {
   }
 
   test("parseDescriptionAuthors - old news 204/2013") {
-    val (description, authors, editor, editorDeputy) = Parser.parseDescriptionAuthors("/old-subject-tv-news-fr2.html", localhost)
+    val (description, authors, editor, editorDeputy) = ParserFR2.parseDescriptionAuthors("/old-subject-tv-news-fr2.html", localhost)
 
     assert(List("") == authors)
     assert("" == editor)

@@ -4,33 +4,38 @@ import com.github.polomarcus.model.News
 import com.github.polomarcus.utils.{ FutureService}
 import com.typesafe.scalalogging.Logger
 
-
-import scala.concurrent.Future
-
-//https://github.com/ruippeixotog/scala-scraper
-import java.net.URLEncoder
-
 object Getter {
   val logger = Logger(this.getClass)
   implicit val ec = FutureService.ec
 
   val france2UrlPagination = "https://www.francetvinfo.fr/replay-jt/france-2/20-heures"
+  val tf1UrlPagination = "https://www.tf1info.fr/emission/le-20h-11001/extraits"
 
   /**
-   * https://www.francetvinfo.fr/replay-jt/france-2/20-heures/${args(0)}.html
+   * 2 choices to parse :
+   * * https://www.francetvinfo.fr/replay-jt/france-2/20-heures/${args(0)}.html
+   * * https://www.tf1info.fr/emission/le-20h-11001/extraits/${args(0)}
    * @param Pagination start 1
-   * @param Pagination end until 173+
+   * @param Pagination end until 156
+   * @param media: tf1 or france2 (default)
    */
-  def getFrance2News(start: Integer, end: Integer) : List[News] = {
+  def getNews(start: Integer, end: Integer, media: String) : List[News] = {
+    val urlMedia = media match {
+      case "tf1" => tf1UrlPagination
+      case _ => france2UrlPagination
+    }
     val newsList = (start.toLong to end.toLong by 1).map { page =>
       val url = if(page == 1) {
-        s"$france2UrlPagination" // https://www.francetvinfo.fr/replay-jt/france-2/20-heures/
+        s"$urlMedia"
       } else {
-        s"$france2UrlPagination/$page.html" // https://www.francetvinfo.fr/replay-jt/france-2/20-heures/2.html
+        s"$urlMedia/$page.html"
       }
 
-      logger.info(url)
-      Parser.parseFrance2Home(url)
+      logger.info(s"Parsing this $url")
+      media match {
+        case "tf1" => ParserTF1.parseTF1Home(url)
+        case _ => ParserFR2.parseFrance2Home(url)
+      }
     }
 
     newsList.flatten.toList
