@@ -1,0 +1,31 @@
+name: Data CI
+
+on:
+  #   schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+  # * is a special character in YAML so you have to quote this string
+  # - cron:  '0 11 * * *'
+  pull_request:
+    branches: [ main ]
+    types: [opened, closed]
+jobs:
+  data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Run France 2
+        run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 france2"
+      - name: list new data
+        run: ls output*
+      - uses: actions/checkout@v2
+      - run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "saved news"
+          git push
