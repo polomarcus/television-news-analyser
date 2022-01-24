@@ -2,7 +2,7 @@ name: Data CI
 
 on:
   schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
-  - cron:  '0 5 * * *'
+  - cron:  '8 5 * * *'
 jobs:
   data:
     runs-on: ubuntu-latest
