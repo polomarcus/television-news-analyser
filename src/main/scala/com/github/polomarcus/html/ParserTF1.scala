@@ -98,6 +98,19 @@ object ParserTF1 {
     description.toLowerCase().contains("réchauffement climatique") || description.toLowerCase().contains("changement climatique")
   }
 
+  /**
+   * parse T F1 | Reportage T. Jarrion, F. Couturon, F. Petit
+   * @param authors
+   */
+  def parseAuthors(authors: String) = {
+    val step1 = authors.split(" Reportage ")
+    if(step1.length > 1) {
+      step1(1).split(", ").toList
+    } else {
+      List("")
+    }
+  }
+
   def parseDescriptionAuthors(url: String, defaultTF1URL : String =  "https://www.tf1info.fr") = {
     try {
       val doc = browser.get(defaultTF1URL + url)
@@ -111,7 +124,8 @@ object ParserTF1 {
 
         sum
       }
-      val authors = doc >?> text(".AuthorArticle__Author")
+
+      val authors = parseAuthors((description.lastOption >> text("p")).getOrElse(""))
 
       val (editor, editorDeputy) = ("", "")
 
@@ -124,7 +138,7 @@ object ParserTF1 {
         $descriptionTotal
       """)
 
-      (subTitle + " " + descriptionTotal, authors.getOrElse("").split(", ").toList, editor, editorDeputy.split(", ").toList)
+      (subTitle + " " + descriptionTotal, authors, editor, editorDeputy.split(", ").toList)
     } catch {
       case e: Exception => {
         logger.error(s"Error parsing this subject $defaultTF1URL + $url " + e.toString)
