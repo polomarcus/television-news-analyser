@@ -12,11 +12,13 @@ object SaveTVNewsToPostgres {
     val sqlContext = spark.sqlContext
     val logger = Logger(this.getClass)
 
-    val newsDF = StorageService.read("./tv-2013-2021-json/").distinct()
+    val newsFR2DF = StorageService.read("./data-news-json/fr2-tv-news-2013-2022-json").distinct()
+    val newsTF1DF = StorageService.read("./data-news-json/tf1-tv-news-2016-2022-json").distinct()
 
-    newsDF.show();
+    val newsDF = newsTF1DF.union(newsFR2DF)
 
     newsDF.printSchema()
+    newsDF.show()
 
     // Saving data to a JDBC source
     newsDF.write
