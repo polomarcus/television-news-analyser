@@ -13,8 +13,10 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Run France 22
+      - name: List France 2 news urls containing global warming (see end)
         run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 france2"
+      - name: List TF1 news urls containing global warming (see end)
+        run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 tf1"
       - name: list new data
         run: ls output*
 #      - uses: actions/checkout@v2
