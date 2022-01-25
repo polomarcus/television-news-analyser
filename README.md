@@ -4,12 +4,14 @@ Scrap France 2 Tv news to analyse humanity's biggest challenge : fossil energies
 
 ![metabaseexample](https://user-images.githubusercontent.com/4059615/149955122-89642ba8-fb45-4369-956c-5854c14bfdd1.png)
 
-Data source: HTMLs pages : example https://www.francetvinfo.fr/replay-jt/france-2/20-heures/jt-de-20h-du-jeudi-30-decembre-2021_4876025.html
+**Data source:** HTMLs pages : example https://www.francetvinfo.fr/replay-jt/france-2/20-heures/jt-de-20h-du-jeudi-30-decembre-2021_4876025.html
 
-Data sink: JSON data to be store inside MySQL and displayed on a metabase dashboard
-* **Use the JSON data here** ➡️ https://github.com/polomarcus/television-news-analyser/tree/main/tv-2013-2021-json
+**Data sink:** JSON data to be store inside MySQL and displayed on a metabase dashboard :
 
+* **JSON data :** ➡️ https://github.com/polomarcus/television-news-analyser/tree/main/data-news-json/
 
+Everyday last replays with URLs from France 2 and TF1 are analysed with Github Actions if they contain "global warming" :
+* https://github.com/polomarcus/television-news-analyser/actions/workflows/save-data.yml
 
 ## Requirements
 * scala built tool : sbt
