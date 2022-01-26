@@ -4,7 +4,7 @@ on:
   schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
   - cron:  '8 5 * * *'
 jobs:
-  data:
+  click-here-to-see-data:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
