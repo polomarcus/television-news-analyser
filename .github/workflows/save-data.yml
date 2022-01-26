@@ -1,4 +1,4 @@
-name: Data CI
+name: List news urls containing global warming
 
 on:
   schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
