@@ -68,7 +68,7 @@ object ParserFR2 {
         val publishedDate = doc >> text(".schedule span:nth-of-type(1)") // Diffusé le 08/01/2022
         val presenter = doc >> text(".presenter .by")
 
-        logger.info(
+        logger.debug(
           s"""
             This is what i got for this day $url:
             number of news: ${news.length}

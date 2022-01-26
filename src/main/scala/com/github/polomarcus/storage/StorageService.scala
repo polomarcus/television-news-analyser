@@ -17,7 +17,8 @@ object StorageService {
       .toDF()
       .repartition(1)
 
-    news.show(10, false)
+    news.printSchema()
+
     news.createOrReplaceTempView("news")
 
     spark.sql(
