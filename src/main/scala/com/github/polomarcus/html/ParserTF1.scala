@@ -37,7 +37,7 @@ object ParserTF1 {
             val (description, authors, editor, editorDeputy) = parseDescriptionAuthors(linkToDescription, defaultUrl)
             val publishedDate = x >> text(".ReplayItem__Date") // Publié le 10 décembre 2020 à 20h08
 
-            logger.info(
+            logger.debug(
               s"""
                 I got a news for date : $publishedDate
                 title: $title

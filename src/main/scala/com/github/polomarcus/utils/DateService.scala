@@ -4,6 +4,8 @@ import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import com.typesafe.scalalogging.Logger
 
+import java.time.{LocalDate, ZoneId}
+
 object DateService {
   val logger = Logger(DateService.getClass)
 
@@ -39,14 +41,22 @@ object DateService {
     }
   }
   //"Publié le 10 décembre 2020 à 20h08"
+  // Publié hier à 20h39
   def getTimestampTF1(date: String): Timestamp = {
     try {
       val format = new SimpleDateFormat("d/MM/yyyy")
-      val dateSplit = date.split(" ")
-      val day = dateSplit(2)
-      val month = parseFrenchMonth(dateSplit(3))
-      val year = dateSplit(4)
-      new Timestamp(format.parse(s"$day/$month/$year").getTime)
+      if(date.contains("hier") || date.contains("aujourd’hui")) { // late publish
+        val paris = ZoneId.of("Europe/Paris")
+        val now = LocalDate.now(paris)
+
+        new Timestamp(now.minusDays(1).atStartOfDay(paris).toEpochSecond * 1000)
+      } else {
+        val dateSplit = date.split(" ")
+        val day = dateSplit(2)
+        val month = parseFrenchMonth(dateSplit(3))
+        val year = dateSplit(4)
+        new Timestamp(format.parse(s"$day/$month/$year").getTime)
+      }
     } catch {
       case e: Exception => {
         logger.error(s"Error parsing this date $date " + e.toString)

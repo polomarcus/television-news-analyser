@@ -11,5 +11,6 @@ class DateServiceTest extends AnyFunSuite {
 
   test("getTimestampTF1") {
     assert(DateService.getTimestampTF1  ("Publié le 10 décembre 2020 à 20h08") == new Timestamp(new Date("12/10/2020").getTime))
+    assert(DateService.getTimestampTF1  ("Publié hier à 20h39").getTime >= 0)
   }
 }
