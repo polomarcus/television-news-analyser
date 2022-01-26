@@ -13,7 +13,7 @@
 
 * **JSON data :** ➡️ https://github.com/polomarcus/television-news-analyser/tree/main/data-news-json/
 
-## Can I have a look to the results ?
+## Can I have a look at the results ?
 Everyday, last replays with URLs from France 2 and TF1 are analysed with Github Actions if they contain ["global warming"](https://github.com/polomarcus/television-news-analyser/blob/main/src/main/scala/com/github/polomarcus/utils/TextService.scala#L9) :
 1. Click here : https://github.com/polomarcus/television-news-analyser/actions/workflows/save-data.yml
 2. Click on the last workflow ran, then on "click-here-to-see-data"
