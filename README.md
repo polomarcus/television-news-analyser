@@ -1,5 +1,5 @@
 # TV news analyser 📺 🔬 🛢️
-
+[![List news urls containing global warming everyday at 5am](https://github.com/polomarcus/television-news-analyser/actions/workflows/save-data.yml/badge.svg)](https://github.com/polomarcus/television-news-analyser/actions/workflows/save-data.yml)
 Scrap France 2 Tv news to analyse humanity's biggest challenge : fossil energies and **climate change**.
 
 ![metabaseexample](https://user-images.githubusercontent.com/4059615/149955122-89642ba8-fb45-4369-956c-5854c14bfdd1.png)
