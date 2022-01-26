@@ -14,31 +14,15 @@ object FutureService {
 
   def waitFuture[T](listFuture: Seq[Future[List[T]]]) = {
     val allFutures = Future.sequence(listFuture).map(_.flatten.toList)
-    logger.info("waitFuture")
 
     allFutures.onComplete {
       case Success(r) => logger.info("SUCCESS: AllFutures complete")
       case Failure(e) => logger.info("FAILURE: AllFutures complete")
     }
 
-    logger.info("waitFuture")
+    logger.debug("waitFuture")
     val result = Await.result(allFutures, Duration(20, "minutes"))
-    logger.info("waitFuture: done")
-    result
-  }
-
-  def waitFutureTF1[T](listFuture: Seq[Future[Option[T]]]) = {
-    val allFutures = Future.sequence(listFuture).map(_.flatten.toList)
-    logger.info("waitFuture")
-
-    allFutures.onComplete {
-      case Success(r) => logger.info("SUCCESS: AllFutures complete")
-      case Failure(e) => logger.info("FAILURE: AllFutures complete")
-    }
-
-    logger.info("waitFuture")
-    val result = Await.result(allFutures, Duration(20, "minutes"))
-    logger.info("waitFuture: done")
+    logger.debug("waitFuture: done")
     result
   }
 }
