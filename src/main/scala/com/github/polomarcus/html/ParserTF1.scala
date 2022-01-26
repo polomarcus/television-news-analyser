@@ -1,7 +1,7 @@
 package com.github.polomarcus.html
 
 import com.github.polomarcus.model.News
-import com.github.polomarcus.utils.FutureService.{waitFuture, waitFutureTF1}
+import com.github.polomarcus.utils.FutureService.{waitFuture}
 import com.github.polomarcus.utils.{DateService, FutureService, TextService}
 import com.typesafe.scalalogging.Logger
 import net.ruippeixotog.scalascraper.browser.JsoupBrowser
