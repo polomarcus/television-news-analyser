@@ -30,16 +30,16 @@ jobs:
         run: mv output-france2-tv-news/media=France\ 2//${{ env.PATH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
       - name: list new data fr2
         run: ls data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
-     - name: List TF1 news urls containing global warming (see end)
-     run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 tf1"
-     - name: list new data tf1
-       run: ls -R output-tf1-tv-news-json/
-     - name: create new folder data tf1
-       run: mkdir data-news-json/media=TF1/${{ env.PATH_PARTITION }}
-     - name: move new data tf1 to be saved
-       run: mv output-tf1-tv-news/media=TF1//${{ env.PATH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_PARTITION }}
-     - name: list new data tf1
-       run: ls data-news-json/media=TF1/${{ env.PATH_PARTITION }}
+      - name: List TF1 news urls containing global warming (see end)
+        run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 tf1"
+      - name: list new data tf1
+        run: ls -R output-tf1-tv-news-json/
+      - name: create new folder data tf1
+        run: mkdir data-news-json/media=TF1/${{ env.PATH_PARTITION }}
+      - name: move new data tf1 to be saved
+        run: mv output-tf1-tv-news/media=TF1//${{ env.PATH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_PARTITION }}
+      - name: list new data tf1
+        run: ls data-news-json/media=TF1/${{ env.PATH_PARTITION }}
 #      - uses: actions/checkout@v2
 #      - run: |
 #          git config user.name github-actions
