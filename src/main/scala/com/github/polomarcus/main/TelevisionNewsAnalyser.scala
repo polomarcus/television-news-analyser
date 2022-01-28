@@ -36,7 +36,7 @@ object TelevisionNewsAnalyser {
     logger.info(s"Number of news parsed : ${newsList.length}")
 
     val r = scala.util.Random
-    StorageService.write(newsList, s"output-${media}-tv-news-${r.nextInt}")
+    StorageService.write(newsList, s"output-${media}-tv-news")
     spark.stop()
     System.exit(0)
   }
