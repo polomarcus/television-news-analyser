@@ -2,7 +2,7 @@ name: List news urls containing global warming
 
 on:
   schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
-  - cron:  '8 5 * * *'
+  - cron:  '18 5 * * *'
 jobs:
   click-here-to-see-data:
     runs-on: ubuntu-latest
@@ -13,16 +13,34 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - name: Set current date as env variable for partitionning
+        run: echo "PATH_PARTITION=$(date -d "yesterday" +'year=%Y/month=%-m')" >> $GITHUB_ENV
+      - name: Echo current date
+        run: echo "${{ env.PATH_PARTITION }}"
       - name: List France 2 news urls containing global warming (see end)
         run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 france2"
+      - name: list new data fr2
+        run: ls -R output-france2-tv-news-json/
+      - name: create new folder data fr2
+        run: mkdir -p data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
+      - name: move new data fr2 to be saved
+        run: mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
+      - name: list new data fr2
+        run: ls data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
       - name: List TF1 news urls containing global warming (see end)
         run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 tf1"
-      - name: list new data
-        run: ls output*
-#      - uses: actions/checkout@v2
-#      - run: |
-#          git config user.name github-actions
-#          git config user.email github-actions@github.com
-#          git add .
-#          git commit -m "saved news"
-#          git push
+      - name: list new data tf1
+        run: ls -R output-tf1-tv-news-json/
+      - name: create new folder data tf1
+        run: mkdir -p data-news-json/media=TF1/${{ env.PATH_PARTITION }}
+      - name: move new data tf1 to be saved
+        run: mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_PARTITION }}
+      - name: list new data tf1
+        run: ls data-news-json/media=TF1/${{ env.PATH_PARTITION }}
+      - uses: actions/checkout@v2
+      - run: |
+           git config user.name github-actions
+           git config user.email github-actions@github.com
+           git add data-news-json
+           git commit -m "data: saved date $PATH_PARTITION"
+           git push origin main

@@ -43,7 +43,7 @@ object StorageService {
       .withColumn("day", dayofmonth('date))
       .write
       .mode(SaveMode.Overwrite)
-      .partitionBy("year", "month","day")
+      .partitionBy("media","year", "month","day")
       .json(s"$path-json")
 
     path
