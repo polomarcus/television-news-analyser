@@ -8,3 +8,4 @@ spark-warehouse/
 archived-json/
 src/test/docker/pgdata/
 .ipynb_checkpoints/
+test-test-json/
