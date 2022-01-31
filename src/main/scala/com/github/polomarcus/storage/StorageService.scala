@@ -21,21 +21,26 @@ object StorageService {
 
     news.createOrReplaceTempView("news")
 
-    spark.sql(
+    val media = spark.sql(
       """
-        |SELECT COUNT(*) AS number_of_news, containsWordGlobalWarming
+        |SELECT COUNT(*) AS number_of_news, containsWordGlobalWarming, media
         |FROM news
-        |GROUP BY containsWordGlobalWarming
-      """.stripMargin).show(10, false)
+        |GROUP BY containsWordGlobalWarming, media
+      """.stripMargin)
+
+    media.show(10, false)
 
     logger.info("News containing global warming :")
-    spark.sql(
+
+    val latestNews = spark.sql(
       """
-        |SELECT date, url, urlTvNews
+        |SELECT date, url, urlTvNews, media
         |FROM news
         |WHERE containsWordGlobalWarming = TRUE
         |ORDER BY date ASC
-      """.stripMargin).show(100, false)
+      """.stripMargin)
+
+    latestNews.show(100, false)
 
     news
       .withColumn("year", year('date))
