@@ -1,4 +1,4 @@
-fetch( "https://github.com/polomarcus/television-news-analyser/tree/main/data-news-json/agg.json" )
+fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggregated-news-json/agg.json/agg.json" )
    .then(async r=> {
     const rawData = await r.text();
     const parsedData = '[' + rawData.split("\n{").join(',{') + ']'

@@ -1,4 +1,4 @@
-fetch( "http://localhost:8000/latestNews.json" )
+fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggregated-news-json/latest-news.json/latestNews.json" )
    .then(async r=> {
     const rawData = await r.text();
     const parsedData = '[' + rawData.split("\n{").join(',{') + ']'
