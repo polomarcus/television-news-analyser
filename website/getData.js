@@ -10,7 +10,7 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
     var table = new Tabulator("#example-table", {
        // height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
         data:latestNews, //assign data to table
-        layout:"fitColumns", //fit columns to width of table (optional)
+        layout:"fitData",
         columns:[ //Define Table Columns
             {title:"Date", field:"date", sorter:"date"},
             {title:"Media", field:"media", formatter:"plaintext"},
