@@ -67,9 +67,16 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
 
     console.log("newsFR2Globalwarming", newsFR2Globalwarming)
     var data = [newsTF1, newsFR2, newsTF1Globalwarming, newsFR2Globalwarming];
+    var dataOnlyGlobalWarming = [newsTF1Globalwarming, newsFR2Globalwarming];
     var layout = {
-      title: 'Nombre de reportage parlant des changements climatiques',
+      title: 'Nombre de reportages par mois',
+    };
+
+    var layoutGlobalWarming = {
+      title: 'Nombre de reportage parlant seulement des changements climatiques par mois',
     };
     var config = {responsive: true}
     Plotly.newPlot('newsByMonth', data, layout, config);
+
+    Plotly.newPlot('newsGlobalwarmingOnlyByMonth', dataOnlyGlobalWarming, layoutGlobalWarming, config);
 });
