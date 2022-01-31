@@ -34,9 +34,10 @@ object TelevisionNewsAnalyser {
     val newsList = Getter.getNews(start, end, media)
 
     logger.info(s"Number of news parsed : ${newsList.length}")
-
-    val r = scala.util.Random
     StorageService.write(newsList, s"output-${media}-tv-news")
+
+    StorageService.updateGlobalWarmingNews()
+
     spark.stop()
     System.exit(0)
   }
