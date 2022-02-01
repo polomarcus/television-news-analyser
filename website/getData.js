@@ -2,7 +2,6 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
    .then(async r=> {
     const rawData = await r.text();
     const parsedData = '[' + rawData.split("\n{").join(',{') + ']'
-    console.log("parsedData" , parsedData)
     const latestNews = JSON.parse(parsedData);
     console.log("latestNews" , latestNews)
 

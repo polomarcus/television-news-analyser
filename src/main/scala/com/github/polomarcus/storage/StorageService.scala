@@ -38,21 +38,13 @@ object StorageService {
   }
 
   def updateGlobalWarmingNews() = {
-    val newsDF = readNews()
-    saveAggregateNews(newsDF)
-    saveLatestNews(newsDF)
+    val newsDF = readNews() // create SQL table
+    saveAggregateNews()
+    saveLatestNews()
+    savePercentMedia()
   }
 
-  def saveAggregateNews(df: DataFrame) = {
-    val media = spark.sql(
-      """
-        |SELECT COUNT(*) AS number_of_news, containsWordGlobalWarming, media, date_format(date, "yyyy-MM") AS datecharts, date_format(date, "MM/yyyy") AS date
-        |FROM news
-        |GROUP BY containsWordGlobalWarming, media, 4, 5
-        |ORDER BY datecharts ASC
-      """.stripMargin)
-
-
+  def saveAggregateNews() = {
     val media = spark.sql(
       """
         |SELECT COUNT(*) AS number_of_news, containsWordGlobalWarming, media, date_format(date, "yyyy-MM") AS datecharts, date_format(date, "MM/yyyy") AS date
@@ -72,7 +64,45 @@ object StorageService {
     changeFileName(s"$pathAggregated/agg.json", s"$pathAggregated/agg.json/agg.json")
   }
 
-  def saveLatestNews(df: DataFrame) = {
+  def savePercentMedia() = {
+    val newsSubQuery = spark.sql(
+      """
+        | SELECT date_format(date, "yyyy-MM") AS date, media, COUNT(*) AS count
+        |        FROM news
+        |        WHERE containsWordGlobalWarming = TRUE
+        |        GROUP BY date_format(date, "yyyy-MM"), media
+      """.stripMargin)
+    newsSubQuery.createOrReplaceTempView("newstmp")
+
+    val newsSubQuery2 = spark.sql(
+      """
+        |SELECT date_format(date, "yyyy-MM") AS date,media,COUNT(*) AS totalNews
+        |        FROM news
+        |        GROUP BY date_format(date, "yyyy-MM"), media
+      """.stripMargin)
+    newsSubQuery2.createOrReplaceTempView("newstmp2")
+
+    val mediaPercent = spark.sql(
+      """
+        |SELECT ROUND(count * 100.0 /totalNews, 2) AS percent, newstmp.media, newstmp.date
+        |FROM newstmp
+        |JOIN newstmp2
+        |ON newstmp.date = newstmp2.date AND newstmp.media = newstmp2.media
+        |ORDER BY newstmp.date DESC, newstmp.media ASC
+      """.stripMargin)
+
+    mediaPercent.show(10)
+
+    mediaPercent
+      .repartition(1)
+      .write
+      .mode(SaveMode.Overwrite)
+      .json(s"$pathAggregated/aggPercent.json")
+
+    changeFileName(s"$pathAggregated/aggPercent.json", s"$pathAggregated/aggPercent.json/aggPercent.json")
+  }
+
+  def saveLatestNews() = {
     logger.info("News containing global warming :")
 
     val latestNews = spark.sql(
@@ -82,8 +112,6 @@ object StorageService {
         |WHERE containsWordGlobalWarming = TRUE
         |ORDER BY datecharts DESC
       """.stripMargin)
-
-    latestNews.show(100, 10)
 
     latestNews
       .repartition(1)
