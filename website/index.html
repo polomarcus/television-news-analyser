@@ -21,7 +21,15 @@
 
     <h2>Les données</h2>
     <h6>Données mises à jour chaque jour - <a href="https://github.com/polomarcus/television-news-analyser/">Code source libre</a></h6>
-    <div id="newsByMonth"></div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div id="newsGlobalwarmingOnlyByMonthPercent"></div>
+        </div>
+        <div class="col-lg-6">
+            <div id="newsByMonth"></div>
+        </div>
+    </div>
+
 
     <div id="newsGlobalwarmingOnlyByMonth"></div>
 
@@ -37,6 +45,7 @@
 <script src="https://cdn.plot.ly/plotly-2.8.3.min.js"></script>
 <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.1.0/dist/js/tabulator.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
+<script type="text/javascript" src='getDataPercent.js'></script>
 <script type="text/javascript" src='getData.js'></script>
 <script type="text/javascript" src='getDataAggregate.js'></script>
 </html>
