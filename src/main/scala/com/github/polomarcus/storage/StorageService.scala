@@ -46,7 +46,16 @@ object StorageService {
   def saveAggregateNews(df: DataFrame) = {
     val media = spark.sql(
       """
-        |SELECT COUNT(*) AS number_of_news, containsWordGlobalWarming, media, date_format(date, "yyyy-MM-dd") AS datecharts, date_format(date, "MM/yyyy/dd") AS date
+        |SELECT COUNT(*) AS number_of_news, containsWordGlobalWarming, media, date_format(date, "yyyy-MM") AS datecharts, date_format(date, "MM/yyyy") AS date
+        |FROM news
+        |GROUP BY containsWordGlobalWarming, media, 4, 5
+        |ORDER BY datecharts ASC
+      """.stripMargin)
+
+
+    val media = spark.sql(
+      """
+        |SELECT COUNT(*) AS number_of_news, containsWordGlobalWarming, media, date_format(date, "yyyy-MM") AS datecharts, date_format(date, "MM/yyyy") AS date
         |FROM news
         |GROUP BY containsWordGlobalWarming, media, 4, 5
         |ORDER BY datecharts ASC
