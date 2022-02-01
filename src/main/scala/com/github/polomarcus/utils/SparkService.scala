@@ -10,6 +10,7 @@ object SparkService {
       .builder()
       .appName("TelevisionNewsAnalyser")
       .master("local[*]")
+      .config("spark.sql.session.timeZone", "UTC")
       .getOrCreate()
   }
 

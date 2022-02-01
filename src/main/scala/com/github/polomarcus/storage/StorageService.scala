@@ -46,7 +46,7 @@ object StorageService {
   def saveAggregateNews(df: DataFrame) = {
     val media = spark.sql(
       """
-        |SELECT COUNT(*) AS number_of_news, containsWordGlobalWarming, media, date_format(date, "YYYY-MM") AS datecharts, date_format(date, "MM/YYYY") AS date
+        |SELECT COUNT(*) AS number_of_news, containsWordGlobalWarming, media, date_format(date, "yyyy-MM-dd") AS datecharts, date_format(date, "MM/yyyy/dd") AS date
         |FROM news
         |GROUP BY containsWordGlobalWarming, media, 4, 5
         |ORDER BY datecharts ASC
@@ -68,7 +68,7 @@ object StorageService {
 
     val latestNews = spark.sql(
       """
-        |SELECT date_format(date, "dd/MM/YYYY") AS date, date_format(date, "YYYY-MM-dd") AS datecharts,title, url, urlTvNews, media
+        |SELECT date_format(date, "dd/MM/yyyy") AS date, date_format(date, "yyyy-MM-dd") AS datecharts,title, url, urlTvNews, media
         |FROM news
         |WHERE containsWordGlobalWarming = TRUE
         |ORDER BY datecharts DESC
@@ -96,7 +96,7 @@ object StorageService {
 
     val latestNews = spark.sql(
       """
-        |SELECT date_format(date, "dd/MM/YYYY") AS date, title, url, urlTvNews, media
+        |SELECT date_format(date, "dd/MM/yyyy") AS date, title, url, urlTvNews, media
         |FROM news
         |WHERE containsWordGlobalWarming = TRUE
         |ORDER BY date ASC
