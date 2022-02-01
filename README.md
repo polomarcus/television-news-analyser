@@ -15,6 +15,10 @@
 
 ## Can I have a look at the results ?
 Everyday, last replays with URLs from France 2 and TF1 are analysed with Github Actions if they contain ["global warming"](https://github.com/polomarcus/television-news-analyser/blob/main/src/main/scala/com/github/polomarcus/utils/TextService.scala#L9) :
+
+Some results can be found on this repo's website : https://polomarcus.github.io/television-news-analyser/website/
+
+You can also check Github Actions worflows raw data : 
 1. Click here : https://github.com/polomarcus/television-news-analyser/actions/workflows/save-data.yml
 2. Click on the last workflow ran, then on "click-here-to-see-data"
 3. Click on "List France 2 news urls containing global warming (see end)" to see France 2's urls
@@ -45,6 +49,11 @@ sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 3"
 #### To store the JSON data to PG and explore it with Metabase 
 ```
 sbt "runMain com.github.polomarcus.main.SaveTVNewsToPostgres"
+```
+
+#### To update data for the website alone
+```
+sbt "runMain com.github.polomarcus.main.UpdateNews"
 ```
 
 #### Jupyter Notebook
