@@ -36,8 +36,6 @@ object TelevisionNewsAnalyser {
     logger.info(s"Number of news parsed : ${newsList.length}")
     StorageService.write(newsList, s"output-${media}-tv-news")
 
-    StorageService.updateGlobalWarmingNews()
-
     spark.stop()
     System.exit(0)
   }
