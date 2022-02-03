@@ -22,8 +22,11 @@ jobs:
         run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 france2"
       - name: Organize new data for France 2
         run: |
+          ls -R output-france2-tv-news-json/
           mkdir -p data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
-          mv -vn output-france2-tv-news-json/media=France\ 2/* data-news-json/media=France\ 2/
+          mkdir -p output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
+          mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
+          ls -R data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
       - name: List new data for France 2
         run: |
             ls -R data-news-json/media=France\ 2/year=2022/
@@ -33,7 +36,9 @@ jobs:
         run: |
           ls -R output-tf1-tv-news-json/
           mkdir -p data-news-json/media=TF1/${{ env.PATH_PARTITION }}
-          mv -vn output-tf1-tv-news-json/media=TF1/* data-news-json/media=TF1/
+          mkdir -p output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}
+          mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_PARTITION }}
+          ls -R data-news-json/media=TF1/${{ env.PATH_PARTITION }}
       - name: List and organize new data for TF1
         run: |
           ls -R data-news-json/media=TF1/year=2022/
