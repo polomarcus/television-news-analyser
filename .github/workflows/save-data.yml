@@ -1,9 +1,10 @@
 name: List news urls containing global warming
 
 on:
-  schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
-  - cron:  '18 18 * * *'
-
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   click-here-to-see-data:
@@ -22,28 +23,16 @@ jobs:
       - name: List and organize new data for France 2
         run: |
             ls -R output-france2-tv-news-json/
-            mkdir -p data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
-            mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
-            ls data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
+            mv -vn output-france2-tv-news-json/media=France\ 2/* data-news-json/media=France\ 2/
+            ls -R data-news-json/media=France\ 2/
       - name: List TF1 news urls containing global warming (see end)
         run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 tf1"
       - name: List and organize new data for TF1
         run: |
           ls -R output-tf1-tv-news-json/
-          mkdir -p data-news-json/media=TF1/${{ env.PATH_PARTITION }}
-          mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_PARTITION }}
-          ls data-news-json/media=TF1/${{ env.PATH_PARTITION }}
+          mv -vn output-tf1-tv-news-json/media=TF1/* data-news-json/media=TF1/
+          ls -R data-news-json/media=TF1/
       - name: Website - Create aggregated news / latest news
         run: sbt "runMain com.github.polomarcus.main.UpdateNews"
       - name: List new data for website
         run: ls website/data-aggregated-news-json/agg.json/
-      - uses: actions/checkout@v2
-        with:
-          clean: false
-      - run: |
-           git config user.name github-actions
-           git config user.email github-actions@github.com
-           git status
-           git add .
-           git commit -m "ci(data): saved date ${{ env.PATH_PARTITION }}"
-           git push origin main
