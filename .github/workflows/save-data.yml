@@ -33,8 +33,7 @@ jobs:
           mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}
           ls -R data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
       - name: List data for France 2
-        run: |
-            ls -R data-news-json/media=France\ 2/
+        run: ls -R data-news-json/media=France\ 2/
       - name: List TF1 news urls containing global warming (see end)
         run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 tf1"
       - name: List and organize new data for TF1
