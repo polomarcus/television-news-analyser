@@ -21,7 +21,9 @@ jobs:
       - name: List France 2 news urls containing global warming (see end)
         run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 france2"
       - name: Organize new data for France 2
-        run: mv -vn output-france2-tv-news-json/media=France\ 2/* data-news-json/media=France\ 2/
+        run: |
+          mkdir -p data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
+          mv -vn output-france2-tv-news-json/media=France\ 2/* data-news-json/media=France\ 2/
       - name: List new data for France 2
         run: |
             ls -R data-news-json/media=France\ 2/year=2022/
@@ -30,6 +32,7 @@ jobs:
       - name: List and organize new data for TF1
         run: |
           ls -R output-tf1-tv-news-json/
+          mkdir -p data-news-json/media=TF1/${{ env.PATH_PARTITION }}
           mv -vn output-tf1-tv-news-json/media=TF1/* data-news-json/media=TF1/
       - name: List and organize new data for TF1
         run: |
