@@ -20,18 +20,20 @@ jobs:
         run: echo "PATH_PARTITION=$(date -d "yesterday" +'year=%Y/month=%-m')" >> $GITHUB_ENV
       - name: List France 2 news urls containing global warming (see end)
         run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 france2"
-      - name: List and organize new data for France 2
+      - name: List new data for France 2
         run: |
             ls -R output-france2-tv-news-json/
-            mv -vn output-france2-tv-news-json/media=France\ 2/* data-news-json/media=France\ 2/
-            ls -R data-news-json/media=France\ 2/
+      - name: Organize new data for France 2
+        run: mv -vn output-france2-tv-news-json/media=France\ 2/* data-news-json/media=France\ 2/
       - name: List TF1 news urls containing global warming (see end)
         run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 tf1"
       - name: List and organize new data for TF1
         run: |
           ls -R output-tf1-tv-news-json/
           mv -vn output-tf1-tv-news-json/media=TF1/* data-news-json/media=TF1/
-          ls -R data-news-json/media=TF1/
+      - name: List and organize new data for TF1
+        run: |
+          ls -R data-news-json/media=TF1/year=2022/month=2/
       - name: Website - Create aggregated news / latest news
         run: sbt "runMain com.github.polomarcus.main.UpdateNews"
       - name: List new data for website
