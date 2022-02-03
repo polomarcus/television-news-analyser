@@ -135,11 +135,10 @@ object StorageService {
       """
         |SELECT date_format(date, "dd/MM/yyyy") AS date, title, url, urlTvNews, media
         |FROM news
-        |WHERE containsWordGlobalWarming = TRUE
-        |ORDER BY date ASC
+        |ORDER BY date DESC
       """.stripMargin)
 
-    latestNews.show(100, false)
+    latestNews.show(15, false)
 
     news
       .withColumn("year", year('date))
