@@ -3,8 +3,7 @@ package com.github.polomarcus.utils
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import com.typesafe.scalalogging.Logger
-
-import java.time.{LocalDate, ZoneId}
+import java.util.Calendar
 
 object DateService {
   val logger = Logger(DateService.getClass)
@@ -46,10 +45,14 @@ object DateService {
     try {
       val format = new SimpleDateFormat("d/MM/yyyy")
       if(date.contains("hier") || date.contains("aujourd’hui")) { // late publish
-        val paris = ZoneId.of("Europe/Paris")
-        val now = LocalDate.now(paris)
+        // Create a calendar object with today date. Calendar is in java.util pakage.
+        val calendar = Calendar.getInstance
 
-        new Timestamp(now.minusDays(1).atStartOfDay(paris).toEpochSecond * 1000)
+        // Move calendar to yesterday
+        calendar.add(Calendar.DATE, -1)
+
+        // Get current date of calendar which point to the yesterday now
+        new Timestamp(calendar.getTime.getTime)
       } else {
         val dateSplit = date.split(" ")
         val day = dateSplit(2)
@@ -59,7 +62,7 @@ object DateService {
       }
     } catch {
       case e: Exception => {
-        logger.error(s"Error parsing this date $date " + e.toString)
+        logger.error(s"Error parsing this date $date using today date" + e.toString)
         new Timestamp(System.currentTimeMillis())
       }
     }
