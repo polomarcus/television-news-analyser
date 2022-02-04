@@ -8,32 +8,66 @@
     <meta name="twitter:description" content="Est-ce qu'on parle assez des changements climatiques ?">
     <meta name="og:description" content="Est-ce qu'on parle assez des changements climatiques ?">
     <meta property="og:type" content="website">
-    <title>Analyse des JT pour les changements climatiques</title>
+    <title>Analyse des JT sur les changements climatiques</title>
 </head>
 <body>
 <div class="container">
-    <h1>Analyse des JT pour les changements climatiques</h1>
+    <h1 class="display-3">Analyse des JT sur les <mark>changements climatiques</mark></h1>
 
-    <h3>Pourquoi analyser les données des JT ?</h3>
-    <p>
-        Le sociologue Jean Baptiste Comby, dans sa thèse <a href="https://www.placedeslibraires.fr/livre/9782912107817-la-question-climatique-genese-et-depolitisation-d-un-probleme-public-jean-baptiste-comby/">"La question climatique"</a>, indique qu'il est "fécond de placer la focale sociologique sur les discours qui circulent au sein des médias généralistes nationaux". Il précise "si les JT sont un lieu stratégique d'observation du débat public, cela ne signifie pas pour autant qu'ils en offrent un reflet représentatif (...) <b>cependant</b>, nos observations indiquent que les cadrages du problème récurrents dans les JT sont ceux qui circulent le plus et le mieux dans les autres espaces du débat public"
+    <figure class="text-center callout border-start border-primary   rounded-top border-5">
+        <blockquote class="blockquote">
+            <h1 class="display-1"><span class="badge bg-primary text-wrap">99.2%</span></h1>
+        </blockquote>
+        <figcaption>
+            des reportages ne mentionnent pas les <mark><strong>changements climatiques</strong></mark>
+        </figcaption>
+    </figure>
+
+    <h3>Pourquoi analyser les JT ?</h3>
+    <p class="lead">
+        Le sociologue Jean Baptiste Comby, dans sa thèse <a href="https://www.placedeslibraires.fr/livre/9782912107817-la-question-climatique-genese-et-depolitisation-d-un-probleme-public-jean-baptiste-comby/">"La question climatique"</a>, indique qu'il est <strong>
+        "fécond de placer la focale sociologique sur les discours qui circulent au sein des médias généralistes nationaux".</strong>
+    </p>
+    <p class="lead">
+        Il précise "si les JT sont un lieu stratégique d'observation du débat public, cela ne signifie pas pour autant qu'ils en offrent un reflet représentatif (...) <b><u>cependant</u>, nos observations indiquent que les cadrages du problème récurrents dans les JT sont ceux qui circulent le plus et le mieux dans les autres espaces du débat public"</b>
     </p>
 
-    <h2>Les données</h2>
-    <h6>Données mises à jour chaque jour - <a href="https://github.com/polomarcus/television-news-analyser/">Code source libre</a></h6>
+    <h2>Méthologies des données
+        <small class="text-muted">- mises à jour chaque jour avec ce <a href="https://github.com/polomarcus/television-news-analyser/">code source libre</a></small>
+    </h2>
+
     <div class="row">
-        <div class="col-lg-6">
-            <div id="newsGlobalwarmingOnlyByMonthPercent"></div>
+        <div class="col-lg-5 mt-4">
+            <p class="lead">
+                Les pages web des JT de <a href="https://www.tf1info.fr/emission/le-20h-11001/extraits/">TF1</a> et <a href="https://www.francetvinfo.fr/replay-jt/france-2/20-heures/jt-de-20h-du-jeudi-30-decembre-2021_4876025.html">France 2</a> sont scannées tous les jours pour voir les reportages contenant les mots :
+            <ul>
+                <li><mark>changement climatique</li>
+                <li><mark>réchauffement climatique</mark></li>
+                <li><mark>dérèglement climatique</mark></li>
+            </ul>
+            </p>
+            <p>Les reportages en parlent parfois pour mettre leur lien avec évènements extrêmes au conditionnel ou nier son rapport, et parfois à tord.</p>
+            <p>Avez vous vu comme la vague de chaleur de décembre 2021 a été traitée ? <a class="link-primary" href="https://polomarcus.github.io/blog/article/vague-de-chaleur-decembre-2021-dont-look-up-a-la-francaise/">"Avec cette douceur, on trinque comme en été : au rosé"</a>
+                <img class="img-fluid img-thumbnail" src="https://polomarcus.github.io/blog/images/dontlookup/glacier.png"/>
+        </div>
+        <div class="col-lg-7">
+            <div id="newsByMonth"></div>
         </div>
         <div class="col-lg-6">
-            <div id="newsByMonth"></div>
+            <div id="newsGlobalwarmingOnlyByMonthPercent"></div>
+
+        </div>
+        <div class="col-lg-6 mt-4">
+            <p class="lead mt-4">
+                Les bons mois, 3% des reportages mentionnent les changements climatiques, ça a été le cas pour la démission de Nicolas Hulot ou les COPs 21 et 26
+            </p>
         </div>
     </div>
 
 
     <div id="newsGlobalwarmingOnlyByMonth"></div>
 
-    <h3>Derniers reportages parlant des changements climatiques</h3>
+    <h3>Tous les reportages parlant des changements climatiques depuis 2013</h3>
     <div>
         <label for="title-filter-value">Rechercher par titre de reportage : </label>
         <input id="title-filter-value" type="text" placeholder="Avion">
