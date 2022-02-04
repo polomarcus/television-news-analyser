@@ -1,10 +1,8 @@
 name: List news urls containing global warming
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+    - cron:  '18 18 * * *'
 
 jobs:
   click-here-to-see-data:
@@ -49,7 +47,8 @@ jobs:
       - name: List new data for TF1
         run: |
           ls -R data-news-json/media=TF1/
-      - uses: actions/checkout@v2
+      - name: Create website data and save data with git
+        uses: actions/checkout@v2
         with:
           clean: false
       - run: |
