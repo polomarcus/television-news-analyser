@@ -4,7 +4,6 @@ on:
   schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
     - cron:  '18 18 * * *'
 
-
 jobs:
   click-here-to-see-data:
     runs-on: ubuntu-20.04
@@ -48,14 +47,12 @@ jobs:
       - name: List new data for TF1
         run: |
           ls -R data-news-json/media=TF1/
-      - name: Website - Create aggregated news / latest news
-        run: sbt "runMain com.github.polomarcus.main.UpdateNews"
-      - name: List new data for website
-        run: ls website/data-aggregated-news-json/agg.json/
-      - uses: actions/checkout@v2
+      - name: Create website data and save data with git
+        uses: actions/checkout@v2
         with:
           clean: false
       - run: |
+          sbt "runMain com.github.polomarcus.main.UpdateNews"
           git config user.name github-actions
           git config user.email github-actions@github.com
           git status
