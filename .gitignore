@@ -11,3 +11,4 @@ src/test/docker/pgdata/
 test-test-json/
 output-france2-tv-news-json/
 output-tf1-tv-news-json/
+**.crc
