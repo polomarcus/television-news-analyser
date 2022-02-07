@@ -44,14 +44,15 @@ object DateService {
   def getTimestampTF1(date: String): Timestamp = {
     try {
       val format = new SimpleDateFormat("d/MM/yyyy")
-      if(date.contains("hier") || date.contains("aujourd’hui")) { // late publish
-        // Create a calendar object with today date. Calendar is in java.util pakage.
-        val calendar = Calendar.getInstance
-
+      // Create a calendar object with today date. Calendar is in java.util pakage.
+      val calendar = Calendar.getInstance
+      if(date.contains("hier")) { // late publish
         // Move calendar to yesterday
         calendar.add(Calendar.DATE, -1)
 
         // Get current date of calendar which point to the yesterday now
+        new Timestamp(calendar.getTime.getTime)
+      } else if ( date.contains("aujourd’hui") ) {
         new Timestamp(calendar.getTime.getTime)
       } else {
         val dateSplit = date.split(" ")
