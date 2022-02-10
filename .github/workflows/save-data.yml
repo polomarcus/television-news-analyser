@@ -27,6 +27,7 @@ jobs:
           ls -R output-france2-tv-news-json/
           mkdir -p data-news-json/media=France\ 2/${{ env.PATH_YEAR_PARTITION }}
           mkdir -p data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
+          mkdir -p output-france2-tv-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}
           mkdir -p output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
           mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
           mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}
@@ -41,6 +42,7 @@ jobs:
           mkdir -p data-news-json/media=TF1/${{ env.PATH_YEAR_PARTITION }}
           mkdir -p data-news-json/media=TF1/${{ env.PATH_PARTITION }}
           mkdir -p output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}
+          mkdir -p output-tf1-tv-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }}
           mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_PARTITION }}
           mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }}
           ls -R data-news-json/media=TF1/${{ env.PATH_PARTITION }}
