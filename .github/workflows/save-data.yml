@@ -2,7 +2,7 @@ name: List news urls containing global warming
 
 on:
   schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
-    - cron:  '18 18 * * 1-6'
+    - cron:  '19 20 * * 1-6'
 
 jobs:
   click-here-to-see-data:
@@ -29,8 +29,8 @@ jobs:
           mkdir -p data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
           mkdir -p output-france2-tv-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}
           mkdir -p output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
-          mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
-          mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}
+          mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_PARTITION }} || true
+          mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }} || true
           ls -R data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
       - name: List data for France 2
         run: ls -R data-news-json/media=France\ 2/
@@ -42,9 +42,8 @@ jobs:
           mkdir -p data-news-json/media=TF1/${{ env.PATH_YEAR_PARTITION }}
           mkdir -p data-news-json/media=TF1/${{ env.PATH_PARTITION }}
           mkdir -p output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}
-          mkdir -p output-tf1-tv-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }}
-          mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_PARTITION }}
-          mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }}
+          mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_PARTITION }} || true
+          mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }} || true
           ls -R data-news-json/media=TF1/${{ env.PATH_PARTITION }}
       - name: List new data for TF1
         run: |
