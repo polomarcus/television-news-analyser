@@ -2,7 +2,7 @@ name: List news urls containing global warming
 
 on:
   schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
-    - cron:  '19 20 * * 1-6'
+    - cron:  '17 20 * * 1-6'
 
 jobs:
   click-here-to-see-data:
