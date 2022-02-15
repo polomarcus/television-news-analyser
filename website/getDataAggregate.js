@@ -34,7 +34,7 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
       y: TF1Globalwarming.map ( x => x.number_of_news),
       type: 'scatter',
         mode: 'lines',
-        name: 'TF1 Changement climatique',
+        name: 'TF1 Climat',
         line: {
           color: 'purple',
           width: 1
@@ -58,7 +58,7 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
       y: FR2Globalwarming.map ( x => x.number_of_news),
       type: 'scatter',
      mode: 'lines',
-     name: 'France 2 Changement climatique',
+     name: 'FR2 Climat',
      line: {
        color: 'green',
        width: 1
