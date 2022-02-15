@@ -9,15 +9,16 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
     var table = new Tabulator("#example-table", {
        // height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
         data: latestNews, //assign data to table
-        pagination:true,
-        layout: "fitDataTable",
+        layout: "fitDataStretch",
+        paginationSize:30,
+        pagination:true, //enable.
         columns:[ //Define Table Columns
             {title:"Date", field:"date", sorter:"date"},
             {title:"Media", field:"media", formatter:"plaintext"},
             {title:"Titre", field:"url",  formatter:"link",formatterParams:{labelField:"title",target:"_blank"}},
         ],
     });
-
+    table.setLocale("fr"); //set locale to french
     var setupFilter = function(fieldName) {
                 var filterEl = document.getElementById(fieldName + "-filter-value");
                 // Trigger setFilter function with correct parameters
