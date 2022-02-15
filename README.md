@@ -26,12 +26,17 @@ You can also check Github Actions worflows raw data :
 
 ![Urls are listed on the github action workflow](https://user-images.githubusercontent.com/4059615/151147733-3313174a-e2fd-486e-85e7-81272ec0957c.png)
 ## Requirements
-* scala built tool : sbt
 * [docker compose](https://docs.docker.com/compose/install/)
 
 ## Run
-###  Spin up 1 Postgres, Metabase, and load data to PG via SBT
+###  Spin up 1 Postgres, Metabase, and load data to PG 
 ```
+# with docker compose - no need of sbt
+docker-compose -f src/test/docker/docker-compose.yml up -d
+```
+
+```
+# OR with scala built tool : sbt
 ./init-stack-with-data.sh
 ```
 
