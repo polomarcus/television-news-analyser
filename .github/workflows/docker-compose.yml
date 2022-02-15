@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: init and load data
-      run: docker-compose -f src/test/docker/docker-compose.yml up -d
+      run: docker-compose -f src/test/docker/docker-compose.yml up
     - name: sleep
       run:  sleep 30
     - name: log
