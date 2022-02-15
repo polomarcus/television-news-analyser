@@ -31,8 +31,8 @@ jobs:
           ls -R output-france2-tv-news-json/
           mkdir -p data-news-json/media=France\ 2/${{ env.PATH_YEAR_PARTITION }}
           mkdir -p data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
-          rm -rf data-news-json/media=France\ 2/${{ env.PATH_DAY_PARTITION }}
-          rm -rf data-news-json/media=France\ 2/${{ env.PATH_DAY_2_DAY_AGO_PARTITION }}
+          rm -rf data-news-json/media=France\ 2/${{ env.PATH_DAY_PARTITION }} || true
+          rm -rf data-news-json/media=France\ 2/${{ env.PATH_DAY_2_DAY_AGO_PARTITION }} || true
           mkdir -p output-france2-tv-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}
           mkdir -p output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
           mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_PARTITION }} || true
@@ -41,14 +41,14 @@ jobs:
       - name: List data for France 2
         run: ls -R data-news-json/media=France\ 2/
       - name: List TF1 news urls containing global warming (see end)
-        run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 tf1"
+        run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 2 tf1"
       - name: Organize and refresh new data for TF1
         run: |
           ls -R output-tf1-tv-news-json/
           mkdir -p data-news-json/media=TF1/${{ env.PATH_YEAR_PARTITION }}
           mkdir -p data-news-json/media=TF1/${{ env.PATH_PARTITION }}
-          rm -rf data-news-json/media=TF1/${{ env.PATH_DAY_PARTITION }}
-          rm -rf data-news-json/media=TF1/${{ env.PATH_DAY_2_DAY_AGO_PARTITION }}
+          rm -rf data-news-json/media=TF1/${{ env.PATH_DAY_PARTITION }} || true
+          rm -rf data-news-json/media=TF1/${{ env.PATH_DAY_2_DAY_AGO_PARTITION }} || true
           mkdir -p output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}
           mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_PARTITION }} || true
           mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }} || true
