@@ -1,0 +1,17 @@
+name: Docker Compose CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: init and load data
+      run: docker-compose -f src/test/docker/docker-compose.yml up -d
+    - name: Run tests
+      run: sbt test

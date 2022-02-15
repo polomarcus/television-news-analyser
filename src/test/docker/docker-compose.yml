@@ -35,3 +35,11 @@ services:
       POSTGRES_USER: user
       POSTGRES_DB: metabase
       POSTGRES_PASSWORD: password
+  app:
+    build:
+      context: ./../../../
+      dockerfile: Dockerfile
+    environment:
+      - postgres=postgres
+    depends_on:
+      - postgres
