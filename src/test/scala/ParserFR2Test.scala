@@ -1,4 +1,5 @@
 import com.github.polomarcus.html
+import com.github.polomarcus.html.Getter.logger
 import com.github.polomarcus.html.ParserFR2
 import com.github.polomarcus.model.News
 import org.scalatest.funsuite.AnyFunSuite
@@ -29,23 +30,24 @@ class ParserFR2Test extends AnyFunSuite {
   }
 
   test("parseFrance2News") {
-    val listNews = Await.result(ParserFR2.parseFrance2News(s"/one-day-tv-news-fr2.html", localhost),
+    val newsToHave = Await.result(ParserFR2.parseFrance2News(s"/one-day-tv-news-fr2.html", localhost),
       Duration(1, "minutes")
-    )
+    ).flatten.filter(_.title == "Écoles : un nouveau protocole pour une rentrée marquée par l'incertitude")
 
+    logger.info(s"listNews ${newsToHave}")
     val news = News("Écoles : un nouveau protocole pour une rentrée marquée par l'incertitude",
       "Mauvaise surprise pour les parents d'élèves d'une école de Poitiers (Vienne). Deux enseignantes sont absentes, positives au Covid-19, et l'une n'est pas remplacée. Une situation loin d'être isolée. Lundi 3 janvier à Paris, 13% des enseignants de primaire étaient absents. Les parents font donc l'école à la maison, tout en télétravaillant. Pour éviter cette situation, l'Éducation nationale promet d'embaucher des enseignants retraités et des vacataires. Guislaine David, cosecrétaire générale et porte-parole du SNUIPP-FSU, dénonce un manque de préparation. Protocole et gestes barrières Un établissement de région parisienne a décidé de maintenir toutes ses classes ouvertes, malgré une incertitude en fin de matinée. C'est un nouveau protocole pour les enseignants, mais aussi pour les élèves. Désormais, les enfants testés positifs resteront isolés 5 jours, puis feront un test. Pour revenir en classe, les cas contact devront présenter un test négatif, puis en refaire à J+2 et J+4. Un protocole qui s'accompagne d'une stricte application des gestes barrière.",
       new Timestamp(new Date("01/03/2022").getTime),
       1, "Anne-Sophie Lapix",
       List("S. Soubane", "J. Ricco", "M. Mullot", "C.-M. Denis", "B. Vignais", "L. Lavieille"),
        "Elsa Pallot",
-      List("Thibaud de Barbeyrac"),
+      List("Franck Genauzeau"),
       "http://localhost:8000/sante/maladie/coronavirus/ecoles-un-nouveau-protocole-pour-une-rentree-marquee-par-l-incertitude_4903195.html",
       "http://localhost:8000/one-day-tv-news-fr2.html",
       containsWordGlobalWarming = false,
       ParserFR2.FRANCE2)
 
-    assert(listNews.contains(Some(news)))
+    assert(newsToHave.head == news)
   }
 
   test("parseDescriptionAuthors") {
