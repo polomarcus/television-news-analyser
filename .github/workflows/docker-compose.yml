@@ -13,5 +13,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: init and load data
       run: docker-compose -f src/test/docker/docker-compose.yml up -d
+    - name: sleep
+      run:  sleep 30
+    - name: log
+      run: docker logs docker_app_1
     - name: Run tests
       run: sbt test
