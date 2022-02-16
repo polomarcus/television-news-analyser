@@ -43,7 +43,7 @@ docker-compose -f src/test/docker/docker-compose.yml up -d
 ```
 
 ### Checkout the project website locally
-Go to http://localhost:8000/index.html
+Go to http://localhost:8080/index.html
 The source are inside the `website` folder
 
 ### Init Metabase

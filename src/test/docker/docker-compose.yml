@@ -1,11 +1,17 @@
 version: '3.9'
 services:
-  nginx: # to test locally webpages
+  nginx: # to serve website locally
+    image: nginx:latest
+    ports:
+      - 8080:80
+    volumes:
+      - './../../../website:/usr/share/nginx/html'
+  nginxtest: # to test locally webpages
     image: nginx:latest
     ports:
       - 8000:80
     volumes:
-      - './../../../website:/usr/share/nginx/html'
+      - './resources:/usr/share/nginx/html'
   metabase:
     image: metabase/metabase:latest
     volumes:
