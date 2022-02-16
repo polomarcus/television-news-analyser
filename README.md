@@ -27,24 +27,32 @@ You can also check Github Actions worflows raw data :
 ![Urls are listed on the github action workflow](https://user-images.githubusercontent.com/4059615/151147733-3313174a-e2fd-486e-85e7-81272ec0957c.png)
 ## Requirements
 * [docker compose](https://docs.docker.com/compose/install/)
-
+* Optional: if you want to code Scala build tool (SBT)
 ## Run
-###  Spin up 1 Postgres, Metabase, and load data to PG 
+###  Spin up 1 Postgres, Metabase, nginxand load data to PG
+#### Docker Compose
 ```
 # with docker compose - no need of sbt
 docker-compose -f src/test/docker/docker-compose.yml up -d
 ```
 
+#### SBT
 ```
 # OR with scala built tool : sbt
 ./init-stack-with-data.sh
 ```
 
+### Checkout the project website locally
+Go to http://localhost:8000/index.html
+The source are inside the `website` folder
+
+### Init Metabase
 You can check metabase here
 * http://localhost:3000/
 * configure an account
 * configure PostgreSQL data source: (user/password - host : postgres - database name : metabase)
 * You're good to go : "Ask a simple question", then select your data source and the "News" table
+
 
 #### To scrap data from 3 pages from France 2 website
 ```
