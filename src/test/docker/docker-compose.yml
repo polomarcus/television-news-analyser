@@ -5,7 +5,7 @@ services:
     ports:
       - 8000:80
     volumes:
-      - './resources:/usr/share/nginx/html'
+      - './../../../website:/usr/share/nginx/html'
   metabase:
     image: metabase/metabase:latest
     volumes:
