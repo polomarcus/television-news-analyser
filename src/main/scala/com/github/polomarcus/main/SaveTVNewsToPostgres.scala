@@ -16,7 +16,8 @@ object SaveTVNewsToPostgres {
     val newsDF = StorageService.readNews()
     val dbHost = sys.env.getOrElse("postgres", "localhost")
     logger.warn(s"Connecting to jdbc:postgresql://$dbHost:5432/metabase")
-    // Saving data to a JDBC source
+    // Overwrite new data to a JDBC source
+    logger.info(s"Overwritting all previous data with new ones")
     newsDF.write
       .format("jdbc")
       .option("url", s"jdbc:postgresql://$dbHost:5432/metabase")
@@ -24,7 +25,7 @@ object SaveTVNewsToPostgres {
       .option("dbtable", dbTable)
       .option("user", "user")
       .option("password", "password")
-      .mode(SaveMode.Append)
+      .mode(SaveMode.Overwrite)
       .save()
 
     logger.info("Saved news inside PG database")

@@ -29,19 +29,55 @@ object StorageService {
   }
 
   def readNews(): DataFrame = {
-    val newsDF = StorageService.read("./data-news-json/").distinct()
-    newsDF.createOrReplaceTempView("news")
+    val newsDF = StorageService.read("./data-news-json/")
+
     newsDF.printSchema()
-    newsDF.show()
+    newsDF.createOrReplaceTempView("news")
 
     newsDF
   }
 
   def updateGlobalWarmingNews() = {
     val newsDF = readNews() // create SQL table
+
     saveAggregateNews()
     saveLatestNews()
     savePercentMedia()
+    getDuplicateNews() // is there any duplicates ?
+  }
+
+  def removeDuplicates() = {
+    val newsDFWithoutDuplicates = spark.sql(
+      """
+        |SELECT title,description,date,order,presenter,authors,editor,editorDeputy,url,urlTvNews,containsWordGlobalWarming,media, year, month, day
+        |FROM (
+        | SELECT title,description,date,order,presenter,authors,editor,editorDeputy,url,urlTvNews,containsWordGlobalWarming,media, year, month, day, row_number() OVER (
+        |            PARTITION BY
+        |                title,
+        |                description,
+        |                date
+        |            ORDER BY
+        |                date
+        |        ) AS row_num
+        |FROM news) tmp
+        |WHERE row_num = 1
+      """.stripMargin)
+
+    newsDFWithoutDuplicates
+  }
+  def getDuplicateNews() = {
+    val media = spark.sql(
+      """
+        |SELECT title, media
+        |FROM (
+        |SELECT COUNT(*) AS number_of_news, title, description, media, date
+        |FROM news
+        |GROUP BY title, description, media, date
+        |HAVING COUNT(*) > 1
+        |ORDER BY 1 DESC) tmp
+      """.stripMargin)
+    logger.info("Duplicates news - should be empty:")
+    media.show(100, false)
   }
 
   def saveAggregateNews() = {
@@ -125,10 +161,11 @@ object StorageService {
   def write(arrayNews: Seq[News], path : String) = {
     val news = spark.sparkContext.parallelize(arrayNews)
       .toDF()
-      .repartition(1)
 
-    news.printSchema()
+    saveJSON(news, path)
+  }
 
+  def saveJSON(news: DataFrame, path: String): Unit = {
     news.createOrReplaceTempView("news")
 
     val latestNews = spark.sql(
@@ -141,6 +178,7 @@ object StorageService {
     latestNews.show(15, false)
 
     news
+      .repartition(1)
       .withColumn("year", year('date))
       .withColumn("month", month('date))
       .withColumn("day", dayofmonth('date))
