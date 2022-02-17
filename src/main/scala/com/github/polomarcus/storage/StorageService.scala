@@ -165,7 +165,7 @@ object StorageService {
     saveJSON(news, path)
   }
 
-  def saveJSON(news: DataFrame, path: String): Unit = {
+  def saveJSON(news: DataFrame, path: String): String = {
     news.createOrReplaceTempView("news")
 
     val latestNews = spark.sql(
