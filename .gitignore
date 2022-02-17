@@ -12,4 +12,6 @@ test-test-json/
 output-france2-tv-news-json/
 output-tf1-tv-news-json/
 **.crc
+**._SUCCESS
+**_SUCCESS
 notebooks/.ipynb_checkpoints/
