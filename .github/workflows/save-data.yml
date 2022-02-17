@@ -1,8 +1,8 @@
 name: List news urls containing global warming
 
 on:
-  pull_request:
-    branches: [ main ]
+  schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+    - cron:  '30 17 * * 1-6'
 
 jobs:
   click-here-to-see-data:
@@ -20,6 +20,8 @@ jobs:
         run: echo "PATH_DAY_PARTITION=$(date -d "yesterday" +'year=%Y/month=%-m/day=%-d')" >> $GITHUB_ENV
       - name: Set 2 day ago date year month day as env variable for partitioning
         run: echo "PATH_DAY_2_DAY_AGO_PARTITION=$(date -d "2 days ago" +'year=%Y/month=%-m/day=%-d')" >> $GITHUB_ENV
+      - name: Set 3 day ago date year month day as env variable for partitioning
+        run: echo "PATH_DAY_3_DAY_AGO_PARTITION=$(date -d "3 days ago" +'year=%Y/month=%-m/day=%-d')" >> $GITHUB_ENV
       - name: Set yesterday date as env variable for partitioning
         run: echo "PATH_YEAR_PARTITION=$(date -d "yesterday" +'year=%Y')" >> $GITHUB_ENV
       - name: Set last month as env variable for partitioning
@@ -50,22 +52,22 @@ jobs:
           mkdir -p data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
           rm -rf data-news-json/media=France\ 2/${{ env.PATH_DAY_PARTITION }} || true
           rm -rf data-news-json/media=France\ 2/${{ env.PATH_DAY_2_DAY_AGO_PARTITION }} || true
+          rm -rf data-news-json/media=France\ 2/${{ env.PATH_DAY_3_DAY_AGO_PARTITION }} || true
           mkdir -p output-france2-tv-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}
           mkdir -p output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
           mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_PARTITION }} || true
           mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }} || true
-          ls -R data-news-json/media=France\ 2/${{ env.PATH_DAY_2_DAY_AGO_PARTITION }}
           mkdir -p data-news-json/media=TF1/${{ env.PATH_YEAR_PARTITION }}
           mkdir -p data-news-json/media=TF1/${{ env.PATH_PARTITION }}
           rm -rf data-news-json/media=TF1/${{ env.PATH_DAY_PARTITION }} || true
           rm -rf data-news-json/media=TF1/${{ env.PATH_DAY_2_DAY_AGO_PARTITION }} || true
+          rm -rf data-news-json/media=TF1/${{ env.PATH_DAY_3_DAY_AGO_PARTITION }} || true
           mkdir -p output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}
           mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_PARTITION }} || true
           mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }} || true
-          ls -R data-news-json/media=TF1/${{ env.PATH_DAY_2_DAY_AGO_PARTITION }}
           git config user.name github-actions
           git config user.email github-actions@github.com
           git status
           git add .
-          git commit -m "ci(data): saved date ${{ env.PATH_DAY_PARTITION }} and ${{ env.PATH_DAY_2_DAY_AGO_PARTITION }}"
+          git commit -m "ci(data): saved date ${{ env.PATH_DAY_PARTITION }} and ${{ env.PATH_DAY_2_DAY_AGO_PARTITION }} and ${{ env.PATH_DAY_3_DAY_AGO_PARTITION }}"
           git push origin main
