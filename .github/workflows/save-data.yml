@@ -47,7 +47,6 @@ jobs:
           clean: false
       - run: |
           ls -R output-france2-tv-news-json/
-          sbt "runMain com.github.polomarcus.main.UpdateNews"
           mkdir -p data-news-json/media=France\ 2/${{ env.PATH_YEAR_PARTITION }}
           mkdir -p data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
           rm -rf data-news-json/media=France\ 2/${{ env.PATH_DAY_PARTITION }} || true
@@ -65,6 +64,7 @@ jobs:
           mkdir -p output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}
           mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_PARTITION }} || true
           mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }} || true
+          sbt "runMain com.github.polomarcus.main.UpdateNews"
           git config user.name github-actions
           git config user.email github-actions@github.com
           git status
