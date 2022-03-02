@@ -8,7 +8,7 @@ jobs:
   click-here-to-see-data:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
@@ -42,7 +42,7 @@ jobs:
         run: |
           ls -R data-news-json/media=TF1/
       - name: Create website data and save data with git
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           clean: false
       - run: |
