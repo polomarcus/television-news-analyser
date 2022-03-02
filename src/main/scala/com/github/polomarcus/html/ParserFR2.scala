@@ -1,5 +1,6 @@
 package com.github.polomarcus.html
 
+import com.github.polomarcus.html.ParserFR2.browser
 import com.github.polomarcus.model.News
 import com.github.polomarcus.utils.FutureService.waitFuture
 
@@ -21,7 +22,9 @@ object ParserFR2 {
   val FRANCE2 = "France 2"
   implicit val ec = FutureService.ec
 
-  def parseFrance2HomeHelper(url: String, defaultUrl : String = "https://www.francetvinfo.fr"): List[News] = {
+  def parseFrance2HomeHelper(
+      url: String,
+      defaultUrl: String = "https://www.francetvinfo.fr"): List[News] = {
     val doc = browser.get(url)
     val allTelevisionNews = doc >> elementList("h2.title a") >> attr("href")
 
@@ -36,18 +39,18 @@ object ParserFR2 {
 
     waitFuture[Option[News]](parsedTelevisionNews).flatten
   }
-  def parseFrance2Home(url: String, defaultUrl : String = "https://www.francetvinfo.fr") = {
+  def parseFrance2Home(url: String, defaultUrl: String = "https://www.francetvinfo.fr") = {
     logger.debug("France 2 Url: " + url)
 
     try {
-      parseFrance2HomeHelper(url,defaultUrl)
+      parseFrance2HomeHelper(url, defaultUrl)
     } catch {
       case e: Exception =>
         logger.info(e.toString)
         try {
           //Try a second time in case of timeout
           Thread.sleep(2000L)
-          parseFrance2HomeHelper(url,defaultUrl)
+          parseFrance2HomeHelper(url, defaultUrl)
         } catch {
           case e: Exception => {
             logger.warn(s"Second exception in a row for, giving up $url " + e.toString)
@@ -57,7 +60,9 @@ object ParserFR2 {
     }
   }
 
-  def parseFrance2News(url: String, defaultUrl : String = "https://www.francetvinfo.fr"): Future[List[Option[News]]] = {
+  def parseFrance2News(
+      url: String,
+      defaultUrl: String = "https://www.francetvinfo.fr"): Future[List[Option[News]]] = {
     Future {
       try {
         val tvNewsURL = defaultUrl + url
@@ -68,8 +73,7 @@ object ParserFR2 {
         val publishedDate = doc >> text(".schedule span:nth-of-type(1)") // Diffusé le 08/01/2022
         val presenter = doc >> text(".presenter .by")
 
-        logger.debug(
-          s"""
+        logger.debug(s"""
             This is what i got for this day $url:
             number of news: ${news.length}
             date : $publishedDate
@@ -80,10 +84,10 @@ object ParserFR2 {
           val title = x >> text(".title")
           val order = x >> text(".number")
           val linkToDescription = x >> element(".title") >> attr("href")
-          val (description, authors, editor, editorDeputy) = parseDescriptionAuthors(linkToDescription)
+          val (description, authors, editor, editorDeputy) =
+            parseDescriptionAuthors(linkToDescription)
 
-          logger.debug(
-            s"""
+          logger.debug(s"""
               I got a news in order $order :
               title: $title
               link to description : $linkToDescription
@@ -91,7 +95,8 @@ object ParserFR2 {
             """)
 
           Some(
-            News(title,
+            News(
+              title,
               description,
               DateService.getTimestampFrance2(publishedDate),
               order.toInt,
@@ -102,8 +107,7 @@ object ParserFR2 {
               defaultUrl + linkToDescription,
               tvNewsURL,
               TextService.containsWordGlobalWarming(title + description),
-              FRANCE2
-          ))
+              FRANCE2))
         })
       } catch {
         case e: Exception => {
@@ -114,9 +118,37 @@ object ParserFR2 {
     }
   }
 
-  def parseDescriptionAuthors(url: String, defaultFrance2URL : String =  "https://www.francetvinfo.fr") = {
+  /**
+   * Week team only
+   * L'équipe de la semaine
+    Rédaction en chef
+    Elsa Pallot
+    Rédaction en chef-adjointe
+    Sébastien Renout, Anne Poncinet, Arnaud Comte
+
+    @To do Weekend team one day..
+   * @param doc
+   * @return
+   */
+  def parseTeam(doc: browser.DocumentType): (String, List[String]) = {
+    val weekTeam = doc >> elementList(".from-same-show__info-team:nth-of-type(1) li")
+
+    val (editor, editorDeputy) = weekTeam.isEmpty match {
+      case false =>
+        val editor = (weekTeam.head >?> text("p:nth-of-type(2)")).getOrElse("")
+        val editorDeputy = (weekTeam.tail.head >?> text("p:nth-of-type(2)")).getOrElse("")
+        (editor, editorDeputy)
+      case true => ("", "")
+    }
+
+    (editor, editorDeputy.split(", ").toList)
+  }
+
+  def parseDescriptionAuthors(
+      url: String,
+      defaultFrance2URL: String = "https://www.francetvinfo.fr") = {
     try {
-      val doc = browser.get(defaultFrance2URL + url)
+      val doc: browser.DocumentType = browser.get(defaultFrance2URL + url)
       val descriptionOption = doc >?> text(".c-body")
       val description = descriptionOption match {
         case Some(descriptionValue) => descriptionValue
@@ -127,14 +159,7 @@ object ParserFR2 {
       }
       val authors = doc >?> text(".c-signature__names span")
 
-      val weekTeam = (doc >> elementList(".from-same-show__info-team"))
-
-      val (editor, editorDeputy) = weekTeam.isEmpty match {
-        case false => val editor = (weekTeam.head >?> text("p:nth-of-type(2)")).getOrElse("")
-          val editorDeputy = (weekTeam.tail.head >?> text("p:nth-of-type(2)")).getOrElse("")
-          (editor, editorDeputy)
-        case true => ("", "")
-      }
+      val (editor, editorDeputy) = parseTeam(doc)
 
       logger.debug(s"""
       parseDescriptionAuthors from $url:
@@ -144,7 +169,7 @@ object ParserFR2 {
         $description
       """)
 
-      (description, authors.getOrElse("").split(", ").toList, editor, editorDeputy.split(", ").toList)
+      (description, authors.getOrElse("").split(", ").toList, editor, editorDeputy)
     } catch {
       case e: Exception => {
         logger.error(s"Error parsing this subject $defaultFrance2URL + $url " + e.toString)
