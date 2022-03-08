@@ -18,7 +18,7 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
             {title:"Titre", field:"url",  formatter:"link",formatterParams:{labelField:"title",target:"_blank"}},
         ],
     });
-    table.setLocale("fr"); //set locale to french
+
     var setupFilter = function(fieldName) {
                 var filterEl = document.getElementById(fieldName + "-filter-value");
                 // Trigger setFilter function with correct parameters
