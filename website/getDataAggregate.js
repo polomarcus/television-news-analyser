@@ -21,19 +21,19 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
     var newsTF1 = {
       x: TF1NotGlobalwarming.map ( x => x.date),
       y: TF1NotGlobalwarming.map ( x => x.number_of_news),
-      type: 'scatter',
-      mode: 'lines',
+      type: 'lines',
+      mode: 'solid',
       name: 'TF1',
       line: {
         color: 'blue',
-        width: 1
+        width: 3
       }
     };
     var newsTF1Globalwarming = {
       x: TF1Globalwarming.map ( x => x.date),
       y: TF1Globalwarming.map ( x => x.number_of_news),
-      type: 'scatter',
-        mode: 'lines',
+      type: 'lines',
+        mode: 'solid',
         name: 'TF1 Climat',
         line: {
           color: 'purple',
@@ -44,20 +44,20 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
     var newsFR2 = {
       x: FR2NotGlobalwarming.map ( x => x.date),
       y: FR2NotGlobalwarming.map ( x => x.number_of_news),
-      type: 'scatter',
-     mode: 'lines',
+      type: 'lines',
+     mode: 'solid',
      name: 'France 2',
      line: {
        color: 'red',
-       width: 1
+       width: 3
      }
 
     };
     var newsFR2Globalwarming = {
       x: FR2Globalwarming.map ( x => x.date),
       y: FR2Globalwarming.map ( x => x.number_of_news),
-      type: 'scatter',
-     mode: 'lines',
+      type: 'lines',
+     mode: 'solid',
      name: 'FR2 Climat',
      line: {
        color: 'green',
@@ -78,5 +78,5 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
     var config = {responsive: true}
     Plotly.newPlot('newsByMonth', data, layout, config);
 
-    Plotly.newPlot('newsGlobalwarmingOnlyByMonth', dataOnlyGlobalWarming, layoutGlobalWarming, config);
+    // Plotly.newPlot('newsGlobalwarmingOnlyByMonth', dataOnlyGlobalWarming, layoutGlobalWarming, config);
 });
