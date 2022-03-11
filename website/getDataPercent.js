@@ -15,31 +15,31 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
     var newsTF1 = {
       x: TF1GlobalwarmingPercent.map ( x => x.date),
       y: TF1GlobalwarmingPercent.map ( x => x.percent),
-      type: 'scatter',
-      mode: 'lines',
+      type: 'lines',
+      mode: 'solid',
       name: 'TF1',
       line: {
         color: 'blue',
-        width: 1
+        width: 2
       }
     };
 
     var newsFR2 = {
       x: FR2GlobalwarmingPercent.map ( x => x.date),
       y: FR2GlobalwarmingPercent.map ( x => x.percent),
-      type: 'scatter',
-     mode: 'lines',
+      type: 'lines',
+     mode: 'solid',
      name: 'France 2',
      line: {
        color: 'red',
-       width: 1
+       width: 2
      }
     };
 
     console.log("FR2GlobalwarmingPercent", FR2GlobalwarmingPercent)
     var data = [newsTF1, newsFR2];
     var layout = {
-      title: 'Pourcentage de reportage par mois parlant des changements climatiques',
+      title: '% de reportage par mois parlant des changements climatiques',
     };
     var config = {responsive: true}
 
