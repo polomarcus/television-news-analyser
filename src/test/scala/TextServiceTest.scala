@@ -6,7 +6,11 @@ class TextServiceTest extends AnyFunSuite {
     assert(!TextService.containsWordGlobalWarming("pizza"))
   }
 
-  test("containsWordGlobalWarming - aléas climatiques") {
+  test("containsWordGlobalWarming - does not count aléas climatiques") {
+    assert(!TextService.containsWordGlobalWarming("aléas climatiques"))
+  }
+
+  test("containsWordGlobalWarming - does not count just 'climat'") {
     assert(!TextService.containsWordGlobalWarming("aléas climatiques"))
   }
 
@@ -34,5 +38,14 @@ class TextServiceTest extends AnyFunSuite {
     assert(TextService.containsWordGlobalWarming("dérèglement du climat"))
     assert(TextService.containsWordGlobalWarming("réchauffement du climat"))
     assert(TextService.containsWordGlobalWarming("changement du climat"))
+  }
+
+  test("enjeux climatiques") {
+    assert(TextService.containsWordGlobalWarming("enjeux climatiques"))
+  }
+
+  test("crise climatique") {
+    assert(TextService.containsWordGlobalWarming("crise climatique"))
+    assert(TextService.containsWordGlobalWarming("crises climatiques"))
   }
 }
