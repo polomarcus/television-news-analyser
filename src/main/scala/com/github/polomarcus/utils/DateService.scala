@@ -8,11 +8,11 @@ import java.util.{Calendar, TimeZone}
 
 object DateService {
   val logger = Logger(DateService.getClass)
-
+  val timezone = TimeZone.getTimeZone("UTC+2")
   def getTimestampFrance2(date: String): Timestamp = {
     try {
       val format = new SimpleDateFormat("dd/MM/yyyy")
-      format.setTimeZone(TimeZone.getTimeZone("UTC+2"))
+      format.setTimeZone(timezone)
       new Timestamp(format.parse(date.substring(11)).getTime)
     } catch {
       case e: Exception => {
@@ -46,6 +46,7 @@ object DateService {
   def getTimestampTF1(date: String): Timestamp = {
     try {
       val format = new SimpleDateFormat("d/MM/yyyy")
+      format.setTimeZone(timezone)
       // Create a calendar object with today date. Calendar is in java.util pakage.
       val calendar = Calendar.getInstance
       if (date.contains("hier")) { // late publish
