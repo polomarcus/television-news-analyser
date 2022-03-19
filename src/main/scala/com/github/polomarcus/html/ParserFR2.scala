@@ -73,7 +73,7 @@ object ParserFR2 {
         val publishedDate = doc >> text(".schedule span:nth-of-type(1)") // Diffusé le 08/01/2022
         val presenter = doc >> text(".presenter .by")
 
-        logger.debug(s"""
+        logger.info(s"""
             This is what i got for this day $url:
             number of news: ${news.length}
             date : $publishedDate
@@ -144,12 +144,17 @@ object ParserFR2 {
     (editor, editorDeputy.split(", ").toList)
   }
 
+  def parseSubtitle(doc: browser.DocumentType): String = {
+    (doc >?> text(".c-chapo")).getOrElse("")
+  }
+
   def parseDescriptionAuthors(
       url: String,
       defaultFrance2URL: String = "https://www.francetvinfo.fr") = {
     try {
       val doc: browser.DocumentType = browser.get(defaultFrance2URL + url)
       val descriptionOption = doc >?> text(".c-body")
+      val subtitle = parseSubtitle(doc)
       val description = descriptionOption match {
         case Some(descriptionValue) => descriptionValue
         case None => {
@@ -161,15 +166,16 @@ object ParserFR2 {
 
       val (editor, editorDeputy) = parseTeam(doc)
 
-      logger.debug(s"""
+      logger.info(s"""
       parseDescriptionAuthors from $url:
         $authors
         $editor
         $editorDeputy
+        $subtitle
         $description
       """)
 
-      (description, authors.getOrElse("").split(", ").toList, editor, editorDeputy)
+      (subtitle + description, authors.getOrElse("").split(", ").toList, editor, editorDeputy)
     } catch {
       case e: Exception => {
         logger.error(s"Error parsing this subject $defaultFrance2URL + $url " + e.toString)
