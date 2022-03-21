@@ -30,7 +30,7 @@ services:
     depends_on:
       - postgres
   postgres:
-    image: postgres:latest
+    image: postgres:13.6
     container_name: postgres
     ports:
       - 5432:5432
