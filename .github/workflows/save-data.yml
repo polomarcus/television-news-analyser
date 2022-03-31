@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
+      - uses: coursier/cache-action@v6
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
@@ -71,3 +72,16 @@ jobs:
           git add .
           git commit -m "ci(data): saved date ${{ env.PATH_DAY_PARTITION }} and ${{ env.PATH_DAY_2_DAY_AGO_PARTITION }} and ${{ env.PATH_DAY_3_DAY_AGO_PARTITION }}"
           git push origin main
+  data-quality:
+    runs-on: ubuntu-20.04
+    needs: click-here-to-see-data
+    steps:
+      - uses: actions/checkout@v3
+      - uses: coursier/cache-action@v6
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Check for duplicates to delete inside data-news-json folder
+        run: sbt "runMain com.github.polomarcus.main.DataQuality"
