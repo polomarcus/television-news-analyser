@@ -5,7 +5,6 @@ import com.github.polomarcus.storage.StorageService
 import com.github.polomarcus.utils.{DateService, SparkService}
 import com.typesafe.scalalogging.Logger
 
-
 object TelevisionNewsAnalyser {
   def main(args: Array[String]) {
     val logger = Logger(this.getClass)
@@ -20,7 +19,8 @@ object TelevisionNewsAnalyser {
 
     val firstNews = 1
     val (start, end, media) = if (args.length == 0) {
-      logger.warn("Args must between 0 and 170 (2013 TV news): default is https://www.francetvinfo.fr/replay-jt/france-2/20-heures/")
+      logger.warn(
+        "Args must between 0 and 170 (2013 TV news): default is https://www.francetvinfo.fr/replay-jt/france-2/20-heures/")
       (firstNews, 1, "france2")
     } else if (args.length == 2) {
       logger.info(s"Getting TV news until page ${args(0)}")
@@ -32,12 +32,16 @@ object TelevisionNewsAnalyser {
 
     // Parsed HTML to extract metadata about news
     val newsList = Getter.getNews(start, end, media)
+    if (newsList.isEmpty) {
+      logger.error(s"No news parsed for $media")
+      spark.stop()
+      System.exit(1)
+    } else {
+      logger.info(s"Number of news parsed : ${newsList.length}")
+      StorageService.write(newsList, s"output-${media}-tv-news")
 
-    logger.info(s"Number of news parsed : ${newsList.length}")
-    StorageService.write(newsList, s"output-${media}-tv-news")
-
-    spark.stop()
-    System.exit(0)
+      spark.stop()
+      System.exit(0)
+    }
   }
 }
-
