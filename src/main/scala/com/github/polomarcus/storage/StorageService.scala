@@ -43,7 +43,6 @@ object StorageService {
     saveAggregateNews()
     saveLatestNews()
     savePercentMedia()
-    getDuplicateNews() // is there any duplicates ?
   }
 
   def removeDuplicates() = {
@@ -66,9 +65,10 @@ object StorageService {
     newsDFWithoutDuplicates
   }
   def getDuplicateNews() = {
-    val media = spark.sql(
-      """
-        |SELECT title, media
+    val newsDF = readNews() // create SQL table
+
+    val media = spark.sql("""
+        |SELECT title, media, date
         |FROM (
         |SELECT COUNT(*) AS number_of_news, title, description, media, date
         |FROM news
@@ -78,6 +78,8 @@ object StorageService {
       """.stripMargin)
     logger.info("Duplicates news - should be empty:")
     media.show(100, false)
+
+    media
   }
 
   def saveAggregateNews() = {
@@ -101,8 +103,8 @@ object StorageService {
   }
 
   def savePercentMedia() = {
-    val newsSubQuery = spark.sql(
-      """
+    val newsSubQuery =
+      spark.sql("""
         | SELECT date_format(date, "yyyy-MM") AS date, media, COUNT(*) AS count
         |        FROM news
         |        WHERE containsWordGlobalWarming = TRUE
@@ -110,16 +112,16 @@ object StorageService {
       """.stripMargin)
     newsSubQuery.createOrReplaceTempView("newstmp")
 
-    val newsSubQuery2 = spark.sql(
-      """
+    val newsSubQuery2 =
+      spark.sql("""
         |SELECT date_format(date, "yyyy-MM") AS date,media,COUNT(*) AS totalNews
         |        FROM news
         |        GROUP BY date_format(date, "yyyy-MM"), media
       """.stripMargin)
     newsSubQuery2.createOrReplaceTempView("newstmp2")
 
-    val mediaPercent = spark.sql(
-      """
+    val mediaPercent =
+      spark.sql("""
         |SELECT ROUND(count * 100.0 /totalNews, 2) AS percent, newstmp.media, newstmp.date
         |FROM newstmp
         |JOIN newstmp2
@@ -135,7 +137,9 @@ object StorageService {
       .mode(SaveMode.Overwrite)
       .json(s"$pathAggregated/aggPercent.json")
 
-    changeFileName(s"$pathAggregated/aggPercent.json", s"$pathAggregated/aggPercent.json/aggPercent.json")
+    changeFileName(
+      s"$pathAggregated/aggPercent.json",
+      s"$pathAggregated/aggPercent.json/aggPercent.json")
   }
 
   def saveLatestNews() = {
@@ -155,11 +159,14 @@ object StorageService {
       .mode(SaveMode.Overwrite)
       .json(s"$pathAggregated/latest-news.json")
 
-    changeFileName(s"$pathAggregated/latest-news.json", s"$pathAggregated/latest-news.json/latestNews.json")
+    changeFileName(
+      s"$pathAggregated/latest-news.json",
+      s"$pathAggregated/latest-news.json/latestNews.json")
   }
 
-  def write(arrayNews: Seq[News], path : String) = {
-    val news = spark.sparkContext.parallelize(arrayNews)
+  def write(arrayNews: Seq[News], path: String) = {
+    val news = spark.sparkContext
+      .parallelize(arrayNews)
       .toDF()
 
     saveJSON(news, path)
@@ -168,8 +175,8 @@ object StorageService {
   def saveJSON(news: DataFrame, path: String): String = {
     news.createOrReplaceTempView("news")
 
-    val latestNews = spark.sql(
-      """
+    val latestNews =
+      spark.sql("""
         |SELECT date_format(date, "dd/MM/yyyy") AS date, title, url, urlTvNews, media
         |FROM news
         |ORDER BY date DESC
@@ -184,14 +191,13 @@ object StorageService {
       .withColumn("day", dayofmonth('date))
       .write
       .mode(SaveMode.Overwrite)
-      .partitionBy("media","year", "month","day")
+      .partitionBy("media", "year", "month", "day")
       .json(s"$path-json")
 
     path
   }
 
-  def read(path: String)  = {
-    spark.read.json(path).withColumn("date",
-      to_timestamp(col("date")))
+  def read(path: String) = {
+    spark.read.json(path).withColumn("date", to_timestamp(col("date")))
   }
 }

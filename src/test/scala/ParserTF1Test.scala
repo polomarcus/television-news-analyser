@@ -28,8 +28,19 @@ class ParserTF1Test extends AnyFunSuite {
       containsWordGlobalWarming = false,
       ParserTF1.TF1)
 
-    assert(news == listNews.head)
-    assert(listNews.length == 7)
+    assert(news.title == listNews.head.title)
+    assert(news.description == listNews.head.description)
+    assert(news.date == listNews.head.date)
+    assert(news.order == listNews.head.order)
+    assert(news.presenter == listNews.head.presenter)
+    assert(news.authors == listNews.head.authors)
+    assert(news.editor == listNews.head.editor)
+    assert(news.editorDeputy == listNews.head.editorDeputy)
+    assert(news.url == listNews.head.url)
+    assert(news.urlTvNews == listNews.head.urlTvNews)
+    assert(news.containsWordGlobalWarming == listNews.head.containsWordGlobalWarming)
+    assert(news.media == listNews.head.media)
+    assert(listNews.length == 50)
   }
 
   test("parseDescriptionAuthors") {
