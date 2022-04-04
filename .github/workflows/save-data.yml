@@ -1,6 +1,8 @@
 name: List news urls containing global warming
 
 on:
+  workflow_dispatch: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
+
   schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
     - cron:  '30 17 * * *'
 
