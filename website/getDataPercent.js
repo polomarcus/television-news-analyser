@@ -47,7 +47,7 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
      mode: 'solid',
      name: 'France 3',
      line: {
-       color: 'purple',
+       color: '#42b6f5',
        width: 2
      }
     };
