@@ -18,6 +18,13 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
         return { date: x.datecharts, number_of_news: x.number_of_news }
     })
 
+    const FR3Globalwarming = aggData.filter(agg => agg.media == "France 3" && agg.containsWordGlobalWarming).map ( x => {
+        return { date: x.datecharts, number_of_news: x.number_of_news }
+    })
+    const FR3NotGlobalwarming = aggData.filter(agg => agg.media == "France 3" && !agg.containsWordGlobalWarming).map ( x => {
+        return { date: x.datecharts, number_of_news: x.number_of_news }
+    })
+
     var newsTF1 = {
       x: TF1NotGlobalwarming.map ( x => x.date),
       y: TF1NotGlobalwarming.map ( x => x.number_of_news),
@@ -64,10 +71,32 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
        width: 1
      }
     };
+    var newsFR3 = {
+      x: FR3NotGlobalwarming.map ( x => x.date),
+      y: FR3NotGlobalwarming.map ( x => x.number_of_news),
+      type: 'lines',
+     mode: 'solid',
+     name: 'France 3',
+     line: {
+       color: '#42b6f5',
+       width: 3
+     }
 
-    console.log("newsFR2Globalwarming", newsFR2Globalwarming)
-    var data = [newsTF1, newsFR2, newsTF1Globalwarming, newsFR2Globalwarming];
-    var dataOnlyGlobalWarming = [newsTF1Globalwarming, newsFR2Globalwarming];
+    };
+    var newsFR3Globalwarming = {
+      x: FR3Globalwarming.map ( x => x.date),
+      y: FR3Globalwarming.map ( x => x.number_of_news),
+      type: 'lines',
+     mode: 'solid',
+     name: 'FR3 Climat',
+     line: {
+       color: 'orange',
+       width: 1
+     }
+    };
+
+    var data = [newsTF1, newsFR2, newsFR3, newsTF1Globalwarming, newsFR2Globalwarming, newsFR3Globalwarming];
+    var dataOnlyGlobalWarming = [newsTF1Globalwarming, newsFR2Globalwarming, newsFR3Globalwarming];
     var layout = {
       title: 'Nombre de reportages par mois',
     };

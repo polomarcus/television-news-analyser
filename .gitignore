@@ -9,8 +9,7 @@ archived-json/
 src/test/docker/pgdata/
 .ipynb_checkpoints/
 test-test-json/
-output-france2-tv-news-json/
-output-tf1-tv-news-json/
+output-*
 **.crc
 **._SUCCESS
 **_SUCCESS
