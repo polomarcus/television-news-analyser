@@ -17,7 +17,7 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
   test("parseFranceTelevisionHome") {
     val listNews =
       ParserFranceTelevision.parseFranceTelevisionHome(
-        s"$localhost/home-tv-news-fr2.html",
+        s"$localhost/home-tv-news-france-2.html",
         localhost)
 
     val subtitle =
@@ -33,7 +33,7 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
       List("C.Verove", "O.Sauvayre"),
       "Elsa Pallot",
       List("Sébastien Renout", "Anne Poncinet", "Arnaud Comte"),
-      "http://localhost:8000/monde/bresil/bresil-effondrement-meurtrier-d-une-falaise-sur-un-groupe-de-touristes_4910403.html",
+      "http://localhost:8000/france-2/monde/bresil/bresil-effondrement-meurtrier-d-une-falaise-sur-un-groupe-de-touristes_4910403.html",
       "http://localhost:8000/replay.html",
       containsWordGlobalWarming = false,
       ParserFranceTelevision.FRANCE2)
@@ -61,7 +61,7 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
       List("S. Soubane", "J. Ricco", "M. Mullot", "C.-M. Denis", "B. Vignais", "L. Lavieille"),
       "Elsa Pallot",
       List("Sébastien Renout", "Anne Poncinet", "Arnaud Comte"),
-      "http://localhost:8000/sante/maladie/coronavirus/ecoles-un-nouveau-protocole-pour-une-rentree-marquee-par-l-incertitude_4903195.html",
+      "http://localhost:8000/france-2/sante/maladie/coronavirus/ecoles-un-nouveau-protocole-pour-une-rentree-marquee-par-l-incertitude_4903195.html",
       "http://localhost:8000/one-day-tv-news-fr2.html",
       containsWordGlobalWarming = false,
       ParserFranceTelevision.FRANCE2)
