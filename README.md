@@ -1,15 +1,16 @@
 # [TV news analyser](https://polomarcus.github.io/television-news-analyser/website/) 📺 🔬 🛢️
 [![List news urls containing global warming everyday at 5am](https://github.com/polomarcus/television-news-analyser/actions/workflows/save-data.yml/badge.svg)](https://github.com/polomarcus/television-news-analyser/actions/workflows/save-data.yml)
 
-[Scrap](https://en.wikipedia.org/wiki/Data_scraping) France 2 and TF1 Tv news to analyse humanity's biggest challenge : fossil energies and **climate change** and [analyse the data on a website](https://polomarcus.github.io/television-news-analyser/website/).
+[Scrap](https://en.wikipedia.org/wiki/Data_scraping) France 2, France 3, and TF1 Tv news to analyse humanity's biggest challenge : fossil energies and **climate change** and [analyse the data on a website](https://polomarcus.github.io/television-news-analyser/website/).
 
 ![metabaseexample](https://user-images.githubusercontent.com/4059615/149955122-89642ba8-fb45-4369-956c-5854c14bfdd1.png)
 
 **Data source:** HTMLs pages :
 * https://www.francetvinfo.fr/replay-jt/france-2/20-heures/jt-de-20h-du-jeudi-30-decembre-2021_4876025.html
 * https://www.tf1info.fr/emission/le-20h-11001/extraits/
+* https://www.francetvinfo.fr/replay-jt/france-3/19-20/jt-de-19-20-du-vendredi-15-avril-2022_5045866.html
 
-**Data sink:** JSON data to be store inside MySQL and displayed on a metabase dashboard, or [this website](https://polomarcus.github.io/television-news-analyser/website/) :
+* **Data sink:** JSON data to be store inside MySQL and displayed on a metabase dashboard, or [this website](https://polomarcus.github.io/television-news-analyser/website/) :
 
 * **JSON data :** ➡️ https://github.com/polomarcus/television-news-analyser/tree/main/data-news-json/
 
@@ -80,7 +81,7 @@ sbt test # it will parsed some localhost pages from test/resources/
 
 ### Test only one method
 ```
-sbt> testOnly ParserTest -- -z parseFrance2Home
+sbt> testOnly ParserTest -- -z parseFranceTelevisionHome
 ```
 
 ## Libraries documentation

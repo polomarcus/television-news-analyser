@@ -12,6 +12,10 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
         return { date: x.date, percent: x.percent }
     })
 
+    const FR3GlobalwarmingPercent = aggData.filter(agg => agg.media == "France 3").map ( x => {
+        return { date: x.date, percent: x.percent }
+    })
+
     var newsTF1 = {
       x: TF1GlobalwarmingPercent.map ( x => x.date),
       y: TF1GlobalwarmingPercent.map ( x => x.percent),
@@ -36,8 +40,20 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
      }
     };
 
+    var newsFR3 = {
+      x: FR3GlobalwarmingPercent.map ( x => x.date),
+      y: FR3GlobalwarmingPercent.map ( x => x.percent),
+      type: 'lines',
+     mode: 'solid',
+     name: 'France 3',
+     line: {
+       color: 'purple',
+       width: 2
+     }
+    };
+
     console.log("FR2GlobalwarmingPercent", FR2GlobalwarmingPercent)
-    var data = [newsTF1, newsFR2];
+    var data = [newsTF1, newsFR2, newsFR3];
     var layout = {
       title: '% de reportage par mois parlant des changements climatiques',
     };

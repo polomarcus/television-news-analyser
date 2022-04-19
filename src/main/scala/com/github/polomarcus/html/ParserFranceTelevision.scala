@@ -1,6 +1,5 @@
 package com.github.polomarcus.html
 
-import com.github.polomarcus.html.ParserFR2.browser
 import com.github.polomarcus.model.News
 import com.github.polomarcus.utils.FutureService.waitFuture
 
@@ -16,17 +15,20 @@ import scala.concurrent.Future
 // For implicit conversions from RDDs to DataFrames
 import scala.concurrent.ExecutionContext
 
-object ParserFR2 {
+object ParserFranceTelevision {
   val logger = Logger(this.getClass)
   val browser = JsoupBrowser()
   val FRANCE2 = "France 2"
+  val FRANCE3 = "France 3"
   implicit val ec = FutureService.ec
 
-  def parseFrance2HomeHelper(
+  def parseFranceTelevisionHomeHelper(
       url: String,
       defaultUrl: String = "https://www.francetvinfo.fr"): List[News] = {
     val doc = browser.get(url)
     val allTelevisionNews = doc >> elementList("h2.title a") >> attr("href")
+
+    val media = getMediaFranceTelevision(url)
 
     logger.debug(s"""
       I got ${allTelevisionNews.length} days of news
@@ -34,23 +36,25 @@ object ParserFR2 {
 
     val parsedTelevisionNews = allTelevisionNews.map(televisionNewsForOneDay => {
       logger.info(s"Parsing this day of news : $televisionNewsForOneDay")
-      parseFrance2News(televisionNewsForOneDay, defaultUrl)
+      parseFranceTelevisionNews(televisionNewsForOneDay, defaultUrl, media)
     })
 
     waitFuture[Option[News]](parsedTelevisionNews).flatten
   }
-  def parseFrance2Home(url: String, defaultUrl: String = "https://www.francetvinfo.fr") = {
-    logger.debug("France 2 Url: " + url)
+  def parseFranceTelevisionHome(
+      url: String,
+      defaultUrl: String = "https://www.francetvinfo.fr") = {
+    logger.debug("France television Url: " + url)
 
     try {
-      parseFrance2HomeHelper(url, defaultUrl)
+      parseFranceTelevisionHomeHelper(url, defaultUrl)
     } catch {
       case e: Exception =>
         logger.info(e.toString)
         try {
           //Try a second time in case of timeout
           Thread.sleep(2000L)
-          parseFrance2HomeHelper(url, defaultUrl)
+          parseFranceTelevisionHomeHelper(url, defaultUrl)
         } catch {
           case e: Exception => {
             logger.warn(s"Second exception in a row for, giving up $url " + e.toString)
@@ -60,13 +64,21 @@ object ParserFR2 {
     }
   }
 
-  def parseFrance2News(
+  def getMediaFranceTelevision(url: String): String = {
+    url.contains(FRANCE2.toLowerCase()) match {
+      case true => FRANCE2
+      case false => FRANCE3
+    }
+  }
+
+  def parseFranceTelevisionNews(
       url: String,
-      defaultUrl: String = "https://www.francetvinfo.fr"): Future[List[Option[News]]] = {
+      defaultUrl: String = "https://www.francetvinfo.fr",
+      media: String): Future[List[Option[News]]] = {
     Future {
       try {
         val tvNewsURL = defaultUrl + url
-        logger.debug("France 2 Url: " + tvNewsURL)
+        logger.debug("France television Url: " + tvNewsURL)
 
         val doc = browser.get(tvNewsURL)
         val news = doc >> elementList(".subjects-list li")
@@ -77,7 +89,7 @@ object ParserFR2 {
             This is what i got for this day $url:
             number of news: ${news.length}
             date : $publishedDate
-            getTimestampFrance2 : ${DateService.getTimestampFrance2(publishedDate)}
+            getTimestamp : ${DateService.getTimestampFranceTelevision(publishedDate)}
           """)
 
         news.map(x => {
@@ -98,7 +110,7 @@ object ParserFR2 {
             News(
               title,
               description,
-              DateService.getTimestampFrance2(publishedDate),
+              DateService.getTimestampFranceTelevision(publishedDate),
               order.toInt,
               presenter,
               authors,
@@ -107,7 +119,7 @@ object ParserFR2 {
               defaultUrl + linkToDescription,
               tvNewsURL,
               TextService.containsWordGlobalWarming(title + description),
-              FRANCE2))
+              media))
         })
       } catch {
         case e: Exception => {

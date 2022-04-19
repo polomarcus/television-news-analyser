@@ -12,9 +12,9 @@ class DateServiceTest extends AnyFunSuite {
   val format = new SimpleDateFormat("dd/MM/yyyy")
   format.setTimeZone(timezone)
 
-  test("getTimestampFrance2") {
+  test("getTimestampFranceTelevision") {
     assert(
-      DateService.getTimestampFrance2("Diffusé le 08/01/2022") ==
+      DateService.getTimestampFranceTelevision("Diffusé le 08/01/2022") ==
         new Timestamp(format.parse("08/01/2022").getTime))
   }
 
