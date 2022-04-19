@@ -9,7 +9,7 @@ import java.util.{Calendar, TimeZone}
 object DateService {
   val logger = Logger(DateService.getClass)
   val timezone = TimeZone.getTimeZone("UTC+2")
-  def getTimestampFrance2(date: String): Timestamp = {
+  def getTimestampFranceTelevision(date: String): Timestamp = {
     try {
       val format = new SimpleDateFormat("dd/MM/yyyy")
       format.setTimeZone(timezone)

@@ -31,9 +31,12 @@ jobs:
         run: echo "PATH_LAST_MONTH_PARTITION=$(date -d "last month" +'year=%Y/month=%-m')" >> $GITHUB_ENV
       - name: List France 2 news urls containing global warming (see end)
         run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 france2"
-      - name: Organize and refresh data for France 2
+      - name: List France 3 news urls containing global warming (see end)
+        run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 1 france3"
+      - name: Organize and refresh data for France 2 and France 3
         run: |
           ls -R output-france2-tv-news-json/
+          ls -R output-france3-tv-news-json/
       - name: List data for France 2
         run: ls -R data-news-json/media=France\ 2/
       - name: List TF1 news urls containing global warming (see end)
@@ -49,7 +52,6 @@ jobs:
         with:
           clean: false
       - run: |
-          ls -R output-france2-tv-news-json/
           mkdir -p data-news-json/media=France\ 2/${{ env.PATH_YEAR_PARTITION }}
           mkdir -p data-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
           rm -rf data-news-json/media=France\ 2/${{ env.PATH_DAY_PARTITION }} || true
@@ -59,6 +61,15 @@ jobs:
           mkdir -p output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}
           mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_PARTITION }} || true
           mv -vn output-france2-tv-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=France\ 2/${{ env.PATH_LAST_MONTH_PARTITION }} || true
+          mkdir -p data-news-json/media=France\ 3/${{ env.PATH_YEAR_PARTITION }}
+          mkdir -p data-news-json/media=France\ 3/${{ env.PATH_PARTITION }}
+          rm -rf data-news-json/media=France\ 3/${{ env.PATH_DAY_PARTITION }} || true
+          rm -rf data-news-json/media=France\ 3/${{ env.PATH_DAY_2_DAY_AGO_PARTITION }} || true
+          rm -rf data-news-json/media=France\ 3/${{ env.PATH_DAY_3_DAY_AGO_PARTITION }} || true
+          mkdir -p output-france3-tv-news-json/media=France\ 3/${{ env.PATH_LAST_MONTH_PARTITION }}
+          mkdir -p output-france3-tv-news-json/media=France\ 3/${{ env.PATH_PARTITION }}
+          mv -vn output-france3-tv-news-json/media=France\ 3/${{ env.PATH_PARTITION }}/** data-news-json/media=France\ 3/${{ env.PATH_PARTITION }} || true
+          mv -vn output-france3-tv-news-json/media=France\ 3/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=France\ 3/${{ env.PATH_LAST_MONTH_PARTITION }} || true
           mkdir -p data-news-json/media=TF1/${{ env.PATH_YEAR_PARTITION }}
           mkdir -p data-news-json/media=TF1/${{ env.PATH_PARTITION }}
           rm -rf data-news-json/media=TF1/${{ env.PATH_DAY_PARTITION }} || true
