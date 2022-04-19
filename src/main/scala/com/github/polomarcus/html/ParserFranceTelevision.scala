@@ -65,7 +65,7 @@ object ParserFranceTelevision {
   }
 
   def getMediaFranceTelevision(url: String): String = {
-    url.contains(FRANCE2.toLowerCase()) match {
+    url.contains("france-2") match {
       case true => FRANCE2
       case false => FRANCE3
     }
