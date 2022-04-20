@@ -30,7 +30,7 @@ object ParserFranceTelevision {
 
     val media = getMediaFranceTelevision(url)
 
-    logger.debug(s"""
+    logger.info(s"""
       I got ${allTelevisionNews.length} days of news
     """)
 
@@ -86,41 +86,47 @@ object ParserFranceTelevision {
         val presenter = doc >> text(".presenter .by")
 
         logger.info(s"""
-            This is what i got for this day $url:
+            This is what i got for this day $tvNewsURL:
             number of news: ${news.length}
             date : $publishedDate
             getTimestamp : ${DateService.getTimestampFranceTelevision(publishedDate)}
           """)
 
-        news.map(x => {
-          val title = x >> text(".title")
-          val order = x >> text(".number")
-          val linkToDescription = x >> element(".title") >> attr("href")
-          val (description, authors, editor, editorDeputy) =
-            parseDescriptionAuthors(linkToDescription)
+        val parsedNews: List[Option[News]] = if (news.isEmpty) {
+          List(None)
+        } else {
+          news.map(x => {
+            val title = x >> text(".title")
+            val order = x >> text(".number")
+            val linkToDescription = x >> element(".title") >> attr("href")
+            val (description, authors, editor, editorDeputy) =
+              parseDescriptionAuthors(linkToDescription)
 
-          logger.debug(s"""
+            logger.debug(s"""
               I got a news in order $order :
               title: $title
               link to description : $linkToDescription
               description (30 first char): ${description.take(30)}
             """)
 
-          Some(
-            News(
-              title,
-              description,
-              DateService.getTimestampFranceTelevision(publishedDate),
-              order.toInt,
-              presenter,
-              authors,
-              editor,
-              editorDeputy,
-              defaultUrl + linkToDescription,
-              tvNewsURL,
-              TextService.containsWordGlobalWarming(title + description),
-              media))
-        })
+            Some(
+              News(
+                title,
+                description,
+                DateService.getTimestampFranceTelevision(publishedDate),
+                order.toInt,
+                presenter,
+                authors,
+                editor,
+                editorDeputy,
+                defaultUrl + linkToDescription,
+                tvNewsURL,
+                TextService.containsWordGlobalWarming(title + description),
+                media))
+          })
+        }
+
+        parsedNews
       } catch {
         case e: Exception => {
           logger.error(s"Error parsing this date $defaultUrl $url " + e.toString)
