@@ -44,6 +44,11 @@ class TextServiceTest extends AnyFunSuite {
     assert(TextService.containsWordGlobalWarming("enjeux climatiques"))
   }
 
+  test("volet climatique") {
+    assert(TextService.containsWordGlobalWarming("volet climatique"))
+    assert(TextService.containsWordGlobalWarming("volets climatiques"))
+  }
+
   test("crise climatique") {
     assert(TextService.containsWordGlobalWarming("crise climatique"))
     assert(TextService.containsWordGlobalWarming("crises climatiques"))
@@ -52,5 +57,8 @@ class TextServiceTest extends AnyFunSuite {
   test("GIEC") {
     assert(TextService.containsWordGlobalWarming("GIEC"))
     assert(TextService.containsWordGlobalWarming("giec"))
+    assert(
+      TextService.containsWordGlobalWarming(
+        "On tiendra nos objectifs par rapport au rapport du Giec."))
   }
 }
