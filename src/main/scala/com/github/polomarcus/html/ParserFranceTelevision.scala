@@ -26,7 +26,7 @@ object ParserFranceTelevision {
       url: String,
       defaultUrl: String = "https://www.francetvinfo.fr"): List[News] = {
     val doc = browser.get(url)
-    val allTelevisionNews = doc >> elementList("h2.title a") >> attr("href")
+    val allTelevisionNews = doc >> elementList("a.flowItem") >> attr("href")
 
     val media = getMediaFranceTelevision(url)
 
