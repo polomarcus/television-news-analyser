@@ -26,8 +26,9 @@ object ParserFranceTelevision {
       url: String,
       defaultUrl: String = "https://www.francetvinfo.fr"): List[News] = {
     val doc = browser.get(url)
-    val allTelevisionNews = doc >> elementList("a.flowItem") >> attr("href")
-
+    val nextNews = doc >> elementList(".list-jt-last a") >> attr("href")
+    val headNews = doc >> element(".title a") >> attr("href")
+    val allTelevisionNews = headNews :: nextNews
     val media = getMediaFranceTelevision(url)
 
     logger.info(s"""
@@ -184,7 +185,7 @@ object ParserFranceTelevision {
 
       val (editor, editorDeputy) = parseTeam(doc)
 
-      logger.info(s"""
+      logger.debug(s"""
       parseDescriptionAuthors from $url:
         $authors
         $editor
