@@ -14,7 +14,7 @@ import scala.concurrent.Future
 
 object ParserTF1 {
   val logger = Logger(this.getClass)
-  val browser = JsoupBrowser()
+  val browser = Getter.getBrowser()
   val TF1 = "TF1"
   implicit val ec = FutureService.ec
 
