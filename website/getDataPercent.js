@@ -33,7 +33,7 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
       y: FR2GlobalwarmingPercent.map ( x => x.percent),
       type: 'lines',
      mode: 'solid',
-     name: 'France 2',
+     name: 'Fr2',
      line: {
        color: 'red',
        width: 2
@@ -45,7 +45,7 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
       y: FR3GlobalwarmingPercent.map ( x => x.percent),
       type: 'lines',
      mode: 'solid',
-     name: 'France 3',
+     name: 'Fr3',
      line: {
        color: '#42b6f5',
        width: 2
