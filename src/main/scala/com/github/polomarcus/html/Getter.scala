@@ -9,8 +9,9 @@ object Getter {
   implicit val ec = FutureService.ec
 
   val france2UrlPagination = "https://www.francetvinfo.fr/replay-jt/france-2/20-heures"
-  val france3UrlPagination = "https://www.francetvinfo.fr/replay-jt/france-3/19-20/"
+  val france3UrlPagination = "https://www.francetvinfo.fr/replay-jt/france-3/19-20"
   val tf1UrlPagination = "https://www.tf1info.fr/emission/le-20h-11001/extraits"
+  val tf1WeekendUrlPagination = "https://www.tf1info.fr/emission/le-we-12559/extraits"
 
   /**
    * 2 choices to parse :
@@ -27,19 +28,25 @@ object Getter {
       case _ => france2UrlPagination
     }
     val newsList = (start.toLong to end.toLong by 1).map { page =>
-      val url = if (page == 1) {
-        s"$urlMedia"
-      } else {
-        s"$urlMedia/$page.html"
-      }
+      val pagination = getPagination(page)
+      logger.info(s"Parsing this $urlMedia$pagination")
 
-      logger.info(s"Parsing this $url")
       media match {
-        case "tf1" => ParserTF1.parseTF1Home(url)
-        case _ => ParserFranceTelevision.parseFranceTelevisionHome(url)
+        case "tf1" =>
+          ParserTF1.parseTF1Home(s"$urlMedia$pagination") ++
+            ParserTF1.parseTF1Home(s"$tf1WeekendUrlPagination$pagination")
+        case _ => ParserFranceTelevision.parseFranceTelevisionHome(s"$urlMedia$pagination")
       }
     }
 
     newsList.flatten.toList
+  }
+
+  def getPagination(page: Long): String = {
+    if (page == 1) {
+      ""
+    } else {
+      s"/$page.html"
+    }
   }
 }
