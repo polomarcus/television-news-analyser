@@ -45,6 +45,13 @@ object StorageService {
     savePercentMedia()
   }
 
+  /**
+   * some news can be uploaded multiple times by human mistakes on website
+   * use it this way :
+    val newsNoDuplicates = removeDuplicates()
+    newsNoDuplicates.createOrReplaceTempView("news")
+    saveJSON(newsNoDuplicates, "news-no-duplicates")
+   */
   def removeDuplicates() = {
     val newsDFWithoutDuplicates = spark.sql(
       """
@@ -177,12 +184,12 @@ object StorageService {
 
     val latestNews =
       spark.sql("""
-        |SELECT date_format(date, "dd/MM/yyyy") AS date, title, url, urlTvNews, media
+        |SELECT date_format(date, "dd/MM/yyyy") AS date, title, url, media
         |FROM news
         |ORDER BY date DESC
       """.stripMargin)
 
-    latestNews.show(15, false)
+    latestNews.show(5, false)
 
     news
       .repartition(1)
