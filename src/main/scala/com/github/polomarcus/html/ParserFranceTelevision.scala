@@ -17,7 +17,8 @@ import scala.concurrent.ExecutionContext
 
 object ParserFranceTelevision {
   val logger = Logger(this.getClass)
-  val browser = JsoupBrowser()
+  val browser = Getter.getBrowser()
+
   val FRANCE2 = "France 2"
   val FRANCE3 = "France 3"
   implicit val ec = FutureService.ec
@@ -86,7 +87,7 @@ object ParserFranceTelevision {
         val publishedDate = doc >> text(".schedule span:nth-of-type(1)") // Diffusé le 08/01/2022
         val presenter = doc >> text(".presenter .by")
 
-        logger.info(s"""
+        logger.debug(s"""
             This is what i got for this day $tvNewsURL:
             number of news: ${news.length}
             date : $publishedDate

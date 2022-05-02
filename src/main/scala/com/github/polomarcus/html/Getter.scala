@@ -1,8 +1,9 @@
 package com.github.polomarcus.html
 
 import com.github.polomarcus.model.News
-import com.github.polomarcus.utils.{FutureService}
+import com.github.polomarcus.utils.FutureService
 import com.typesafe.scalalogging.Logger
+import net.ruippeixotog.scalascraper.browser.JsoupBrowser
 
 object Getter {
   val logger = Logger(this.getClass)
@@ -17,6 +18,11 @@ object Getter {
   val tf1UrlPagination = "https://www.tf1info.fr/emission/le-20h-11001/extraits"
   val tf1WeekendUrlPagination = "https://www.tf1info.fr/emission/le-we-12559/extraits"
   val tf113hPagination = "https://www.tf1info.fr/emission/le-13h-10927/extraits"
+
+  def getBrowser() = {
+    new JsoupBrowser(
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36") //@see prevent some 403
+  }
 
   /**
    * 2 choices to parse :
@@ -34,7 +40,7 @@ object Getter {
     }
     val newsList = (start.toLong to end.toLong by 1).map { page =>
       val pagination = getPagination(page)
-      logger.info(s"Parsing this $urlMedia$pagination")
+      logger.info(s"($start / $end) : Parsing this $urlMedia$pagination")
 
       media match {
         case "tf1" =>
