@@ -1,227 +1,240 @@
-{"percent":5.26,"media":"France 3","date":"2022-05"}
-{"percent":2.47,"media":"France 2","date":"2022-04"}
-{"percent":1.60,"media":"France 3","date":"2022-04"}
+{"percent":2.44,"media":"France 3","date":"2022-05"}
+{"percent":1.74,"media":"France 2","date":"2022-04"}
+{"percent":1.25,"media":"France 3","date":"2022-04"}
 {"percent":1.34,"media":"TF1","date":"2022-04"}
-{"percent":1.94,"media":"France 2","date":"2022-03"}
-{"percent":1.34,"media":"France 3","date":"2022-03"}
+{"percent":1.46,"media":"France 2","date":"2022-03"}
+{"percent":1.33,"media":"France 3","date":"2022-03"}
 {"percent":0.96,"media":"TF1","date":"2022-03"}
 {"percent":1.61,"media":"France 2","date":"2022-02"}
-{"percent":0.75,"media":"France 3","date":"2022-02"}
+{"percent":1.68,"media":"France 3","date":"2022-02"}
 {"percent":1.32,"media":"TF1","date":"2022-02"}
-{"percent":1.31,"media":"France 2","date":"2022-01"}
-{"percent":1.71,"media":"France 3","date":"2022-01"}
+{"percent":1.28,"media":"France 2","date":"2022-01"}
+{"percent":1.18,"media":"France 3","date":"2022-01"}
 {"percent":0.86,"media":"TF1","date":"2022-01"}
-{"percent":1.25,"media":"France 2","date":"2021-12"}
-{"percent":0.65,"media":"France 3","date":"2021-12"}
+{"percent":1.52,"media":"France 2","date":"2021-12"}
+{"percent":0.64,"media":"France 3","date":"2021-12"}
 {"percent":0.67,"media":"TF1","date":"2021-12"}
-{"percent":1.80,"media":"France 2","date":"2021-11"}
-{"percent":3.14,"media":"France 3","date":"2021-11"}
+{"percent":1.96,"media":"France 2","date":"2021-11"}
+{"percent":2.58,"media":"France 3","date":"2021-11"}
 {"percent":2.25,"media":"TF1","date":"2021-11"}
-{"percent":2.80,"media":"France 2","date":"2021-10"}
-{"percent":4.78,"media":"France 3","date":"2021-10"}
+{"percent":2.14,"media":"France 2","date":"2021-10"}
+{"percent":3.36,"media":"France 3","date":"2021-10"}
 {"percent":1.72,"media":"TF1","date":"2021-10"}
-{"percent":1.32,"media":"France 2","date":"2021-09"}
-{"percent":1.15,"media":"France 3","date":"2021-09"}
+{"percent":0.97,"media":"France 2","date":"2021-09"}
+{"percent":0.92,"media":"France 3","date":"2021-09"}
 {"percent":1.88,"media":"TF1","date":"2021-09"}
-{"percent":0.91,"media":"France 2","date":"2021-08"}
-{"percent":1.58,"media":"France 3","date":"2021-08"}
+{"percent":1.42,"media":"France 2","date":"2021-08"}
+{"percent":1.53,"media":"France 3","date":"2021-08"}
 {"percent":2.49,"media":"TF1","date":"2021-08"}
-{"percent":2.20,"media":"France 2","date":"2021-07"}
-{"percent":2.21,"media":"France 3","date":"2021-07"}
+{"percent":2.70,"media":"France 2","date":"2021-07"}
+{"percent":1.26,"media":"France 3","date":"2021-07"}
 {"percent":0.61,"media":"TF1","date":"2021-07"}
-{"percent":1.65,"media":"France 2","date":"2021-06"}
-{"percent":1.27,"media":"France 3","date":"2021-06"}
+{"percent":1.18,"media":"France 2","date":"2021-06"}
+{"percent":0.96,"media":"France 3","date":"2021-06"}
 {"percent":1.75,"media":"TF1","date":"2021-06"}
-{"percent":1.24,"media":"France 2","date":"2021-05"}
-{"percent":1.44,"media":"France 3","date":"2021-05"}
+{"percent":0.81,"media":"France 2","date":"2021-05"}
+{"percent":1.07,"media":"France 3","date":"2021-05"}
 {"percent":1.05,"media":"TF1","date":"2021-05"}
-{"percent":0.79,"media":"France 2","date":"2021-04"}
-{"percent":0.37,"media":"France 3","date":"2021-04"}
+{"percent":0.83,"media":"France 2","date":"2021-04"}
+{"percent":0.35,"media":"France 3","date":"2021-04"}
 {"percent":1.09,"media":"TF1","date":"2021-04"}
-{"percent":0.24,"media":"France 2","date":"2021-03"}
+{"percent":0.40,"media":"France 2","date":"2021-03"}
+{"percent":0.34,"media":"France 3","date":"2021-03"}
 {"percent":0.68,"media":"TF1","date":"2021-03"}
-{"percent":1.14,"media":"France 2","date":"2021-02"}
-{"percent":0.78,"media":"France 3","date":"2021-02"}
+{"percent":0.59,"media":"France 2","date":"2021-02"}
+{"percent":0.76,"media":"France 3","date":"2021-02"}
 {"percent":0.92,"media":"TF1","date":"2021-02"}
-{"percent":0.48,"media":"France 2","date":"2021-01"}
+{"percent":0.28,"media":"France 2","date":"2021-01"}
+{"percent":0.17,"media":"France 3","date":"2021-01"}
 {"percent":0.74,"media":"TF1","date":"2021-01"}
-{"percent":0.73,"media":"France 2","date":"2020-12"}
-{"percent":1.05,"media":"France 3","date":"2020-12"}
+{"percent":0.96,"media":"France 2","date":"2020-12"}
+{"percent":0.67,"media":"France 3","date":"2020-12"}
 {"percent":1.38,"media":"TF1","date":"2020-12"}
-{"percent":0.50,"media":"France 2","date":"2020-11"}
-{"percent":0.38,"media":"France 3","date":"2020-11"}
+{"percent":1.36,"media":"France 2","date":"2020-11"}
+{"percent":0.54,"media":"France 3","date":"2020-11"}
 {"percent":0.18,"media":"TF1","date":"2020-11"}
-{"percent":0.82,"media":"France 2","date":"2020-10"}
-{"percent":0.71,"media":"France 3","date":"2020-10"}
+{"percent":0.65,"media":"France 2","date":"2020-10"}
+{"percent":0.70,"media":"France 3","date":"2020-10"}
 {"percent":0.88,"media":"TF1","date":"2020-10"}
-{"percent":1.04,"media":"France 2","date":"2020-09"}
-{"percent":2.14,"media":"France 3","date":"2020-09"}
+{"percent":1.56,"media":"France 2","date":"2020-09"}
+{"percent":1.43,"media":"France 3","date":"2020-09"}
 {"percent":1.08,"media":"TF1","date":"2020-09"}
-{"percent":0.53,"media":"France 2","date":"2020-08"}
-{"percent":1.08,"media":"France 3","date":"2020-08"}
+{"percent":0.52,"media":"France 2","date":"2020-08"}
+{"percent":1.44,"media":"France 3","date":"2020-08"}
 {"percent":1.36,"media":"TF1","date":"2020-08"}
-{"percent":0.51,"media":"France 2","date":"2020-07"}
-{"percent":1.32,"media":"France 3","date":"2020-07"}
-{"percent":0.70,"media":"France 2","date":"2020-06"}
-{"percent":1.82,"media":"France 3","date":"2020-06"}
+{"percent":1.02,"media":"France 2","date":"2020-07"}
+{"percent":1.12,"media":"France 3","date":"2020-07"}
+{"percent":0.65,"media":"France 2","date":"2020-06"}
+{"percent":1.41,"media":"France 3","date":"2020-06"}
 {"percent":0.37,"media":"TF1","date":"2020-06"}
-{"percent":0.33,"media":"France 3","date":"2020-05"}
-{"percent":0.21,"media":"France 2","date":"2020-04"}
-{"percent":0.66,"media":"France 3","date":"2020-03"}
+{"percent":0.22,"media":"France 2","date":"2020-05"}
+{"percent":0.50,"media":"France 3","date":"2020-05"}
+{"percent":0.13,"media":"France 2","date":"2020-04"}
+{"percent":0.32,"media":"France 3","date":"2020-03"}
 {"percent":0.54,"media":"TF1","date":"2020-03"}
-{"percent":1.30,"media":"France 2","date":"2020-02"}
-{"percent":0.35,"media":"France 3","date":"2020-02"}
+{"percent":0.74,"media":"France 2","date":"2020-02"}
+{"percent":0.36,"media":"France 3","date":"2020-02"}
 {"percent":2.19,"media":"TF1","date":"2020-02"}
-{"percent":1.02,"media":"France 2","date":"2020-01"}
-{"percent":1.28,"media":"France 3","date":"2020-01"}
+{"percent":1.09,"media":"France 2","date":"2020-01"}
+{"percent":1.29,"media":"France 3","date":"2020-01"}
 {"percent":0.83,"media":"TF1","date":"2020-01"}
-{"percent":1.72,"media":"France 2","date":"2019-12"}
-{"percent":0.61,"media":"France 3","date":"2019-12"}
+{"percent":1.34,"media":"France 2","date":"2019-12"}
+{"percent":0.63,"media":"France 3","date":"2019-12"}
 {"percent":0.55,"media":"TF1","date":"2019-12"}
-{"percent":0.27,"media":"France 2","date":"2019-11"}
-{"percent":1.00,"media":"France 3","date":"2019-11"}
+{"percent":0.48,"media":"France 2","date":"2019-11"}
+{"percent":1.03,"media":"France 3","date":"2019-11"}
 {"percent":1.19,"media":"TF1","date":"2019-11"}
-{"percent":1.77,"media":"France 2","date":"2019-10"}
-{"percent":1.25,"media":"France 3","date":"2019-10"}
+{"percent":2.28,"media":"France 2","date":"2019-10"}
+{"percent":1.44,"media":"France 3","date":"2019-10"}
 {"percent":1.64,"media":"TF1","date":"2019-10"}
-{"percent":2.90,"media":"France 2","date":"2019-09"}
-{"percent":3.61,"media":"France 3","date":"2019-09"}
+{"percent":2.81,"media":"France 2","date":"2019-09"}
+{"percent":2.56,"media":"France 3","date":"2019-09"}
 {"percent":0.93,"media":"TF1","date":"2019-09"}
-{"percent":1.00,"media":"France 2","date":"2019-08"}
-{"percent":2.26,"media":"France 3","date":"2019-08"}
+{"percent":1.97,"media":"France 2","date":"2019-08"}
+{"percent":1.78,"media":"France 3","date":"2019-08"}
 {"percent":1.44,"media":"TF1","date":"2019-08"}
-{"percent":2.34,"media":"France 2","date":"2019-07"}
-{"percent":1.25,"media":"France 3","date":"2019-07"}
+{"percent":1.80,"media":"France 2","date":"2019-07"}
+{"percent":1.44,"media":"France 3","date":"2019-07"}
 {"percent":1.52,"media":"TF1","date":"2019-07"}
-{"percent":1.75,"media":"France 2","date":"2019-06"}
-{"percent":2.03,"media":"France 3","date":"2019-06"}
+{"percent":1.17,"media":"France 2","date":"2019-06"}
+{"percent":2.49,"media":"France 3","date":"2019-06"}
 {"percent":0.34,"media":"TF1","date":"2019-06"}
-{"percent":1.09,"media":"France 2","date":"2019-05"}
-{"percent":0.99,"media":"France 3","date":"2019-05"}
-{"percent":1.05,"media":"France 2","date":"2019-04"}
-{"percent":1.30,"media":"France 3","date":"2019-04"}
+{"percent":1.08,"media":"France 2","date":"2019-05"}
+{"percent":0.66,"media":"France 3","date":"2019-05"}
+{"percent":0.68,"media":"France 2","date":"2019-04"}
+{"percent":1.17,"media":"France 3","date":"2019-04"}
 {"percent":0.58,"media":"TF1","date":"2019-04"}
-{"percent":0.76,"media":"France 2","date":"2019-03"}
-{"percent":0.96,"media":"France 3","date":"2019-03"}
+{"percent":1.04,"media":"France 2","date":"2019-03"}
+{"percent":1.36,"media":"France 3","date":"2019-03"}
 {"percent":0.36,"media":"TF1","date":"2019-03"}
-{"percent":0.56,"media":"France 2","date":"2019-02"}
-{"percent":1.05,"media":"France 3","date":"2019-02"}
+{"percent":0.43,"media":"France 2","date":"2019-02"}
+{"percent":1.28,"media":"France 3","date":"2019-02"}
 {"percent":1.06,"media":"TF1","date":"2019-02"}
-{"percent":1.45,"media":"France 2","date":"2019-01"}
-{"percent":0.31,"media":"France 3","date":"2019-01"}
+{"percent":1.04,"media":"France 2","date":"2019-01"}
+{"percent":0.32,"media":"France 3","date":"2019-01"}
 {"percent":0.57,"media":"TF1","date":"2019-01"}
-{"percent":0.49,"media":"France 2","date":"2018-12"}
-{"percent":1.25,"media":"France 3","date":"2018-12"}
+{"percent":0.86,"media":"France 2","date":"2018-12"}
+{"percent":1.27,"media":"France 3","date":"2018-12"}
 {"percent":0.88,"media":"TF1","date":"2018-12"}
-{"percent":0.33,"media":"France 3","date":"2018-11"}
+{"percent":0.39,"media":"France 2","date":"2018-11"}
+{"percent":0.17,"media":"France 3","date":"2018-11"}
 {"percent":0.39,"media":"TF1","date":"2018-11"}
-{"percent":2.68,"media":"France 2","date":"2018-10"}
-{"percent":1.32,"media":"France 3","date":"2018-10"}
+{"percent":2.23,"media":"France 2","date":"2018-10"}
+{"percent":1.47,"media":"France 3","date":"2018-10"}
 {"percent":1.57,"media":"TF1","date":"2018-10"}
-{"percent":1.68,"media":"France 2","date":"2018-09"}
-{"percent":0.35,"media":"France 3","date":"2018-09"}
+{"percent":1.73,"media":"France 2","date":"2018-09"}
+{"percent":0.90,"media":"France 3","date":"2018-09"}
 {"percent":0.76,"media":"TF1","date":"2018-09"}
-{"percent":0.96,"media":"France 2","date":"2018-08"}
-{"percent":0.70,"media":"France 3","date":"2018-08"}
+{"percent":0.89,"media":"France 2","date":"2018-08"}
+{"percent":0.84,"media":"France 3","date":"2018-08"}
 {"percent":0.71,"media":"TF1","date":"2018-08"}
-{"percent":0.71,"media":"France 2","date":"2018-07"}
-{"percent":0.70,"media":"France 3","date":"2018-07"}
+{"percent":0.65,"media":"France 2","date":"2018-07"}
+{"percent":0.54,"media":"France 3","date":"2018-07"}
 {"percent":0.83,"media":"TF1","date":"2018-07"}
-{"percent":1.62,"media":"France 2","date":"2018-06"}
+{"percent":0.82,"media":"France 2","date":"2018-06"}
 {"percent":0.72,"media":"TF1","date":"2018-06"}
-{"percent":0.24,"media":"France 2","date":"2018-05"}
+{"percent":0.13,"media":"France 2","date":"2018-05"}
 {"percent":1.04,"media":"TF1","date":"2018-05"}
-{"percent":0.26,"media":"France 2","date":"2018-04"}
+{"percent":0.13,"media":"France 2","date":"2018-04"}
+{"percent":0.34,"media":"France 3","date":"2018-04"}
 {"percent":1.13,"media":"TF1","date":"2018-04"}
-{"percent":0.32,"media":"France 3","date":"2018-03"}
-{"percent":0.36,"media":"France 3","date":"2018-02"}
+{"percent":0.25,"media":"France 2","date":"2018-03"}
+{"percent":0.67,"media":"France 3","date":"2018-03"}
+{"percent":0.37,"media":"France 3","date":"2018-02"}
 {"percent":0.59,"media":"TF1","date":"2018-02"}
-{"percent":0.71,"media":"France 2","date":"2018-01"}
-{"percent":0.32,"media":"France 3","date":"2018-01"}
+{"percent":0.49,"media":"France 2","date":"2018-01"}
+{"percent":0.49,"media":"France 3","date":"2018-01"}
 {"percent":0.51,"media":"TF1","date":"2018-01"}
-{"percent":1.44,"media":"France 2","date":"2017-12"}
-{"percent":0.65,"media":"France 3","date":"2017-12"}
+{"percent":1.39,"media":"France 2","date":"2017-12"}
+{"percent":1.30,"media":"France 3","date":"2017-12"}
 {"percent":1.22,"media":"TF1","date":"2017-12"}
-{"percent":1.83,"media":"France 2","date":"2017-11"}
-{"percent":1.05,"media":"France 3","date":"2017-11"}
+{"percent":1.01,"media":"France 2","date":"2017-11"}
+{"percent":1.23,"media":"France 3","date":"2017-11"}
 {"percent":0.77,"media":"TF1","date":"2017-11"}
-{"percent":0.96,"media":"France 2","date":"2017-10"}
-{"percent":0.69,"media":"France 3","date":"2017-10"}
+{"percent":0.50,"media":"France 2","date":"2017-10"}
+{"percent":1.05,"media":"France 3","date":"2017-10"}
 {"percent":0.19,"media":"TF1","date":"2017-10"}
-{"percent":1.79,"media":"France 2","date":"2017-09"}
-{"percent":0.65,"media":"France 3","date":"2017-09"}
+{"percent":1.26,"media":"France 2","date":"2017-09"}
+{"percent":0.69,"media":"France 3","date":"2017-09"}
 {"percent":0.37,"media":"TF1","date":"2017-09"}
-{"percent":0.67,"media":"France 2","date":"2017-08"}
-{"percent":0.33,"media":"France 3","date":"2017-08"}
+{"percent":0.71,"media":"France 2","date":"2017-08"}
+{"percent":0.81,"media":"France 3","date":"2017-08"}
 {"percent":0.55,"media":"TF1","date":"2017-08"}
-{"percent":0.24,"media":"France 2","date":"2017-07"}
-{"percent":0.34,"media":"France 3","date":"2017-07"}
+{"percent":0.65,"media":"France 2","date":"2017-07"}
+{"percent":0.69,"media":"France 3","date":"2017-07"}
 {"percent":0.80,"media":"TF1","date":"2017-07"}
-{"percent":1.52,"media":"France 2","date":"2017-06"}
-{"percent":2.89,"media":"France 3","date":"2017-06"}
-{"percent":0.50,"media":"France 2","date":"2017-05"}
-{"percent":0.34,"media":"France 3","date":"2017-05"}
+{"percent":1.39,"media":"France 2","date":"2017-06"}
+{"percent":1.88,"media":"France 3","date":"2017-06"}
+{"percent":0.24,"media":"France 2","date":"2017-05"}
+{"percent":0.50,"media":"France 3","date":"2017-05"}
 {"percent":0.35,"media":"TF1","date":"2017-05"}
-{"percent":0.38,"media":"France 3","date":"2017-04"}
-{"percent":0.77,"media":"France 2","date":"2017-03"}
-{"percent":0.36,"media":"France 3","date":"2017-03"}
+{"percent":0.14,"media":"France 2","date":"2017-04"}
+{"percent":0.19,"media":"France 3","date":"2017-04"}
+{"percent":0.51,"media":"France 2","date":"2017-03"}
+{"percent":0.35,"media":"France 3","date":"2017-03"}
+{"percent":0.17,"media":"France 2","date":"2017-02"}
+{"percent":0.24,"media":"France 3","date":"2017-02"}
 {"percent":0.25,"media":"France 2","date":"2017-01"}
-{"percent":1.01,"media":"France 3","date":"2017-01"}
-{"percent":0.25,"media":"France 2","date":"2016-12"}
+{"percent":0.26,"media":"France 2","date":"2016-12"}
+{"percent":0.34,"media":"France 3","date":"2016-12"}
 {"percent":0.50,"media":"TF1","date":"2016-12"}
-{"percent":0.26,"media":"France 2","date":"2016-11"}
-{"percent":0.68,"media":"France 3","date":"2016-11"}
-{"percent":0.74,"media":"France 2","date":"2016-10"}
-{"percent":1.00,"media":"France 3","date":"2016-10"}
-{"percent":1.01,"media":"France 2","date":"2016-09"}
-{"percent":1.35,"media":"France 3","date":"2016-09"}
-{"percent":0.23,"media":"France 2","date":"2016-08"}
-{"percent":0.72,"media":"France 3","date":"2016-08"}
-{"percent":0.74,"media":"France 2","date":"2016-06"}
-{"percent":0.67,"media":"France 2","date":"2016-05"}
+{"percent":0.38,"media":"France 2","date":"2016-11"}
+{"percent":0.58,"media":"France 3","date":"2016-11"}
+{"percent":0.51,"media":"France 2","date":"2016-10"}
+{"percent":0.85,"media":"France 3","date":"2016-10"}
+{"percent":0.94,"media":"France 2","date":"2016-09"}
+{"percent":1.24,"media":"France 3","date":"2016-09"}
+{"percent":0.50,"media":"France 2","date":"2016-08"}
+{"percent":0.33,"media":"France 3","date":"2016-08"}
+{"percent":0.12,"media":"France 2","date":"2016-07"}
+{"percent":0.25,"media":"France 2","date":"2016-06"}
+{"percent":0.34,"media":"France 2","date":"2016-05"}
 {"percent":0.38,"media":"France 3","date":"2016-05"}
 {"percent":0.27,"media":"France 2","date":"2016-04"}
+{"percent":0.12,"media":"France 2","date":"2016-03"}
 {"percent":0.25,"media":"France 2","date":"2016-02"}
-{"percent":0.25,"media":"France 2","date":"2016-01"}
+{"percent":0.13,"media":"France 2","date":"2016-01"}
 {"percent":0.32,"media":"France 3","date":"2016-01"}
-{"percent":1.98,"media":"France 2","date":"2015-12"}
+{"percent":2.49,"media":"France 2","date":"2015-12"}
 {"percent":3.61,"media":"France 3","date":"2015-12"}
-{"percent":2.60,"media":"France 2","date":"2015-11"}
+{"percent":2.58,"media":"France 2","date":"2015-11"}
 {"percent":3.34,"media":"France 3","date":"2015-11"}
-{"percent":0.95,"media":"France 2","date":"2015-10"}
+{"percent":1.08,"media":"France 2","date":"2015-10"}
 {"percent":1.05,"media":"France 3","date":"2015-10"}
-{"percent":1.24,"media":"France 2","date":"2015-09"}
+{"percent":1.23,"media":"France 2","date":"2015-09"}
 {"percent":1.82,"media":"France 3","date":"2015-09"}
-{"percent":1.34,"media":"France 2","date":"2015-08"}
+{"percent":1.08,"media":"France 2","date":"2015-08"}
 {"percent":0.97,"media":"France 3","date":"2015-08"}
-{"percent":0.20,"media":"France 2","date":"2015-07"}
+{"percent":0.33,"media":"France 2","date":"2015-07"}
 {"percent":0.65,"media":"France 3","date":"2015-07"}
-{"percent":0.90,"media":"France 2","date":"2015-06"}
+{"percent":1.08,"media":"France 2","date":"2015-06"}
 {"percent":0.68,"media":"France 3","date":"2015-06"}
-{"percent":0.95,"media":"France 2","date":"2015-05"}
+{"percent":0.48,"media":"France 2","date":"2015-05"}
 {"percent":1.05,"media":"France 3","date":"2015-05"}
-{"percent":1.16,"media":"France 2","date":"2015-03"}
+{"percent":0.23,"media":"France 2","date":"2015-04"}
+{"percent":0.67,"media":"France 2","date":"2015-03"}
 {"percent":0.70,"media":"France 3","date":"2015-03"}
-{"percent":1.23,"media":"France 2","date":"2015-02"}
+{"percent":0.86,"media":"France 2","date":"2015-02"}
 {"percent":0.69,"media":"France 3","date":"2015-02"}
-{"percent":0.22,"media":"France 2","date":"2015-01"}
+{"percent":0.35,"media":"France 2","date":"2015-01"}
 {"percent":0.33,"media":"France 3","date":"2015-01"}
-{"percent":0.45,"media":"France 2","date":"2014-12"}
+{"percent":0.60,"media":"France 2","date":"2014-12"}
 {"percent":0.74,"media":"France 3","date":"2014-12"}
-{"percent":0.49,"media":"France 2","date":"2014-11"}
-{"percent":0.66,"media":"France 2","date":"2014-09"}
-{"percent":0.15,"media":"France 2","date":"2014-08"}
-{"percent":0.22,"media":"France 2","date":"2014-07"}
-{"percent":0.87,"media":"France 2","date":"2014-06"}
+{"percent":0.25,"media":"France 2","date":"2014-11"}
+{"percent":0.51,"media":"France 2","date":"2014-09"}
+{"percent":0.13,"media":"France 2","date":"2014-07"}
+{"percent":0.43,"media":"France 2","date":"2014-06"}
 {"percent":0.16,"media":"France 2","date":"2014-05"}
-{"percent":0.16,"media":"France 2","date":"2014-04"}
-{"percent":0.50,"media":"France 2","date":"2014-02"}
-{"percent":0.33,"media":"France 2","date":"2014-01"}
-{"percent":0.16,"media":"France 2","date":"2013-12"}
-{"percent":1.05,"media":"France 2","date":"2013-11"}
-{"percent":0.61,"media":"France 2","date":"2013-10"}
-{"percent":2.20,"media":"France 2","date":"2013-09"}
-{"percent":0.70,"media":"France 2","date":"2013-06"}
-{"percent":0.73,"media":"France 2","date":"2013-05"}
+{"percent":0.33,"media":"France 2","date":"2014-04"}
+{"percent":0.27,"media":"France 2","date":"2014-03"}
+{"percent":0.54,"media":"France 2","date":"2014-02"}
+{"percent":0.25,"media":"France 2","date":"2014-01"}
+{"percent":0.08,"media":"France 2","date":"2013-12"}
+{"percent":0.65,"media":"France 2","date":"2013-11"}
+{"percent":0.60,"media":"France 2","date":"2013-10"}
+{"percent":1.74,"media":"France 2","date":"2013-09"}
+{"percent":0.19,"media":"France 2","date":"2013-08"}
+{"percent":0.47,"media":"France 2","date":"2013-06"}
+{"percent":0.60,"media":"France 2","date":"2013-05"}
 {"percent":0.18,"media":"France 2","date":"2013-04"}
 {"percent":0.20,"media":"France 2","date":"2013-03"}
