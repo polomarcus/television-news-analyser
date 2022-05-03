@@ -16,7 +16,7 @@ object FutureService {
     val allFutures = Future.sequence(listFuture).map(_.flatten.toList)
 
     allFutures.onComplete {
-      case Success(r) => logger.info("SUCCESS: AllFutures complete")
+      case Success(r) => logger.debug("SUCCESS: AllFutures complete")
       case Failure(e) => logger.info("FAILURE: AllFutures complete")
     }
 
