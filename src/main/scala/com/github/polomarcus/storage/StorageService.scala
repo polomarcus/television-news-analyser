@@ -74,7 +74,7 @@ object StorageService {
   def getDuplicateNews() = {
     val newsDF = readNews() // create SQL table
 
-    val media = spark.sql("""
+    val duplicates = spark.sql("""
         |SELECT title, media, date
         |FROM (
         |SELECT COUNT(*) AS number_of_news, title, description, media, date
@@ -84,9 +84,9 @@ object StorageService {
         |ORDER BY 1 DESC) tmp
       """.stripMargin)
     logger.info("Duplicates news - should be empty:")
-    media.show(100, false)
+    duplicates.show(100, false)
 
-    media
+    duplicates
   }
 
   def saveAggregateNews() = {
@@ -180,22 +180,25 @@ object StorageService {
   }
 
   def saveJSON(news: DataFrame, path: String): String = {
-    news.createOrReplaceTempView("news")
-
-    val latestNews =
-      spark.sql("""
-        |SELECT date_format(date, "dd/MM/yyyy") AS date, title, url, media
-        |FROM news
-        |ORDER BY date DESC
-      """.stripMargin)
-
-    latestNews.show(5, false)
-
     news
-      .repartition(1)
       .withColumn("year", year('date))
       .withColumn("month", month('date))
       .withColumn("day", dayofmonth('date))
+      .createOrReplaceTempView("news")
+
+    val newsNoDuplicates = removeDuplicates()
+    newsNoDuplicates.createOrReplaceTempView("news")
+
+    spark
+      .sql("""
+      |SELECT date_format(date, "dd/MM/yyyy") AS date, title, url, media
+      |FROM news
+      |ORDER BY date DESC
+    """.stripMargin)
+      .show(5, false)
+
+    newsNoDuplicates
+      .repartition(1)
       .write
       .mode(SaveMode.Overwrite)
       .partitionBy("media", "year", "month", "day")

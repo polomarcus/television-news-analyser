@@ -40,7 +40,7 @@ object Getter {
     }
     val newsList = (start.toLong to end.toLong by 1).map { page =>
       val pagination = getPagination(page)
-      logger.info(s"($start / $end) : Parsing this $urlMedia$pagination")
+      logger.info(s"($page / $end) : Parsing this $urlMedia$pagination")
 
       media match {
         case "tf1" =>
