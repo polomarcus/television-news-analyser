@@ -61,4 +61,14 @@ class TextServiceTest extends AnyFunSuite {
       TextService.containsWordGlobalWarming(
         "On tiendra nos objectifs par rapport au rapport du Giec."))
   }
+
+  test("Climat :") {
+    assert(
+      TextService.containsWordGlobalWarming(
+        "Climat : pourquoi la France connaît-elle une sécheresse précoce ?"))
+    assert(
+      TextService.containsWordGlobalWarming(
+        "Climat : des alternatives pour conserver son gazon sans impacter l'environnement"))
+    assert(!TextService.containsWordGlobalWarming("climat"))
+  }
 }
