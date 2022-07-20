@@ -65,7 +65,6 @@ object DateService {
       if (date.contains("hier")) { // late publish
         // Move calendar to yesterday
         calendar.add(Calendar.DATE, -1)
-        format.format(calendar.getTime.getTime)
         // Get current date of calendar which point to the yesterday now
         new Timestamp(calendar.getTime.getTime)
       } else if (date.contains("aujourd'hui")) {
