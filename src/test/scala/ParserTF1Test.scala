@@ -17,7 +17,7 @@ class ParserTF1Test extends AnyFunSuite {
     val news = News(
       "JT20H - Jardinier, cadre, formateur … dans cette entreprise, les salariés sont tous handicapés",
       description,
-      DateService.getTimestampTF1("Diffusé le 16/11/2016 à 20h08"),
+      DateService.getTimestampTF1("Publié le 16 novembre 2016 à 20h38"),
       0,
       "",
       List("L. Deschateaux", "M. Derre", "V. Daran"),
