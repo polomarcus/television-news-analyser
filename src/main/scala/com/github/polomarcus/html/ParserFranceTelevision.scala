@@ -23,6 +23,10 @@ object ParserFranceTelevision {
   val FRANCE3 = "France 3"
   implicit val ec = FutureService.ec
 
+  def is13hTVShow(url: String) = {
+    url.contains("13-heures")
+  }
+
   def parseFranceTelevisionHomeHelper(
       url: String,
       defaultUrl: String = "https://www.francetvinfo.fr"): List[News] = {
@@ -31,15 +35,26 @@ object ParserFranceTelevision {
     val headNews = doc >> element(".title a") >> attr("href")
     val allTelevisionNews = headNews :: nextNews
     val media = getMediaFranceTelevision(url)
+    val (editor, editorDeputy) = if (media == FRANCE2) {
+      parseTeam(is13hTVShow(url))
+    } else {
+      ("", List(""))
+    }
 
     logger.info(s"""
       I got ${allTelevisionNews.length} days of news
     """)
 
-    val parsedTelevisionNews = allTelevisionNews.map(televisionNewsForOneDay => {
-      logger.info(s"Parsing this day of news : $televisionNewsForOneDay")
-      parseFranceTelevisionNews(televisionNewsForOneDay, defaultUrl, media)
-    })
+    val parsedTelevisionNews = allTelevisionNews
+      .map(televisionNewsForOneDay => {
+        logger.info(s"Parsing this day of news : $televisionNewsForOneDay")
+        parseFranceTelevisionNews(
+          televisionNewsForOneDay,
+          defaultUrl,
+          media,
+          editor,
+          editorDeputy)
+      })
 
     waitFuture[Option[News]](parsedTelevisionNews).flatten
   }
@@ -76,11 +91,13 @@ object ParserFranceTelevision {
   def parseFranceTelevisionNews(
       url: String,
       defaultUrl: String = "https://www.francetvinfo.fr",
-      media: String): Future[List[Option[News]]] = {
+      media: String,
+      editor: String,
+      editorDeputy: List[String]): Future[List[Option[News]]] = {
     Future {
       try {
         val tvNewsURL = defaultUrl + url
-        logger.debug("France television Url: " + tvNewsURL)
+        logger.debug("Parsing France TV news (presenter, editor, news) : " + tvNewsURL)
 
         val doc = browser.get(tvNewsURL)
         val news = doc >> elementList(".subjects-list li")
@@ -90,8 +107,9 @@ object ParserFranceTelevision {
         logger.debug(s"""
             This is what i got for this day $tvNewsURL:
             number of news: ${news.length}
-            date : $publishedDate
-            getTimestamp : ${DateService.getTimestampFranceTelevision(publishedDate)}
+            date : $publishedDate (${DateService.getTimestampFranceTelevision(publishedDate)})
+            presenter : $presenter
+            editor : $editor
           """)
 
         val parsedNews: List[Option[News]] = if (news.isEmpty) {
@@ -101,12 +119,13 @@ object ParserFranceTelevision {
             val title = x >> text(".title")
             val order = x >> text(".number")
             val linkToDescription = x >> element(".title") >> attr("href")
-            val (description, authors, editor, editorDeputy) =
-              parseDescriptionAuthors(linkToDescription)
+            val (description, authors) = parseDescriptionAuthors(linkToDescription)
 
             logger.debug(s"""
               I got a news in order $order :
               title: $title
+              editor: $editor
+              editorDeputy: $editorDeputy
               link to description : $linkToDescription
               description (30 first char): ${description.take(30)}
             """)
@@ -139,6 +158,7 @@ object ParserFranceTelevision {
   }
 
   /**
+   * a AJAX query is sent to a URL to get week team on the website
    * Week team only
    * L'équipe de la semaine
     Rédaction en chef
@@ -150,15 +170,36 @@ object ParserFranceTelevision {
    * @param doc
    * @return
    */
-  def parseTeam(doc: browser.DocumentType): (String, List[String]) = {
-    val weekTeam = doc >> elementList(".from-same-show__info-team:nth-of-type(1) li")
+  def parseTeam(
+      noonNews: Boolean,
+      default13hTeamURL: String =
+        "https://www.francetvinfo.fr/esi/www/taxonomy/block-program-team-by-type-and-channel/channel/france-2/type/jt/taxonomyUrl/13-heures")
+    : (String, List[String]) = {
+    val url = if (noonNews) {
+      default13hTeamURL
+    } else {
+      "https://www.francetvinfo.fr/esi/www/taxonomy/block-program-team-by-type-and-channel/channel/france-2/type/jt/taxonomyUrl/20-heures"
+    }
+    val doc = browser.get(url)
+    val weekTeam = doc >> elementList(".team:nth-of-type(1) li")
 
     val (editor, editorDeputy) = weekTeam.isEmpty match {
       case false =>
-        val editor = (weekTeam.head >?> text("p:nth-of-type(2)")).getOrElse("")
-        val editorDeputy = (weekTeam.tail.head >?> text("p:nth-of-type(2)")).getOrElse("")
+        logger.debug(s"parseTeam : ${(weekTeam.head >?> text("li"))}")
+        val editor = (weekTeam.head >?> text("li"))
+          .getOrElse("Rédaction en chef")
+          .replaceFirst("Rédaction en chef", "")
+        val editorDeputy =
+          (weekTeam.tail.head >?> text("li"))
+            .getOrElse("Rédaction en chef-adjointe")
+            .replaceFirst("Rédaction en chef-adjointe", "")
+            .replaceFirst(" et ", ", ")
+        logger.debug(s"weekTeam $editor, ${editorDeputy} ")
+
         (editor, editorDeputy)
-      case true => ("", "")
+      case true =>
+        logger.info(s"No editor found ${weekTeam}")
+        ("", "")
     }
 
     (editor, editorDeputy.split(", ").toList)
@@ -184,22 +225,18 @@ object ParserFranceTelevision {
       }
       val authors = doc >?> text(".c-signature__names span")
 
-      val (editor, editorDeputy) = parseTeam(doc)
-
       logger.debug(s"""
       parseDescriptionAuthors from $url:
-        $authors
-        $editor
-        $editorDeputy
-        $subtitle
-        $description
+        authors: $authors
+        subtitle: $subtitle
+        description: $description
       """)
 
-      (subtitle + description, authors.getOrElse("").split(", ").toList, editor, editorDeputy)
+      (subtitle + description, authors.getOrElse("").split(", ").toList)
     } catch {
       case e: Exception => {
         logger.error(s"Error parsing this subject $defaultFrance2URL + $url " + e.toString)
-        ("", Nil, "", Nil)
+        ("", Nil)
       }
     }
   }

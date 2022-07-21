@@ -38,14 +38,30 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
       containsWordGlobalWarming = false,
       ParserFranceTelevision.FRANCE2)
 
-    assert(news == listNews.head)
+    assert(news.title == listNews.head.title)
+    assert(news.description == listNews.head.description)
+    assert(news.date == listNews.head.date)
+    assert(news.order == listNews.head.order)
+    assert(news.presenter == listNews.head.presenter)
+    assert(news.authors == listNews.head.authors)
+    assert(news.editor == listNews.head.editor)
+    assert(news.editorDeputy == listNews.head.editorDeputy)
+    assert(news.url == listNews.head.url)
+    assert(news.urlTvNews == listNews.head.urlTvNews)
+    assert(news.containsWordGlobalWarming == listNews.head.containsWordGlobalWarming)
+    assert(news.media == listNews.head.media)
   }
 
   test("parseFranceTelevisionNews") {
     val newsToHave = Await
       .result(
         ParserFranceTelevision
-          .parseFranceTelevisionNews(s"/one-day-tv-news-fr2.html", localhost, "France 2"),
+          .parseFranceTelevisionNews(
+            s"/one-day-tv-news-fr2.html",
+            localhost,
+            "France 2",
+            "Elsa Pallot",
+            List("Sébastien Renout", "Gilles Delbos")),
         Duration(1, "minutes"))
       .flatten
       .filter(
@@ -60,21 +76,31 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
       "Anne-Sophie Lapix",
       List("S. Soubane", "J. Ricco", "M. Mullot", "C.-M. Denis", "B. Vignais", "L. Lavieille"),
       "Elsa Pallot",
-      List("Sébastien Renout", "Anne Poncinet", "Arnaud Comte"),
+      List("Sébastien Renout", "Gilles Delbos"),
       "http://localhost:8000/sante/maladie/coronavirus/ecoles-un-nouveau-protocole-pour-une-rentree-marquee-par-l-incertitude_4903195.html",
       "http://localhost:8000/one-day-tv-news-fr2.html",
       containsWordGlobalWarming = false,
       ParserFranceTelevision.FRANCE2)
 
-    assert(newsToHave.head == news)
+    assert(news.title == newsToHave.head.title)
+    assert(news.description == newsToHave.head.description)
+    assert(news.date == newsToHave.head.date)
+    assert(news.order == newsToHave.head.order)
+    assert(news.presenter == newsToHave.head.presenter)
+    assert(news.authors == newsToHave.head.authors)
+    assert(news.editor == newsToHave.head.editor)
+    assert(news.editorDeputy == newsToHave.head.editorDeputy)
+    assert(news.url == newsToHave.head.url)
+    assert(news.urlTvNews == newsToHave.head.urlTvNews)
+    assert(news.containsWordGlobalWarming == newsToHave.head.containsWordGlobalWarming)
+    assert(news.media == newsToHave.head.media)
   }
 
   test("parseTeam") {
-    val doc = browser.get("http://localhost:8000/one-subject-tv-news-fr2.html")
-
-    val (editor, editorDeputy) = ParserFranceTelevision.parseTeam(doc)
-    assert("Elsa Pallot" == editor)
-    assert(List("Sébastien Renout", "Gilles Delbos") == editorDeputy)
+    val (editor, editorDeputy) =
+      ParserFranceTelevision.parseTeam(noonNews = true, "http://localhost:8000/team-editor.html")
+    assert("Thomas Horeau" == editor)
+    assert(List("Régis Poullain", "Margaux Manière") == editorDeputy)
   }
 
   test("parseSubtitle") {
@@ -86,24 +112,20 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
   }
 
   test("parseDescriptionAuthors") {
-    val (description, authors, editor, editorDeputy) =
+    val (description, authors) =
       ParserFranceTelevision.parseDescriptionAuthors("/one-subject-tv-news-fr2.html", localhost)
 
     assert(
       "Bruxelles projette de leur apposer le label d’\"énergies vertes\", ce qui favoriserait les investissements dans ces énergies et permettrait d’atteindre la neutralité carbone.Les centrales à gaz et les centrales nucléaires, bénéfiques au climat ? C’est une décision très controversée que s’apprête à adopter la Commission européenne. Elle propose en effet de classer le gaz et le nucléaire comme des énergies oeuvrant à la transition climatique, une position défendue par la France. \"On a besoin de toutes les énergies décarbonées pour lutter contre le réchauffement climatique\", avance Pascal Canfin, président de la commission Environnement au Parlement européen. Des pays anti-nucléaires vent debout contre la proposition Grâce à ce label, les investisseurs seraient encouragés à placer leur argent dans le gaz et le nucléaire. Mais certains pays anti-nucléaires, comme l’Allemagne, l’Autriche ou encore le Luxembourg, font entendre leur voix, et dénoncent une \"provocation\". \"On ne peut pas dire que le nucléaire est une énergie durable. N’allons pas investir de l’argent pour de nouvelles folies nucléaires\", annonce Damien Carème, eurodéputé. Pour que la mesure soit abandonnée, il faudrait que 20 pays s’y opposent." == description)
     assert(
       List("J.Gasparutto", "C.Vanpée", "H.Huet", "F.Ducobu", "S.Giaume", "S.Carter") == authors)
-    assert("Elsa Pallot" == editor)
-    assert(List("Sébastien Renout", "Gilles Delbos") == editorDeputy)
   }
 
   test("parseDescriptionAuthors - old news 204/2013") {
-    val (description, authors, editor, editorDeputy) =
+    val (description, authors) =
       ParserFranceTelevision.parseDescriptionAuthors("/old-subject-tv-news-fr2.html", localhost)
 
     assert(List("") == authors)
-    assert("" == editor)
-    assert(List("") == editorDeputy)
     assert(
       "Le régime d'Assad assure que les experts seront libres. Les inspecteurs des Nations Unies devrait entamer leurs investigations demain. L'objectif est de déterminer si, oui ou non, le régime a utilisé des armes chimiques. La présence militaire est renforcée en Méditerranée. Avec 4 navires de guerre déployées dans la zone, les USA ont décidé de placer la Syrie à porter de tirs. Va-t-on vers une intervention militaire occidentale contre le régime de Bachar al Assad? L'état major américain a présenté les options existantes pour intervenir. Nous avons envisagé toutes les options. La limite d'intervention est d'envoyer des milices. Les Occidentaux peuvent-ils obtenir un mandat de l'ONU pour une intervention ? Il faudrait que les Russes renoncent à utiliser leur droit de véto comme en 2011 lorsqu'ils avaient laisse voter l'intervention militaire en Lybie. Moscou ne semble pas prête à lâcher son allié Bachar al Assad. En témoigne ce communiqué. Les Russes incitent également les Américains à ne pas reproduire \"l'aventure de la guerre en lrak\". Même sans mandat de l'ONU, les Américains et leurs alliés pourraient décider d'intervenir comme en 1999 au Kosovo. Malgré l'opposition des Russes, il fallait stopper les massacres des Serbes de Milosevic. " == description)
   }
