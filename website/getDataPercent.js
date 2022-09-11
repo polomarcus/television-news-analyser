@@ -24,7 +24,8 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
       name: 'TF1',
       line: {
         color: 'blue',
-        width: 2
+        width: 2,
+        shape: 'linear'
       }
     };
 
@@ -36,7 +37,8 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
      name: 'FR2',
      line: {
        color: 'red',
-       width: 2
+       width: 2,
+       shape: 'linear'
      }
     };
 
@@ -48,7 +50,8 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
      name: 'FR3',
      line: {
        color: '#42b6f5',
-       width: 2
+       width: 2,
+       shape: 'linear'
      }
     };
 
