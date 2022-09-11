@@ -25,7 +25,7 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
       line: {
         color: 'blue',
         width: 2,
-        shape: 'linear'
+        shape: 'spline'
       }
     };
 
@@ -38,7 +38,7 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
      line: {
        color: 'red',
        width: 2,
-       shape: 'linear'
+       shape: 'spline'
      }
     };
 
@@ -51,7 +51,7 @@ fetch( "https://polomarcus.github.io/television-news-analyser/website/data-aggre
      line: {
        color: '#42b6f5',
        width: 2,
-       shape: 'linear'
+       shape: 'spline'
      }
     };
 
