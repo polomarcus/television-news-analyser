@@ -1,7 +1,7 @@
 package com.github.polomarcus.storage
 
 import com.github.polomarcus.model.News
-import com.github.polomarcus.utils.SparkService
+import com.github.polomarcus.utils.{SparkService, TextService}
 import com.typesafe.scalalogging.Logger
 import org.apache.spark.sql.{DataFrame, SaveMode}
 import org.apache.spark.sql.functions.{col, dayofmonth, month, to_timestamp, year}
@@ -37,6 +37,20 @@ object StorageService {
     newsDF
   }
 
+  /**
+   * to reapply the climate detection rules if it changes in the future
+   * @param df
+   * @return
+   */
+  def resetContainsGlobalWarming(df: DataFrame) = {
+    df.as[News]
+      .map(news => {
+        news.copy(
+          containsWordGlobalWarming =
+            TextService.containsWordGlobalWarming(news.title + news.description))
+      })
+      .toDF()
+  }
   def updateGlobalWarmingNews() = {
     val newsDF = readNews() // create SQL table
 
@@ -186,8 +200,14 @@ object StorageService {
       .withColumn("day", dayofmonth('date))
       .createOrReplaceTempView("news")
 
-    val newsNoDuplicates = removeDuplicates()
-    newsNoDuplicates.createOrReplaceTempView("news")
+    val newsNoDuplicates = resetContainsGlobalWarming(removeDuplicates())
+
+    val finalDf = newsNoDuplicates
+      .withColumn("year", year('date))
+      .withColumn("month", month('date))
+      .withColumn("day", dayofmonth('date))
+
+    finalDf.createOrReplaceTempView("news")
 
     spark
       .sql("""
@@ -197,7 +217,7 @@ object StorageService {
     """.stripMargin)
       .show(5, false)
 
-    newsNoDuplicates
+    finalDf
       .repartition(1)
       .write
       .mode(SaveMode.Overwrite)
