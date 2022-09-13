@@ -5,7 +5,6 @@ import com.github.polomarcus.storage.StorageService
 import com.github.polomarcus.utils.SparkService
 import com.typesafe.scalalogging.Logger
 
-
 object UpdateNews {
   def main(args: Array[String]) {
     val logger = Logger(this.getClass)
@@ -18,4 +17,3 @@ object UpdateNews {
     System.exit(0)
   }
 }
-
