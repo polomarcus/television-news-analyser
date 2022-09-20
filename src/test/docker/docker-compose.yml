@@ -5,7 +5,7 @@ services:
     ports:
       - 8080:80
     volumes:
-      - './../../../website:/usr/share/nginx/html'
+      - './../../../docs:/usr/share/nginx/html'
   nginxtest: # to test locally webpages
     image: nginx:latest
     ports:

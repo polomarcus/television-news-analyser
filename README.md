@@ -1,7 +1,7 @@
-# [TV news analyser](https://polomarcus.github.io/television-news-analyser/website/) 📺 🔬 🛢️
+# [TV news analyser](https://polomarcus.github.io/television-news-analyser/) | https://observatoire.climatmedias.org/ 📺 🔬 🛢️
 [![List news urls containing global warming everyday at 5am](https://github.com/polomarcus/television-news-analyser/actions/workflows/save-data.yml/badge.svg)](https://github.com/polomarcus/television-news-analyser/actions/workflows/save-data.yml)
 
-[Scrap](https://en.wikipedia.org/wiki/Data_scraping) France 2, France 3, and TF1 Tv news to analyse humanity's biggest challenge : fossil energies and **climate change** and [analyse the data on a website](https://polomarcus.github.io/television-news-analyser/website/).
+[Scrap](https://en.wikipedia.org/wiki/Data_scraping) France 2, France 3, and TF1 Tv news to analyse humanity's biggest challenge : fossil energies and **climate change** and [analyse the data on a website](https://polomarcus.github.io/television-news-analyser/).
 
 ![metabaseexample](https://user-images.githubusercontent.com/4059615/149955122-89642ba8-fb45-4369-956c-5854c14bfdd1.png)
 
@@ -10,14 +10,14 @@
 * https://www.tf1info.fr/emission/le-20h-11001/extraits/
 * https://www.francetvinfo.fr/replay-jt/france-3/19-20/jt-de-19-20-du-vendredi-15-avril-2022_5045866.html
 
-* **Data sink:** JSON data to be store inside MySQL and displayed on a metabase dashboard, or [this website](https://polomarcus.github.io/television-news-analyser/website/) :
+* **Data sink:** JSON data to be store inside MySQL and displayed on a metabase dashboard, or [this website](https://polomarcus.github.io/television-news-analyser/) :
 
 * **JSON data :** ➡️ https://github.com/polomarcus/television-news-analyser/tree/main/data-news-json/
 
 ## Can I have a look at the results ?
-Everyday, last replays with URLs from France 2 and TF1 are analysed with Github Actions if they contain ["global warming"](https://github.com/polomarcus/television-news-analyser/blob/main/src/main/scala/com/github/polomarcus/utils/TextService.scala#L9) :
+Every day, last replays with URLs from France 2 and TF1 are analysed with Github Actions if they contain ["global warming"](https://github.com/polomarcus/television-news-analyser/blob/main/src/main/scala/com/github/polomarcus/utils/TextService.scala#L9) :
 
-Some results can be found on this repo's website : https://polomarcus.github.io/television-news-analyser/website/
+Some results can be found on this repo's website : https://polomarcus.github.io/television-news-analyser/
 
 You can also check Github Actions worflows raw data : 
 1. Click here : https://github.com/polomarcus/television-news-analyser/actions/workflows/save-data.yml
@@ -44,8 +44,8 @@ docker-compose -f src/test/docker/docker-compose.yml up -d
 ```
 
 ### Checkout the project website locally
-Go to http://localhost:8080/index.html
-The source are inside the `website` folder
+Go to http://localhost:8080
+The source are inside the `docs` folder
 
 ### Init Metabase
 You can check metabase here
@@ -71,7 +71,7 @@ sbt "runMain com.github.polomarcus.main.UpdateNews"
 ```
 
 #### Jupyter Notebook
-Some examples are inside [example.ipynb](https://github.com/polomarcus/television-news-analyser/blob/main/example.ipynb), but I prefered to use Metabase dashboard and visualisation using SQL
+Some examples are inside [example.ipynb](https://github.com/polomarcus/television-news-analyser/blob/main/example.ipynb), but I preferred to use Metabase dashboard and visualisation using SQL
 
 ## Test
 ```
