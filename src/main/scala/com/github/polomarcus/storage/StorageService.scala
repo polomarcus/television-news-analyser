@@ -14,7 +14,7 @@ object StorageService {
   val sqlContext = spark.sqlContext
   import spark.implicits._
 
-  val pathAggregated = "website/data-aggregated-news-json"
+  val pathAggregated = "docs/data-aggregated-news-json"
 
   /**
    * @see https://alvinalexander.com/scala/how-to-handle-wildcard-characters-running-external-commands/
