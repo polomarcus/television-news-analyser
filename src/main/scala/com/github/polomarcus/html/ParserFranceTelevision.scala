@@ -2,18 +2,15 @@ package com.github.polomarcus.html
 
 import com.github.polomarcus.model.News
 import com.github.polomarcus.utils.FutureService.waitFuture
-
-import java.util.concurrent.Executors
-import net.ruippeixotog.scalascraper.dsl.DSL._
-import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
 import com.github.polomarcus.utils.{DateService, FutureService, TextService}
 import com.typesafe.scalalogging.Logger
-import net.ruippeixotog.scalascraper.browser.JsoupBrowser
+import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
+import net.ruippeixotog.scalascraper.dsl.DSL._
+import net.ruippeixotog.scalascraper.model.Element
 
 import scala.concurrent.Future
 
 // For implicit conversions from RDDs to DataFrames
-import scala.concurrent.ExecutionContext
 
 object ParserFranceTelevision {
   val logger = Logger(this.getClass)
@@ -42,7 +39,7 @@ object ParserFranceTelevision {
     }
 
     logger.info(s"""
-      I got ${allTelevisionNews.length} days of news
+        I got ${allTelevisionNews.length} days of news
     """)
 
     val parsedTelevisionNews = allTelevisionNews
@@ -67,7 +64,7 @@ object ParserFranceTelevision {
       parseFranceTelevisionHomeHelper(url, defaultUrl)
     } catch {
       case e: Exception =>
-        logger.info(e.toString)
+        logger.error(s"Could not parse $url, error : ${e.toString}")
         try {
           //Try a second time in case of timeout
           Thread.sleep(2000L)
@@ -88,6 +85,35 @@ object ParserFranceTelevision {
     }
   }
 
+  def getPresenter(text: String) = {
+    text
+      .split("présenté par ")(1)
+      .split(" sur France")(0)
+  }
+
+  def getLinkToDescription(x: Element): String = {
+    val linkToDescription = x >?> element(".related-video-excerpts__link") >> attr("href")
+    logger.debug(s"linkToDescription: $linkToDescription")
+    linkToDescription match {
+      case Some(link) => link
+      case None =>
+        logger.error("Could not read link to description")
+        ""
+    }
+  }
+
+  def getTitle(x: Element): String = {
+    val titleOption = x >?> text(".related-video-excerpts__title-program")
+    logger.debug(s"title: $titleOption")
+
+    titleOption match {
+      case Some(title) => title
+      case None =>
+        logger.error("Could not read title")
+        ""
+    }
+  }
+
   def parseFranceTelevisionNews(
       url: String,
       defaultUrl: String = "https://www.francetvinfo.fr",
@@ -97,17 +123,16 @@ object ParserFranceTelevision {
     Future {
       try {
         val tvNewsURL = defaultUrl + url
-        logger.debug("Parsing France TV news (presenter, editor, news) : " + tvNewsURL)
+        logger.debug(s"Parsing France TV news (presenter, editor, news) : " + tvNewsURL)
 
         val doc = browser.get(tvNewsURL)
-        val news = doc >> elementList(".subjects-list li")
-        val publishedDate = doc >> text(".schedule span:nth-of-type(1)") // Diffusé le 08/01/2022
-        val presenter = doc >> text(".presenter .by")
+        val news = doc >> elementList(".related-video-excerpts li")
+
+        val presenter = getPresenter(doc >> text(".c-chapo"))
 
         logger.debug(s"""
             This is what i got for this day $tvNewsURL:
             number of news: ${news.length}
-            date : $publishedDate (${DateService.getTimestampFranceTelevision(publishedDate)})
             presenter : $presenter
             editor : $editor
           """)
@@ -115,42 +140,53 @@ object ParserFranceTelevision {
         val parsedNews: List[Option[News]] = if (news.isEmpty) {
           List(None)
         } else {
-          news.map(x => {
-            val title = x >> text(".title")
-            val order = x >> text(".number")
-            val linkToDescription = x >> element(".title") >> attr("href")
-            val (description, authors) = parseDescriptionAuthors(linkToDescription)
+          news.zipWithIndex.map {
+            case (x, index) => {
+              val title = getTitle(x)
 
-            logger.debug(s"""
-              I got a news in order $order :
-              title: $title
-              editor: $editor
-              editorDeputy: $editorDeputy
-              link to description : $linkToDescription
-              description (30 first char): ${description.take(30)}
-            """)
+              val order = index + 1 // Since oct 2022, frtv has removed the order attribute
 
-            Some(
-              News(
-                title,
-                description,
-                DateService.getTimestampFranceTelevision(publishedDate),
-                order.toInt,
-                presenter,
-                authors,
-                editor,
-                editorDeputy,
-                defaultUrl + linkToDescription,
-                tvNewsURL,
-                TextService.containsWordGlobalWarming(title + description),
-                media))
-          })
+              val linkToDescription = getLinkToDescription(x)
+
+              parseDescriptionAuthors(linkToDescription, defaultUrl) match {
+                case Some((description, authors, publishedDate)) => {
+                  logger.debug(s"""
+                  I got a news in order $order :
+                  title: $title
+                  publishedDate: $publishedDate
+                  editor: $editor
+                  editorDeputy: $editorDeputy
+                  link to description : $linkToDescription
+                  description (30 first char): ${description.take(30)}
+                """)
+
+                  Some(
+                    News(
+                      title,
+                      description,
+                      DateService.getTimestampFranceTelevision(publishedDate),
+                      order.toInt,
+                      presenter,
+                      authors,
+                      editor,
+                      editorDeputy,
+                      defaultUrl + linkToDescription,
+                      tvNewsURL,
+                      TextService.containsWordGlobalWarming(title + description),
+                      media))
+                }
+                case None =>
+                  logger.error(s"Could not parse this news $linkToDescription")
+                  None
+              }
+            }
+          }
         }
 
         parsedNews
       } catch {
         case e: Exception => {
-          logger.error(s"Error parsing this date $defaultUrl $url " + e.toString)
+          logger.error(s"Error parsing this date $defaultUrl$url " + e.toString)
           Nil
         }
       }
@@ -209,11 +245,27 @@ object ParserFranceTelevision {
     (doc >?> text(".c-chapo")).getOrElse("")
   }
 
+  def getDate(doc: browser.DocumentType) = {
+    val dateOption = doc >?> text(".publication-date__published time") // "le 08/10/2022 22:26"
+    logger.debug(s"dateOption: $dateOption")
+
+    dateOption match {
+      case Some(date) => date
+      case None =>
+        logger.error("Could not read date")
+        ""
+    }
+
+  }
   def parseDescriptionAuthors(
       url: String,
-      defaultFrance2URL: String = "https://www.francetvinfo.fr") = {
+      defaultFrance2URL: String = "https://www.francetvinfo.fr")
+    : Option[(String, List[String], String)] = {
     try {
+      logger.debug(s"parseDescriptionAuthors from $url")
       val doc: browser.DocumentType = browser.get(defaultFrance2URL + url)
+      val publishedDate = getDate(doc)
+
       val descriptionOption = doc >?> text(".c-body")
       val subtitle = parseSubtitle(doc)
       val description = descriptionOption match {
@@ -226,17 +278,17 @@ object ParserFranceTelevision {
       val authors = doc >?> text(".c-signature__names span")
 
       logger.debug(s"""
-      parseDescriptionAuthors from $url:
         authors: $authors
         subtitle: $subtitle
         description: $description
+        publishedDate: $publishedDate
       """)
 
-      (subtitle + description, authors.getOrElse("").split(", ").toList)
+      Some((subtitle + description, authors.getOrElse("").split(", ").toList, publishedDate))
     } catch {
       case e: Exception => {
-        logger.error(s"Error parsing this subject $defaultFrance2URL + $url " + e.toString)
-        ("", Nil)
+        logger.error(s"Error parsing this subject : $url " + e.toString)
+        None
       }
     }
   }
