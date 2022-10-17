@@ -262,10 +262,19 @@ object ParserFranceTelevision {
       defaultFrance2URL: String = "https://www.francetvinfo.fr")
     : Option[(String, List[String], String)] = {
     try {
-      logger.debug(s"parseDescriptionAuthors from $url")
+<<<<<<< Updated upstream
       val doc: browser.DocumentType = browser.get(defaultFrance2URL + url)
+=======
+      val newsUrl = if (url.contains(defaultFrance2URL)) {
+        url
+      } else {
+        defaultFrance2URL + url
+      }
+      logger.debug(s"parseDescriptionAuthors from $newsUrl")
+      val doc: browser.DocumentType = browser.get(newsUrl)
       val publishedDate = getDate(doc)
 
+>>>>>>> Stashed changes
       val descriptionOption = doc >?> text(".c-body")
       val subtitle = parseSubtitle(doc)
       val description = descriptionOption match {
