@@ -1,11 +1,9 @@
 import com.github.polomarcus.utils.DateService
-import com.github.polomarcus.utils.DateService.timezone
 import org.scalatest.funsuite.AnyFunSuite
 
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
-import java.time.{LocalDate, ZoneId}
-import java.util.{Date, TimeZone}
+import java.util.TimeZone
 
 class DateServiceTest extends AnyFunSuite {
   val timezone = TimeZone.getTimeZone("UTC+2")
@@ -14,7 +12,7 @@ class DateServiceTest extends AnyFunSuite {
 
   test("getTimestampFranceTelevision") {
     assert(
-      DateService.getTimestampFranceTelevision("Diffusé le 08/01/2022") ==
+      DateService.getTimestampFranceTelevision("le 08/01/2022") ==
         new Timestamp(format.parse("08/01/2022").getTime))
   }
 

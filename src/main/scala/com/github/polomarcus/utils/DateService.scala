@@ -9,11 +9,18 @@ import java.util.{Calendar, TimeZone}
 object DateService {
   val logger = Logger(DateService.getClass)
   val timezone = TimeZone.getTimeZone("UTC+2")
+
+  /**
+   * transform "le DD/MM/YYYY à HH:mm" to timestamp
+   * @param date
+   * @return
+   */
   def getTimestampFranceTelevision(date: String): Timestamp = {
     try {
       val format = new SimpleDateFormat("dd/MM/yyyy")
       format.setTimeZone(timezone)
-      new Timestamp(format.parse(date.substring(11)).getTime)
+      val digitsOnly = date.split(" ")(1)
+      new Timestamp(format.parse(digitsOnly).getTime)
     } catch {
       case e: Exception => {
         logger.error(s"Error parsing this date $date " + e.toString)
