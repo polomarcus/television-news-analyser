@@ -170,7 +170,7 @@ object ParserFranceTelevision {
                       authors,
                       editor,
                       editorDeputy,
-                      defaultUrl + linkToDescription,
+                      linkToDescription,
                       tvNewsURL,
                       TextService.containsWordGlobalWarming(title + description),
                       media))
@@ -186,7 +186,7 @@ object ParserFranceTelevision {
         parsedNews
       } catch {
         case e: Exception => {
-          logger.error(s"Error parsing this date $defaultUrl$url " + e.toString)
+          logger.error(s"Error parsing this date $url " + e.toString)
           Nil
         }
       }
