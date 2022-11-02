@@ -13,10 +13,11 @@ jobs:
       - uses: actions/checkout@v3
       - uses: coursier/cache-action@v6
       - name: Set up JDK 11
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
-          java-version: '11'
-          distribution: 'adopt'
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'sbt'
       - name: Set yesterday date year month as env variable for partitioning
         run: echo "PATH_PARTITION=$(date -d "yesterday" +'year=%Y/month=%-m')" >> $GITHUB_ENV
       - name: Set yesterday date year month day as env variable for partitioning
@@ -92,9 +93,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: coursier/cache-action@v6
       - name: Set up JDK 11
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
-          java-version: '11'
-          distribution: 'adopt'
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'sbt'
       - name: Check for duplicates to delete inside data-news-json folder
         run: sbt "runMain com.github.polomarcus.main.DataQuality"
