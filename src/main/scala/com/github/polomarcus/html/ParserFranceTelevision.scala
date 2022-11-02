@@ -27,6 +27,7 @@ object ParserFranceTelevision {
   def parseFranceTelevisionHomeHelper(
       url: String,
       defaultUrl: String = "https://www.francetvinfo.fr"): List[News] = {
+    val numberOfDaysToParse = 5
     val doc = browser.get(url)
     val nextNews = doc >> elementList(".list-jt-last a") >> attr("href")
     val headNews = doc >> element(".title a") >> attr("href")
@@ -42,7 +43,7 @@ object ParserFranceTelevision {
         I got ${allTelevisionNews.length} days of news
     """)
 
-    val parsedTelevisionNews = allTelevisionNews
+    val parsedTelevisionNews = allTelevisionNews.take(numberOfDaysToParse)
       .map(televisionNewsForOneDay => {
         logger.info(s"Parsing this day of news : $televisionNewsForOneDay")
         parseFranceTelevisionNews(
