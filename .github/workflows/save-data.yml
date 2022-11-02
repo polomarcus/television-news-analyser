@@ -1,4 +1,4 @@
-name: List news urls containing global warming
+name: Get news from websites
 
 on:
   workflow_dispatch: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
@@ -15,7 +15,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '16'
+          java-version: '11'
           distribution: 'temurin'
           cache: 'sbt'
       - name: Set yesterday date year month as env variable for partitioning
@@ -95,7 +95,7 @@ jobs:
       - name: Set up JDK 11
         uses: actions/setup-java@v3
         with:
-          java-version: '16'
+          java-version: '11'
           distribution: 'temurin'
           cache: 'sbt'
       - name: Check for duplicates to delete inside data-news-json folder

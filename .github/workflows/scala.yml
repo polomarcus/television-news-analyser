@@ -10,14 +10,14 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
     - uses: coursier/cache-action@v6
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: '16'
+        java-version: '11'
         distribution: 'temurin'
         cache: 'sbt'
     - name: init
