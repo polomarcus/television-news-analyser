@@ -10,68 +10,67 @@
 * https://www.tf1info.fr/emission/le-20h-11001/extraits/
 * https://www.francetvinfo.fr/replay-jt/france-3/19-20/jt-de-19-20-du-vendredi-15-avril-2022_5045866.html
 
-* **Data sink:** JSON data to be store inside MySQL and displayed on a metabase dashboard, or [this website](https://polomarcus.github.io/television-news-analyser/) :
-
 * **JSON data :** ➡️ https://github.com/polomarcus/television-news-analyser/tree/main/data-news-json/
+
+* **Data sink:** JSON data to be stored inside Postgres and displayed on a metabase dashboard (see "Run" on this readme), or [this website](https://observatoire.climatmedias.org/) :
 
 ## Can I have a look at the results ?
 Every day, last replays with URLs from France 2 and TF1 are analysed with Github Actions if they contain ["global warming"](https://github.com/polomarcus/television-news-analyser/blob/main/src/main/scala/com/github/polomarcus/utils/TextService.scala#L9) :
 
-Some results can be found on this repo's website : https://polomarcus.github.io/television-news-analyser/
+Some results can be found on this repo's website : https://polomarcus.github.io/television-news-analyser/ | https://observatoire.climatmedias.org/
 
-You can also check Github Actions worflows raw data : 
+You can also check GitHub Actions workflows logs : 
 1. Click here : https://github.com/polomarcus/television-news-analyser/actions/workflows/save-data.yml
-2. Click on the last workflow ran, then on "click-here-to-see-data"
+2. Click on the last workflow ran called "Get news from websites", then on "click-here-to-see-data"
 3. Click on "List France 2 news urls containing global warming (see end)" to see France 2's urls
 4. Click on "List TF1 news urls containing global warming (see end)" to see TF1's urls :
 
 ![Urls are listed on the github action workflow](https://user-images.githubusercontent.com/4059615/151147733-3313174a-e2fd-486e-85e7-81272ec0957c.png)
 ## Requirements
 * [docker compose](https://docs.docker.com/compose/install/)
-* Optional: if you want to code Scala build tool (SBT)
+* Optional: if you want to code you have to use Scala build tool (SBT)
+
 ## Run
-###  Spin up 1 Postgres, Metabase, nginxand load data to PG
-#### Docker Compose
+###  Spin up 1 Postgres, Metabase, nginx and load data to PG using SBT
+#### Docker Compose without SBT
 ```
 # with docker compose - no need of sbt
 docker-compose -f src/test/docker/docker-compose.yml up -d
 ```
 
-#### SBT
+#### With SBT
 ```
 # OR with scala built tool : sbt
 ./init-stack-with-data.sh
 ```
 
-### Checkout the project website locally
-Go to http://localhost:8080
-The source are inside the `docs` folder
+#### Init Metabase to explore with SQL
+After you ran the project, you can check metabase here http://localhost:3000/
+1. configure an account
+2. configure PostgreSQL data source: (user/password - host : postgres - database name : metabase) (see docker-compose for details)
+3. You're good to go : "Ask a simple question", then select your data source and the "Aa_News" table
 
-### Init Metabase
-You can check metabase here
-* http://localhost:3000/
-* configure an account
-* configure PostgreSQL data source: (user/password - host : postgres - database name : metabase)
-* You're good to go : "Ask a simple question", then select your data source and the "News" table
-
-
-#### To scrap data from 3 pages from France 2 website
+### To scrap data from 3 pages from France 2 website
 ```
 sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 3"
 ```
 
-#### To store the JSON data to PG and explore it with Metabase 
+### To store the JSON data to PG and explore it with Metabase 
 ```
 sbt "runMain com.github.polomarcus.main.SaveTVNewsToPostgres"
 ```
 
-#### To update data for the website alone
+### To update data for the website alone
 ```
 sbt "runMain com.github.polomarcus.main.UpdateNews"
 ```
 
 #### Jupyter Notebook
 Some examples are inside [example.ipynb](https://github.com/polomarcus/television-news-analyser/blob/main/example.ipynb), but I preferred to use Metabase dashboard and visualisation using SQL
+
+## Checkout the project website locally (https://observatoire.climatmedias.org/)
+Go to http://localhost:8080
+The source are inside the `docs` folder
 
 ## Test
 ```
