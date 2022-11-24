@@ -24,7 +24,7 @@ JSON data can be stored inside Postgres and displayed on a Metabase dashboard (r
 #### Docker Compose without SBT
 ```
 # with docker compose - no need of sbt
-docker-compose -f src/test/docker/docker-compose.yml up -d
+docker-compose -f src/test/docker/docker-compose.yml up -d --build app
 ```
 
 #### With SBT
