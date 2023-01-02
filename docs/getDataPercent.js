@@ -2,7 +2,15 @@ fetch( "https://observatoire.climatmedias.org/data-aggregated-news-json/aggPerce
    .then(async r=> {
     const rawData = await r.text();
     const parsedData = '[' + rawData.split("\n{").join(',{') + ']'
-    const aggData = JSON.parse(parsedData);
+    const aggDataTmp = JSON.parse(parsedData);
+
+    const aggData = aggDataTmp.filter(agg => !agg.date.includes("2013") &&
+        !agg.date.includes("2014") &&
+        !agg.date.includes("2015") &&
+        !agg.date.includes("2016") &&
+        !agg.date.includes("2017") &&
+        !agg.date.includes("2018")
+    )
 
     const TF1GlobalwarmingPercent = aggData.filter(agg => agg.media == "TF1").map ( x => {
         return { date: x.date, percent: x.percent }
