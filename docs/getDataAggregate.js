@@ -41,7 +41,8 @@ fetch( "https://observatoire.climatmedias.org/data-aggregated-news-json/agg.json
       name: 'TF1',
       line: {
         color: 'blue',
-        width: 3
+        width: 3,
+       shape: 'spline'
       }
     };
     var newsTF1Globalwarming = {
@@ -52,7 +53,8 @@ fetch( "https://observatoire.climatmedias.org/data-aggregated-news-json/agg.json
         name: 'TF1 Climat',
         line: {
           color: 'purple',
-          width: 1
+          width: 1,
+       shape: 'spline'
         }
     };
 
@@ -64,7 +66,8 @@ fetch( "https://observatoire.climatmedias.org/data-aggregated-news-json/agg.json
      name: 'France 2',
      line: {
        color: 'red',
-       width: 3
+       width: 3,
+       shape: 'spline'
      }
 
     };
@@ -76,7 +79,8 @@ fetch( "https://observatoire.climatmedias.org/data-aggregated-news-json/agg.json
      name: 'FR2 Climat',
      line: {
        color: 'green',
-       width: 1
+       width: 1,
+       shape: 'spline'
      }
     };
     var newsFR3 = {
@@ -87,7 +91,8 @@ fetch( "https://observatoire.climatmedias.org/data-aggregated-news-json/agg.json
      name: 'France 3',
      line: {
        color: '#42b6f5',
-       width: 3
+       width: 3,
+       shape: 'spline'
      }
 
     };
@@ -99,7 +104,8 @@ fetch( "https://observatoire.climatmedias.org/data-aggregated-news-json/agg.json
      name: 'FR3 Climat',
      line: {
        color: 'orange',
-       width: 1
+       width: 1,
+       shape: 'spline'
      }
     };
 
