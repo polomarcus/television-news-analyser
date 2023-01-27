@@ -168,7 +168,7 @@ object StorageService {
 
     val latestNews = spark.sql(
       """
-        |SELECT date_format(date, "dd/MM/yyyy") AS date, date_format(date, "yyyy-MM-dd") AS datecharts,title, url, urlTvNews, media
+        |SELECT date_format(date, "dd/MM/yyyy") AS date, date_format(date, "yyyy-MM-dd") AS datecharts, CONCAT(title, description) AS title, url, urlTvNews, media
         |FROM news
         |WHERE containsWordGlobalWarming = TRUE
         |ORDER BY datecharts DESC
