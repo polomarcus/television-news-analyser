@@ -66,7 +66,13 @@ fetch( "https://observatoire.climatmedias.org/data-aggregated-news-json/aggPerce
     console.log("FR2GlobalwarmingPercent", FR2GlobalwarmingPercent)
     var data = [newsTF1, newsFR2, newsFR3];
     var layout = {
-      title: '% de reportage par mois parlant des changements climatiques',
+      title: 'Reportage sur le changement climatique',
+       xaxis: { // all "layout.xaxis" attributes: #layout-xaxis
+          title: 'Par mois'
+       },
+       yaxis: {
+          title: '% de reportage'
+       },
     };
     var config = {responsive: true}
 
