@@ -10,7 +10,8 @@ object TextService {
     "(réchauffement|dérèglement|changement|crise|enjeux|volet)(|s) climatique(|s)")
 
   //"Climat :" comes from  https://www.francetvinfo.fr/meteo/secheresse/climat-pourquoi-la-france-connait-elle-une-secheresse-precoce_5125996.html
-  val pattern2 = new Regex("((réchauffement|dérèglement|changement) du climat)|(giec)|(climat :)")
+  val pattern2 = new Regex(
+    "((réchauffement|dérèglement|changement) du climat)|(giec)|(climat :)|(bas carbone)")
   def containsWordGlobalWarming(description: String): Boolean = {
     pattern.findFirstIn(description.toLowerCase).isDefined || pattern2
       .findFirstIn(description.toLowerCase)
