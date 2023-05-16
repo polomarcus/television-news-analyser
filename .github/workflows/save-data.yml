@@ -80,8 +80,8 @@ jobs:
           mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_PARTITION }} || true
           mv -vn output-tf1-tv-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }}/** data-news-json/media=TF1/${{ env.PATH_LAST_MONTH_PARTITION }} || true
           sbt "runMain com.github.polomarcus.main.UpdateNews"
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name polomarcus-github-actions
+          git config user.email polomarcus-github-actions@github.com
           git status
           git add .
           git commit -m "ci(data): saved date ${{ env.PATH_DAY_PARTITION }} and ${{ env.PATH_DAY_2_DAY_AGO_PARTITION }} and ${{ env.PATH_DAY_3_DAY_AGO_PARTITION }}"
