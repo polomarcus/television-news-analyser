@@ -77,4 +77,10 @@ class TextServiceTest extends AnyFunSuite {
     assert(!TextService.containsWordGlobalWarming("bas"))
     assert(!TextService.containsWordGlobalWarming("carbone"))
   }
+
+  test("gaz à effet de serre") {
+    assert(TextService.containsWordGlobalWarming("gaz à effet de serre"))
+    assert(!TextService.containsWordGlobalWarming("effet de serre"))
+    assert(!TextService.containsWordGlobalWarming("serre"))
+  }
 }
