@@ -21,24 +21,18 @@ JSON data can be stored inside Postgres and displayed on a Metabase dashboard (r
 * Optional: if you want to code you have to use Scala build tool (SBT)
 
 ###  Spin up 1 Postgres, Metabase, nginx and load data to PG using SBT
-#### Docker Compose without SBT
+#### Docker Compose without SBT (Scala build tool)
 ```
 # with docker compose - no need of sbt
-docker-compose -f src/test/docker/docker-compose.yml up -d --build app
-```
-
-#### With SBT
-```
-# OR with scala built tool : sbt
 ./init-stack-with-data.sh
+# this script does this : docker-compose -f src/test/docker/docker-compose.yml up -d --build app
 ```
 
 #### Init Metabase to explore with SQL
-After you ran the project, you can check metabase here http://localhost:3000/
+After you ran the project with docker compose, you can check metabase here http://localhost:3000 with a few steps :
 1. configure an account
 2. configure PostgreSQL data source: (user/password - host : postgres - database name : metabase) (see docker-compose for details)
 3. You're good to go : "Ask a simple question", then select your data source and the "Aa_News" table
-
 
 #### Jupyter Notebook
 Some examples are inside [example.ipynb](https://github.com/polomarcus/television-news-analyser/blob/main/example.ipynb), but I preferred to use Metabase dashboard and visualisation using SQL
@@ -79,7 +73,7 @@ The source are inside the `docs` folder
 
 ## Test
 ```
-# ./init-stack-with-data.sh
+# first, be sure to have docker compose up with ./init-stack-with-data.sh
 sbt test # it will parsed some localhost pages from test/resources/
 ```
 
