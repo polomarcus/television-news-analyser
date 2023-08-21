@@ -16,6 +16,12 @@ object ParserFranceTelevision {
   val logger = Logger(this.getClass)
   val browser = Getter.getBrowser()
 
+  val htmlSelectorDayOfNewsList = ".page-jt article a"
+  val htmlSelectorAllNewsFromOneDay = ".related-video-excerpts li"
+  val htmlSelectorANewsFromOneDay = ".related-video-excerpts__link"
+  val htmlSelectorMainDescriptionOfTheNews = ".c-chapo"
+  val htmlSelectorTimeNews = ".publication-date__published time"
+
   val FRANCE2 = "France 2"
   val FRANCE3 = "France 3"
   implicit val ec = FutureService.ec
@@ -29,9 +35,7 @@ object ParserFranceTelevision {
       defaultUrl: String = "https://www.francetvinfo.fr"): List[News] = {
     val numberOfDaysToParse = 5
     val doc = browser.get(url)
-    val nextNews = doc >> elementList(".list-jt-last a") >> attr("href")
-    val headNews = doc >> element(".title a") >> attr("href")
-    val allTelevisionNews = headNews :: nextNews
+    val allTelevisionNews = doc >> elementList(htmlSelectorDayOfNewsList) >> attr("href")
     val media = getMediaFranceTelevision(url)
     val (editor, editorDeputy) = if (media == FRANCE2) {
       parseTeam(is13hTVShow(url))
@@ -43,7 +47,8 @@ object ParserFranceTelevision {
         I got ${allTelevisionNews.length} days of news
     """)
 
-    val parsedTelevisionNews = allTelevisionNews.take(numberOfDaysToParse)
+    val parsedTelevisionNews = allTelevisionNews
+      .take(numberOfDaysToParse)
       .map(televisionNewsForOneDay => {
         logger.info(s"Parsing this day of news : $televisionNewsForOneDay")
         parseFranceTelevisionNews(
@@ -93,7 +98,7 @@ object ParserFranceTelevision {
   }
 
   def getLinkToDescription(x: Element): String = {
-    val linkToDescription = x >?> element(".related-video-excerpts__link") >> attr("href")
+    val linkToDescription = x >?> element(htmlSelectorANewsFromOneDay) >> attr("href")
     logger.debug(s"linkToDescription: $linkToDescription")
     linkToDescription match {
       case Some(link) => link
@@ -127,9 +132,9 @@ object ParserFranceTelevision {
         logger.debug(s"Parsing France TV news (presenter, editor, news) : " + tvNewsURL)
 
         val doc = browser.get(tvNewsURL)
-        val news = doc >> elementList(".related-video-excerpts li")
+        val news = doc >> elementList(htmlSelectorAllNewsFromOneDay)
 
-        val presenter = getPresenter(doc >> text(".c-chapo"))
+        val presenter = getPresenter(doc >> text(htmlSelectorMainDescriptionOfTheNews))
 
         logger.debug(s"""
             This is what i got for this day $tvNewsURL:
@@ -243,11 +248,11 @@ object ParserFranceTelevision {
   }
 
   def parseSubtitle(doc: browser.DocumentType): String = {
-    (doc >?> text(".c-chapo")).getOrElse("")
+    (doc >?> text(htmlSelectorMainDescriptionOfTheNews)).getOrElse("")
   }
 
   def getDate(doc: browser.DocumentType) = {
-    val dateOption = doc >?> text(".publication-date__published time") // "le 08/10/2022 22:26"
+    val dateOption = doc >?> text(htmlSelectorTimeNews) // "le 08/10/2022 22:26"
     logger.debug(s"dateOption: $dateOption")
 
     dateOption match {
