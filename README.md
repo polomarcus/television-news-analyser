@@ -5,12 +5,12 @@
 
 ![metabaseexample](https://user-images.githubusercontent.com/4059615/203794161-12fa4267-252f-41a5-af26-d0cad55eceed.png)
 
-**Data source:** HTMLs pages :
+### Data sources - HTMLs pages :
 * TF1 : https://www.tf1info.fr/emission/le-20h-11001/extraits/
 * France 2 : https://www.francetvinfo.fr/replay-jt/france-2/20-heures/jt-de-20h-du-jeudi-30-decembre-2021_4876025.html
 * France 3 : https://www.francetvinfo.fr/replay-jt/france-3/19-20/jt-de-19-20-du-vendredi-15-avril-2022_5045866.html
 
-**Data sink** :
+### Data sinks
 * JSON ➡️ https://github.com/polomarcus/television-news-analyser/tree/main/data-news-json/
 * CSV compressed ([if you don't know how to uncompressed these data](https://www.wikihow.com/Extract-a-Gz-File)) ➡️️ https://github.com/polomarcus/television-news-analyser/tree/main/data-news-csv/
 
