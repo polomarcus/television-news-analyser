@@ -3,8 +3,8 @@ package com.github.polomarcus.storage
 import com.github.polomarcus.model.News
 import com.github.polomarcus.utils.{SparkService, TextService}
 import com.typesafe.scalalogging.Logger
+import org.apache.spark.sql.functions._
 import org.apache.spark.sql.{DataFrame, SaveMode}
-import org.apache.spark.sql.functions.{col, dayofmonth, month, to_timestamp, year}
 
 import scala.sys.process._
 
@@ -28,13 +28,19 @@ object StorageService {
     logger.info(s"Change name of Spark out to be versioned by git : $output")
   }
 
-  def readNews(): DataFrame = {
-    val newsDF = StorageService.read("./data-news-json/")
+  def readNews(filterCurrentYear: Boolean = false): DataFrame = {
+    val news = StorageService.read("./data-news-json/").as[News]
 
-    newsDF.printSchema()
+    val newsDF = if (filterCurrentYear) {
+      logger.info("Reading news:  Keeping only 365 days of data")
+      news.filter((year($"date") === year(current_date())))
+    } else {
+      news
+    }
+
     newsDF.createOrReplaceTempView("news")
 
-    newsDF
+    newsDF.toDF()
   }
 
   /**
@@ -190,10 +196,11 @@ object StorageService {
       .parallelize(arrayNews)
       .toDF()
 
-    saveJSON(news, path)
+    val finalNews = cleanDataBeforeSaving(news)
+    saveJSON(finalNews, path)
   }
 
-  def saveJSON(news: DataFrame, path: String): String = {
+  def cleanDataBeforeSaving(news: DataFrame): DataFrame = {
     news
       .withColumn("year", year('date))
       .withColumn("month", month('date))
@@ -202,22 +209,14 @@ object StorageService {
 
     val newsNoDuplicates = resetContainsGlobalWarming(removeDuplicates())
 
-    val finalDf = newsNoDuplicates
+    newsNoDuplicates
       .withColumn("year", year('date))
       .withColumn("month", month('date))
       .withColumn("day", dayofmonth('date))
+  }
 
-    finalDf.createOrReplaceTempView("news")
-
-    spark
-      .sql("""
-      |SELECT date_format(date, "dd/MM/yyyy") AS date, title, url, media
-      |FROM news
-      |ORDER BY date DESC
-    """.stripMargin)
-      .show(5, false)
-
-    finalDf
+  def saveJSON(news: DataFrame, path: String): String = {
+    news
       .repartition(1)
       .write
       .mode(SaveMode.Overwrite)
@@ -227,7 +226,26 @@ object StorageService {
     path
   }
 
+  def saveCSV(news: DataFrame, path: String): String = {
+    logger.info("Saving CSV...")
+
+    news
+      .repartition(1)
+      .drop("authors") // Column `authors` has a data type of array<string>, which is not supported by CSV
+      .drop("editorDeputy") // Column `editorDeputy` has a data type of array<string>, which is not supported by CSV
+      .write
+      .mode(SaveMode.Overwrite)
+      .partitionBy("year")
+      .option("header", "true")
+      .option("compression", "gzip")
+      .csv(s"$path-csv")
+
+    path
+  }
+
   def read(path: String) = {
-    spark.read.json(path).withColumn("date", to_timestamp(col("date")))
+    spark.read
+      .json(path)
+      .withColumn("date", to_timestamp(col("date")))
   }
 }

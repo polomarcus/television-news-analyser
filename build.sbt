@@ -4,9 +4,11 @@ organization := "com.github.polomarcus"
 version := "1.0"
 scalaVersion := "2.12.15"
 
+fork := true
+
 val circeVersion = "0.10.0"
 val scalaTest = "3.2.9"
-val sparkVersion = "3.4.1"
+val sparkVersion = "3.5.0"
 val logback = "1.2.10"
 val scalaLogging = "3.9.4"
 
@@ -37,18 +39,22 @@ libraryDependencies += "joda-time" % "joda-time" % "2.10.13"
 libraryDependencies += "org.scalatest" %% "scalatest" % scalaTest % "test"
 
 //Spark (csv writer)
+libraryDependencies += "org.apache.hadoop" % "hadoop-client" % "3.3.4"
+
 libraryDependencies += ("org.apache.spark" %% "spark-core" % sparkVersion)
   .exclude("log4j", "log4j")
   .exclude("org.slf4j", "slf4j-log4j12")
   .exclude("org.slf4j", "log4j")
+
+
 
 libraryDependencies += ("org.apache.spark" %% "spark-sql" % sparkVersion)
   .exclude("org.slf4j", "log4j")
   .exclude("org.slf4j", "slf4j-log4j12")
   .exclude("org.slf4j", "log4j")
 
-dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-databind" % "2.14.2"
-dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-core" % "2.14.2"
-dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-annotations" % "2.14.2"
+dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-databind" % "2.15.1"
+dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-core" % "2.15.1"
+dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-annotations" % "2.15.1"
 
 libraryDependencies += "org.postgresql" % "postgresql" % "42.2.5"

@@ -1,0 +1,33 @@
+name: Save CSV
+
+on:
+  workflow_dispatch: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
+
+  schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+    - cron:  '26 17 * * *'
+
+jobs:
+  click-here-to-save-csv:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: coursier/cache-action@v6
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'sbt'
+      - name: Read from JSON and save it as CSV
+        run: sbt "runMain com.github.polomarcus.main.SaveCSV"
+      - name: Git push csv data
+        uses: actions/checkout@v3
+        with:
+          clean: false
+      - run: | # @TODO - save only current year of data | @see "save-data.yml"
+          git config user.name polomarcus-github-actions
+          git config user.email polomarcus-github-actions@github.com
+          git status
+          git add .
+          git commit -m "ci(csv): updated files"
+          git push origin main
