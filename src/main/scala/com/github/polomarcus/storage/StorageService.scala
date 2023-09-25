@@ -205,10 +205,9 @@ object StorageService {
       .withColumn("year", year('date))
       .withColumn("month", month('date))
       .withColumn("day", dayofmonth('date))
+      .createOrReplaceTempView("news")
 
     val newsNoDuplicates = resetContainsGlobalWarming(removeDuplicates())
-
-    newsNoDuplicates.createOrReplaceTempView("news")
 
     newsNoDuplicates
       .withColumn("year", year('date))
