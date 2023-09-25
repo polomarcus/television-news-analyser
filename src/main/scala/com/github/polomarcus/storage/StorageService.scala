@@ -237,6 +237,7 @@ object StorageService {
       .mode(SaveMode.Overwrite)
       .partitionBy("year")
       .option("header", "true")
+      .option("delimiter", "\t") //tab
       .option("compression", "gzip")
       .csv(s"$path-csv")
 
