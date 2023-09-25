@@ -19,7 +19,7 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
       "Laurent Delahousse",
       List("J. Bigard", "A. Boulet"),
       "Elsa Pallot",
-      List("Sébastien Renout", "Anne Poncinet", "Arnaud Comte"),
+      List("Sébastien Renout", "Anne-Charlotte Hinet", "Arnaud Comte"),
       "http://localhost:8000/one-subject-tv-news-fr2.html",
       "http://localhost:8000/replay.html",
       containsWordGlobalWarming = false,

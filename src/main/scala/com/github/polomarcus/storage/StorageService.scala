@@ -208,6 +208,8 @@ object StorageService {
 
     val newsNoDuplicates = resetContainsGlobalWarming(removeDuplicates())
 
+    newsNoDuplicates.createOrReplaceTempView("news")
+
     newsNoDuplicates
       .withColumn("year", year('date))
       .withColumn("month", month('date))
