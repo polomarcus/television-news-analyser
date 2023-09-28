@@ -1,10 +1,9 @@
 package com.github.polomarcus.main
 
-import com.github.polomarcus.model.News
 import com.github.polomarcus.storage.StorageService
 import com.github.polomarcus.utils.SparkService
 import com.typesafe.scalalogging.Logger
-import org.apache.spark.sql.{DataFrame, Dataset, SaveMode}
+import org.apache.spark.sql.{DataFrame, SaveMode}
 
 object SaveTVNewsToPostgres {
   def main(args: Array[String]) {
@@ -12,7 +11,7 @@ object SaveTVNewsToPostgres {
     val sqlContext = spark.sqlContext
     val logger = Logger(this.getClass)
     val dbTable = "AA_news"
-    val newsDFTmp: DataFrame = StorageService.readNews()
+    val newsDFTmp: DataFrame = StorageService.readNews().toDF()
     val newsDF = StorageService.resetContainsGlobalWarming(newsDFTmp)
 
     val dbHost = sys.env.getOrElse("postgres", "localhost")
