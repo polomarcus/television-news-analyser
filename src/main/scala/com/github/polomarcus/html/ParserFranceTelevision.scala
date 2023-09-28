@@ -207,8 +207,7 @@ object ParserFranceTelevision {
     Elsa Pallot
     Rédaction en chef-adjointe
     Sébastien Renout, Anne Poncinet, Arnaud Comte
-
-    @To do Weekend team one day..
+  
    * @param doc
    * @return
    */
