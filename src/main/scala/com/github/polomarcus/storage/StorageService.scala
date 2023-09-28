@@ -4,7 +4,7 @@ import com.github.polomarcus.model.News
 import com.github.polomarcus.utils.{SparkService, TextService}
 import com.typesafe.scalalogging.Logger
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.{DataFrame, SaveMode}
+import org.apache.spark.sql.{DataFrame, Dataset, SaveMode}
 
 import scala.sys.process._
 
@@ -28,7 +28,7 @@ object StorageService {
     logger.info(s"Change name of Spark out to be versioned by git : $output")
   }
 
-  def readNews(filterCurrentYear: Boolean = false): DataFrame = {
+  def readNews(filterCurrentYear: Boolean = false): Dataset[News] = {
     val news = StorageService.read("./data-news-json/").as[News]
 
     val newsDF = if (filterCurrentYear) {
@@ -40,7 +40,7 @@ object StorageService {
 
     newsDF.createOrReplaceTempView("news")
 
-    newsDF.toDF()
+    newsDF
   }
 
   /**
@@ -58,7 +58,7 @@ object StorageService {
       .toDF()
   }
   def updateGlobalWarmingNews() = {
-    val newsDF = readNews() // create SQL table
+    val newsDF = readNews().toDF() // create SQL table
 
     saveAggregateNews()
     saveLatestNews()
@@ -92,7 +92,7 @@ object StorageService {
     newsDFWithoutDuplicates
   }
   def getDuplicateNews() = {
-    val newsDF = readNews() // create SQL table
+    val newsDF = readNews().toDF() // create SQL table
 
     val duplicates = spark.sql("""
         |SELECT title, media, date
@@ -240,6 +240,35 @@ object StorageService {
       .option("delimiter", "\t") //tab
       .option("compression", "gzip")
       .csv(s"$path-csv")
+
+    path
+  }
+
+  def saveTSVGarganText(news: DataFrame, path: String): String = {
+    logger.info("Saving saveTSVGarganText...")
+
+    news
+      .repartition(1)
+      .drop("authors") // Column `authors` has a data type of array<string>, which is not supported by CSV
+      .drop("editorDeputy") // Column `editorDeputy` has a data type of array<string>, which is not supported by CSV
+      .drop("containsWordGlobalWarming")
+      .drop("presenter")
+      .drop("order")
+      .drop("date")
+      .drop("url")
+      .drop("urlTvNews")
+      .withColumn("Publication Year", $"year") // to partition later
+      .withColumnRenamed("media", "Source")
+      .withColumnRenamed("editor", "Authors")
+      .withColumnRenamed("day", "Publication Day")
+      .withColumnRenamed("month", "Publication Month")
+      .write
+      .mode(SaveMode.Overwrite)
+      .partitionBy("year")
+      .option("header", "true")
+      .option("delimiter", "\t") //tab
+      // .option("compression", "gzip") --> cannot use zip
+      .csv(s"$path-gargantext-tsv")
 
     path
   }

@@ -10,10 +10,15 @@ object SaveCSV {
     val spark = SparkService.getAndConfigureSparkSession()
     val sqlContext = spark.sqlContext
 
+
     val news =
-      StorageService.cleanDataBeforeSaving(StorageService.readNews(filterCurrentYear = false))
+      StorageService.cleanDataBeforeSaving(
+        StorageService.readNews(filterCurrentYear = false).toDF()
+      )
 
     StorageService.saveCSV(news, "data-news")
-    logger.info("saveCSV done")
+   //@TODO change limit once approved
+    StorageService.saveTSVGarganText(news.limit(10000), "data-news")
+    logger.info("saveCSV & saveTSVGarganText done")
   }
 }
