@@ -130,9 +130,9 @@ object ParserFranceTelevision {
     editorAndDeputiesOption match {
       case Some(editorAndDeputies) => {
         if (DateService.isItaWeekendOrFridayNight(newsTimestamp)) {
-          editorAndDeputies(0) // week
-        } else {
           editorAndDeputies(1) //friday night and weekend
+        } else {
+          editorAndDeputies(0) // week
         }
       }
       case None => ("", List(""))
