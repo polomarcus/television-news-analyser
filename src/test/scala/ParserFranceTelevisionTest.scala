@@ -88,7 +88,7 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
   test("getEditor") {
     val arrayEditors =  Array( ("Week", List("WeekDeputy")), ("Weekend", List("WeekendDeputy")))
     val timestampWeek = DateService.getTimestampFranceTelevision("le 25/09/2023")
-    val timestampWeekend = DateService.getTimestampFranceTelevision("le 25/09/2023")
+    val timestampWeekend = DateService.getTimestampFranceTelevision("le 30/09/2023")
 
     assert(
       ParserFranceTelevision.getEditor( Some(arrayEditors), timestampWeek ) === ("Week", List("WeekDeputy"))
