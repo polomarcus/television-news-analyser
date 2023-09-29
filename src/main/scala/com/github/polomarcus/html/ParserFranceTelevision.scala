@@ -8,6 +8,7 @@ import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
 import net.ruippeixotog.scalascraper.dsl.DSL._
 import net.ruippeixotog.scalascraper.model.Element
 
+import java.sql.Timestamp
 import scala.concurrent.Future
 
 // For implicit conversions from RDDs to DataFrames
@@ -37,10 +38,10 @@ object ParserFranceTelevision {
     val doc = browser.get(url)
     val allTelevisionNews = doc >> elementList(htmlSelectorDayOfNewsList) >> attr("href")
     val media = getMediaFranceTelevision(url)
-    val (editor, editorDeputy) = if (media == FRANCE2) {
-      parseTeam(is13hTVShow(url))
+    val arrayEditorAndDeputiesWeekorWeekend = if (media == FRANCE2) {
+      Some(parseTeam(is13hTVShow(url)))
     } else {
-      ("", List(""))
+      None
     }
 
     logger.info(s"""
@@ -55,8 +56,7 @@ object ParserFranceTelevision {
           televisionNewsForOneDay,
           defaultUrl,
           media,
-          editor,
-          editorDeputy)
+          arrayEditorAndDeputiesWeekorWeekend)
       })
 
     waitFuture[Option[News]](parsedTelevisionNews).flatten
@@ -120,12 +120,30 @@ object ParserFranceTelevision {
     }
   }
 
+  /**
+   * @TODO only work for France 2
+   * @param editorAndDeputies
+   * @param newsTimestamp
+   * @return
+   */
+  def getEditor(editorAndDeputiesOption: Option[Array[(String, List[String])]], newsTimestamp: Timestamp) : (String, List[String]) = {
+    editorAndDeputiesOption match {
+      case Some(editorAndDeputies) => {
+        if (DateService.isItaWeekendOrFridayNight(newsTimestamp)) {
+          editorAndDeputies(1) //friday night and weekend
+        } else {
+          editorAndDeputies(0) // week
+        }
+      }
+      case None => ("", List(""))
+    }
+  }
+
   def parseFranceTelevisionNews(
       url: String,
       defaultUrl: String = "https://www.francetvinfo.fr",
       media: String,
-      editor: String,
-      editorDeputy: List[String]): Future[List[Option[News]]] = {
+      editorAndDeputies: Option[Array[(String, List[String])]] ): Future[List[Option[News]]] = {
     Future {
       try {
         val tvNewsURL = defaultUrl + url
@@ -140,7 +158,7 @@ object ParserFranceTelevision {
             This is what i got for this day $tvNewsURL:
             number of news: ${news.length}
             presenter : $presenter
-            editor : $editor
+            editor : $editorAndDeputies
           """)
 
         val parsedNews: List[Option[News]] = if (news.isEmpty) {
@@ -156,6 +174,10 @@ object ParserFranceTelevision {
 
               parseDescriptionAuthors(linkToDescription, defaultUrl) match {
                 case Some((description, authors, publishedDate)) => {
+                  val newsTimestamp: Timestamp = DateService.getTimestampFranceTelevision(publishedDate)
+
+                  val (editor, editorDeputy) = getEditor(editorAndDeputies, newsTimestamp)
+
                   logger.debug(s"""
                   I got a news in order $order :
                   title: $title
@@ -170,7 +192,7 @@ object ParserFranceTelevision {
                     News(
                       title,
                       description,
-                      DateService.getTimestampFranceTelevision(publishedDate),
+                      newsTimestamp,
                       order.toInt,
                       presenter,
                       authors,
@@ -209,41 +231,48 @@ object ParserFranceTelevision {
     Sébastien Renout, Anne Poncinet, Arnaud Comte
   
    * @param doc
-   * @return
+   * @return 1st element week team, 2nd element weekend team
    */
   def parseTeam(
       noonNews: Boolean,
       default13hTeamURL: String =
         "https://www.francetvinfo.fr/esi/www/taxonomy/block-program-team-by-type-and-channel/channel/france-2/type/jt/taxonomyUrl/13-heures")
-    : (String, List[String]) = {
+    : Array[(String, List[String])] = {
     val url = if (noonNews) {
       default13hTeamURL
     } else {
       "https://www.francetvinfo.fr/esi/www/taxonomy/block-program-team-by-type-and-channel/channel/france-2/type/jt/taxonomyUrl/20-heures"
     }
     val doc = browser.get(url)
-    val weekTeam = doc >> elementList(".team:nth-of-type(1) li")
 
-    val (editor, editorDeputy) = weekTeam.isEmpty match {
+    val weekTeam: Seq[Element] = doc >> elementList(s".team:nth-of-type(1) li")
+    val weekEndTeam = doc >> elementList(s".team:nth-of-type(2) li")
+
+    Array(
+      parseTeamHelper(weekTeam),
+      parseTeamHelper(weekEndTeam)
+    )
+  }
+
+  def parseTeamHelper(team: Seq[Element] ) : (String, List[String]) = {
+    team.isEmpty match {
       case false =>
-        logger.debug(s"parseTeam : ${(weekTeam.head >?> text("li"))}")
-        val editor = (weekTeam.head >?> text("li"))
+        logger.debug(s"parseTeam : ${(team.head >?> text("li"))}")
+        val editor = (team.head >?> text("li"))
           .getOrElse("Rédaction en chef")
           .replaceFirst("Rédaction en chef", "")
         val editorDeputy =
-          (weekTeam.tail.head >?> text("li"))
+          (team.tail.head >?> text("li"))
             .getOrElse("Rédaction en chef-adjointe")
             .replaceFirst("Rédaction en chef-adjointe", "")
             .replaceFirst(" et ", ", ")
         logger.debug(s"weekTeam $editor, ${editorDeputy} ")
 
-        (editor, editorDeputy)
+        (editor, editorDeputy.split(", ").toList)
       case true =>
-        logger.info(s"No editor found ${weekTeam}")
-        ("", "")
+        logger.info(s"No editor found ${team}")
+        ("",List(""))
     }
-
-    (editor, editorDeputy.split(", ").toList)
   }
 
   def parseSubtitle(doc: browser.DocumentType): String = {

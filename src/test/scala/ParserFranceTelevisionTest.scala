@@ -39,10 +39,12 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
   }
 
   test("parseTeam") {
-    val (editor, editorDeputy) =
+    val array =
       ParserFranceTelevision.parseTeam(noonNews = true, "http://localhost:8000/team-editor.html")
-    assert("Thomas Horeau" == editor)
-    assert(List("Régis Poullain", "Margaux Manière") == editorDeputy)
+    assert("Thomas Horeau" == array(0)._1)
+    assert("Franck Genauzeau" == array(1)._1)
+    assert(List("Régis Poullain", "Margaux Manière") == array(0)._2)
+    assert(List("Irène Bénéfice", "Willy Gouville", "Jean-François Monier") == array(1)._2)
   }
 
   test("parseSubtitle") {
@@ -81,5 +83,23 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
       ParserFranceTelevision.getPresenter(
         "Le JT de 20 Heures du samedi 8 octobre 2022 est présenté par Laurent Delahousse sur France 2. Retrouvez dans le journal télévisé du soir : la sélection des faits marquants, les interviews et témoignages, les invités politiques et")
         == "Laurent Delahousse")
+  }
+
+  test("getEditor") {
+    val arrayEditors =  Array( ("Week", List("WeekDeputy")), ("Weekend", List("WeekendDeputy")))
+    val timestampWeek = DateService.getTimestampFranceTelevision("le 25/09/2023")
+    val timestampWeekend = DateService.getTimestampFranceTelevision("le 30/09/2023")
+
+    assert(
+      ParserFranceTelevision.getEditor( Some(arrayEditors), timestampWeek ) === ("Week", List("WeekDeputy"))
+    )
+
+    assert(
+      ParserFranceTelevision.getEditor( Some(arrayEditors), timestampWeekend ) === ("Weekend", List("WeekendDeputy"))
+    )
+
+    assert(
+      ParserFranceTelevision.getEditor( None, timestampWeekend ) === ("", List(""))
+    )
   }
 }
