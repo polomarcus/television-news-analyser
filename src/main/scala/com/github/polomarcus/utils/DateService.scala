@@ -20,6 +20,7 @@ object DateService {
       val format = new SimpleDateFormat("dd/MM/yyyy")
       format.setTimeZone(timezone)
       val digitsOnly = date.split(" ")(1)
+
       new Timestamp(format.parse(digitsOnly).getTime)
     } catch {
       case e: Exception => {
@@ -27,6 +28,11 @@ object DateService {
         new Timestamp(System.currentTimeMillis())
       }
     }
+  }
+
+  def isItaWeekendOrFridayNight(time: Timestamp) : Boolean = {
+    val dowInt = new SimpleDateFormat("u")
+    dowInt.format(time).toInt > 4
   }
 
   def parseFrenchMonth(month: String) = {
