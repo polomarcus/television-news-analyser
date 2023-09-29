@@ -248,6 +248,8 @@ object StorageService {
     logger.info("Saving saveTSVGarganText...")
 
     news
+      .where(news("year") === 2023)
+      .limit(5000)
       .repartition(1)
       .drop("authors") // Column `authors` has a data type of array<string>, which is not supported by CSV
       .drop("editorDeputy") // Column `editorDeputy` has a data type of array<string>, which is not supported by CSV
