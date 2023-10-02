@@ -261,6 +261,8 @@ object StorageService {
       .drop("urlTvNews")
       .withColumn("Publication Year", $"year") // to partition later
       .withColumnRenamed("media", "Source")
+      .withColumnRenamed("title", "Title")
+      .withColumnRenamed("description", "Abstract")
       .withColumnRenamed("editor", "Authors")
       .withColumnRenamed("day", "Publication Day")
       .withColumnRenamed("month", "Publication Month")
