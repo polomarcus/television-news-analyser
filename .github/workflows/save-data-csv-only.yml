@@ -20,11 +20,10 @@ jobs:
           cache: 'sbt'
       - name: Read from JSON and save it as CSV
         run: sbt "runMain com.github.polomarcus.main.SaveCSV"
-      - name: Organize and refresh new data for TF1
+      - name: Organize data
         run: |
           ls -R data-news-gargantext-tsv/
       - name: Git push csv data
-        uses: actions/checkout@v3
       - run: | # @TODO - save only current year of data | @see "save-data.yml"
           git config user.name polomarcus-github-actions
           git config user.email polomarcus-github-actions@github.com
