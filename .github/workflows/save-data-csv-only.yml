@@ -24,7 +24,7 @@ jobs:
         run: |
           ls -R data-news-gargantext-tsv/
       - name: Git push csv data
-      - run: | # @TODO - save only current year of data | @see "save-data.yml"
+        run: | # @TODO - save only current year of data | @see "save-data.yml"
           git config user.name polomarcus-github-actions
           git config user.email polomarcus-github-actions@github.com
           git status
