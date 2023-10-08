@@ -248,8 +248,12 @@ object StorageService {
     logger.info("Saving saveTSVGarganText...")
 
     news
-      .where(news("year") === 2023)
-      .limit(5000)
+      .withColumn(
+        "editor",
+        when(col("editor") === "", "empty")
+          .otherwise(col("editor")))
+      .where(news("year") === 2023 || news("year") === 2022)
+      .limit(40000)
       .repartition(1)
       .drop("authors") // Column `authors` has a data type of array<string>, which is not supported by CSV
       .drop("editorDeputy") // Column `editorDeputy` has a data type of array<string>, which is not supported by CSV
@@ -259,7 +263,7 @@ object StorageService {
       .drop("date")
       .drop("url")
       .drop("urlTvNews")
-      .withColumn("Publication Year", $"year") // to partition later
+      .withColumnRenamed("year", "Publication Year") // to partition later
       .withColumnRenamed("media", "Source")
       .withColumnRenamed("title", "Title")
       .withColumnRenamed("description", "Abstract")
@@ -268,7 +272,9 @@ object StorageService {
       .withColumnRenamed("month", "Publication Month")
       .write
       .mode(SaveMode.Overwrite)
-      .partitionBy("year")
+      // .partitionBy("year")
+      .option("escape", "'")
+      .option("emptyValue", "")
       .option("header", "true")
       .option("delimiter", "\t") //tab
       // .option("compression", "gzip") --> cannot use zip
