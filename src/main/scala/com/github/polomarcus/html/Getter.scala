@@ -39,7 +39,7 @@ object Getter {
       case _ => (france2UrlPagination, france213hUrlPagination)
     }
     val newsList = (start.toLong to end.toLong by 1).map { page =>
-      val pagination = getPagination(page)
+      val pagination = getPagination(page, media)
       logger.info(s"($page / $end) : Parsing this $urlMedia$pagination")
 
       media match {
@@ -56,11 +56,22 @@ object Getter {
     newsList.flatten.toList
   }
 
-  def getPagination(page: Long): String = {
+  /**
+   * going throught pages :
+   * France 2:  https://www.francetvinfo.fr/replay-jt/france-2/20-heures/3.html
+   * TF1:  https://www.tf1info.fr/emission/le-20h-11001/extraits/2/
+   * @param page
+   * @param media
+   * @return
+   */
+  def getPagination(page: Long, media: String): String = {
     if (page == 1) {
       ""
     } else {
-      s"/$page.html"
+      media match {
+        case "tf1" => s"/$page"
+        case _ => s"/$page.html"
+      }
     }
   }
 }
