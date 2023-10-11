@@ -6,6 +6,9 @@ scalaVersion := "2.12.15"
 
 fork := true
 
+outputStrategy := Some(StdoutOutput)
+
+
 val circeVersion = "0.10.0"
 val scalaTest = "3.2.9"
 val sparkVersion = "3.5.0"
