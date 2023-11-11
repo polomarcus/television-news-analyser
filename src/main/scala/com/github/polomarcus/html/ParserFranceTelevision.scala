@@ -45,13 +45,13 @@ object ParserFranceTelevision {
     }
 
     logger.info(s"""
-        I got ${allTelevisionNews.length} days of news
+        I got ${allTelevisionNews.length} days of news, but parsing only ${numberOfDaysToParse} to avoid some wasteful requests
     """)
 
     val parsedTelevisionNews = allTelevisionNews
       .take(numberOfDaysToParse)
       .map(televisionNewsForOneDay => {
-        logger.info(s"Parsing this day of news : $televisionNewsForOneDay")
+        logger.info(s"Day : $televisionNewsForOneDay")
         parseFranceTelevisionNews(
           televisionNewsForOneDay,
           defaultUrl,
@@ -64,7 +64,7 @@ object ParserFranceTelevision {
   def parseFranceTelevisionHome(
       url: String,
       defaultUrl: String = "https://www.francetvinfo.fr") = {
-    logger.debug("France television Url: " + url)
+    logger.info("France television Url: " + url)
 
     try {
       parseFranceTelevisionHomeHelper(url, defaultUrl)
@@ -154,14 +154,14 @@ object ParserFranceTelevision {
 
         val presenter = getPresenter(doc >> text(htmlSelectorMainDescriptionOfTheNews))
 
-        logger.debug(s"""
-            This is what i got for this day $tvNewsURL:
+        logger.info(s"""
+            for $tvNewsURL:
             number of news: ${news.length}
             presenter : $presenter
-            editor : $editorAndDeputies
           """)
 
         val parsedNews: List[Option[News]] = if (news.isEmpty) {
+          logger.info("No news to parse")
           List(None)
         } else {
           news.zipWithIndex.map {
