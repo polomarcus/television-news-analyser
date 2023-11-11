@@ -216,6 +216,7 @@ object StorageService {
   }
 
   def saveJSON(news: DataFrame, path: String): String = {
+    logger.info(s"Saving json to ${path}-json")
     news
       .repartition(1)
       .write
