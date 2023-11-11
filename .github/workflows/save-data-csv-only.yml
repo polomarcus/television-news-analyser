@@ -3,9 +3,6 @@ name: Save CSV
 on:
   workflow_dispatch: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
 
-  schedule: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
-    - cron:  '26 17 * * *'
-
 jobs:
   click-here-to-save-csv:
     runs-on: ubuntu-20.04
