@@ -5,15 +5,14 @@ version := "1.0"
 scalaVersion := "2.12.15"
 
 fork := true
-
 outputStrategy := Some(StdoutOutput)
 
 
 val circeVersion = "0.10.0"
-val scalaTest = "3.2.9"
+val scalaTest = "3.2.15"
 val sparkVersion = "3.5.0"
-val logback = "1.2.10"
-val scalaLogging = "3.9.4"
+val logback = "1.4.7"
+val scalaLogging = "3.9.5"
 
 scalacOptions := Seq("-Xexperimental", "-unchecked", "-deprecation")
 
@@ -31,8 +30,8 @@ libraryDependencies ++= Seq(
 
 // Log
 libraryDependencies += "ch.qos.logback" % "logback-classic" % logback
-libraryDependencies += "org.slf4j" % "log4j-over-slf4j" % "1.7.32"
-libraryDependencies += "net.logstash.logback" % "logstash-logback-encoder" % "7.0.1"
+libraryDependencies += "org.slf4j" % "log4j-over-slf4j" % "2.0.5"
+libraryDependencies += "net.logstash.logback" % "logstash-logback-encoder" % "7.3"
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % scalaLogging
 
 // https://mvnrepository.com/artifact/joda-time/joda-time
@@ -60,4 +59,4 @@ dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-databind" % "2.15
 dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-core" % "2.15.1"
 dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-annotations" % "2.15.1"
 
-libraryDependencies += "org.postgresql" % "postgresql" % "42.2.5"
+libraryDependencies += "org.postgresql" % "postgresql" % "42.5.4"
