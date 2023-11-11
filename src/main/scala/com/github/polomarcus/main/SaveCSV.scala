@@ -16,9 +16,9 @@ object SaveCSV {
         StorageService.readNews(filterCurrentYear = false).toDF()
       )
 
-   //StorageService.saveCSV(news, "data-news")
-   //@TODO change limit once approved
-    StorageService.saveTSVGarganText(news, "data-news")
+    //StorageService.saveCSV(news, "data-news")
+    //@TODO change limit once approved
+    // StorageService.saveTSVGarganText(news, "data-news")
     logger.info("saveCSV & saveTSVGarganText done")
   }
 }
