@@ -32,7 +32,7 @@ object StorageService {
     val news = StorageService.read("./data-news-json/").as[News]
 
     val newsDF = if (filterCurrentYear) {
-      logger.info("Reading news:  Keeping only 365 days of data")
+      logger.info(s"Reading news:  filter to keep only this year - remove args if you want full data")
       news.filter((year($"date") === year(current_date())))
     } else {
       news
