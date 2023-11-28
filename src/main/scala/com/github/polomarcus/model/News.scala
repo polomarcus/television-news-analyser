@@ -15,3 +15,4 @@ case class News (title: String,
                  urlTvNews: String,
                  containsWordGlobalWarming: Boolean,
                  media: String)
+
