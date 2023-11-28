@@ -13,4 +13,8 @@ output-france2-tv-news-json/**
 output-tf1-tv-news-json/**
 **.crc
 notebooks/.ipynb_checkpoints/**
+data-news-csv/
+data-news-gargantext-tsv/
+notebooks/
+sql/
 .git
