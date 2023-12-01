@@ -10,7 +10,7 @@ object SaveTVNewsToPostgres {
     val spark = SparkService.getAndConfigureSparkSession()
     val sqlContext = spark.sqlContext
     val logger = Logger(this.getClass)
-    val dbTable = "AA_news"
+    val dbTable = "news_broadcast"
     val newsDFTmp: DataFrame = StorageService.readNews().toDF()
     val newsDF = StorageService.resetContainsGlobalWarming(newsDFTmp)
 
