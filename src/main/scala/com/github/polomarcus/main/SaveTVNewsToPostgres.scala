@@ -14,17 +14,22 @@ object SaveTVNewsToPostgres {
     val newsDFTmp: DataFrame = StorageService.readNews().toDF()
     val newsDF = StorageService.resetContainsGlobalWarming(newsDFTmp)
 
-    val dbHost = sys.env.getOrElse("postgres", "localhost")
-    logger.warn(s"Connecting to jdbc:postgresql://$dbHost:5432/metabase")
+    val dbHost = sys.env.getOrElse("POSTGRES_HOST", "postgres")
+    val dbPort = sys.env.getOrElse("POSTGRES_PORT", "5432")
+    val dbName = sys.env.getOrElse("POSTGRES_DB", "metabase")
+    val dbUser = sys.env.getOrElse("POSTGRES_USER", "user")
+    val dbPassword = sys.env.getOrElse("POSTGRES_PASSWORD", "password")
+    val connectionUrl = s"jdbc:postgresql://$dbHost:$dbPort/$dbName"
+    logger.warn(s"Connecting to $connectionUrl")
     // Overwrite new data to a JDBC source
     logger.info(s"Overwriting all previous data with new ones")
     newsDF.write
       .format("jdbc")
-      .option("url", s"jdbc:postgresql://$dbHost:5432/metabase")
+      .option("url", connectionUrl)
       .option("driver", "org.postgresql.Driver")
       .option("dbtable", dbTable)
-      .option("user", "user")
-      .option("password", "password")
+      .option("user", dbUser)
+      .option("password", dbPassword)
       .mode(SaveMode.Overwrite)
       .save()
 

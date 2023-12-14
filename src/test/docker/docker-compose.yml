@@ -46,6 +46,10 @@ services:
       context: ./../../../
       dockerfile: Dockerfile
     environment:
-      - postgres=postgres
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: metabase
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
     depends_on:
       - postgres
