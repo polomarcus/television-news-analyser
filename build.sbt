@@ -2,13 +2,13 @@ name := "TelevisionNewsAnalyser"
 organization := "com.github.polomarcus"
 
 version := "1.0"
-scalaVersion := "2.12.15"
+scalaVersion := "2.13.12"
 
 fork := true
 outputStrategy := Some(StdoutOutput)
 
 
-val circeVersion = "0.10.0"
+val circeVersion = "0.14.6"
 val scalaTest = "3.2.15"
 val sparkVersion = "3.5.0"
 val logback = "1.4.7"
@@ -17,7 +17,7 @@ val scalaLogging = "3.9.5"
 scalacOptions := Seq("-Xexperimental", "-unchecked", "-deprecation")
 
 // Scrapper
-libraryDependencies += "net.ruippeixotog" %% "scala-scraper" % "2.2.1"
+libraryDependencies += "net.ruippeixotog" %% "scala-scraper" % "3.0.0"
 
 // HTTP Client
 libraryDependencies += "org.scalaj" %% "scalaj-http" % "2.4.2"
@@ -35,7 +35,7 @@ libraryDependencies += "net.logstash.logback" % "logstash-logback-encoder" % "7.
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % scalaLogging
 
 // https://mvnrepository.com/artifact/joda-time/joda-time
-libraryDependencies += "joda-time" % "joda-time" % "2.10.13"
+libraryDependencies += "joda-time" % "joda-time" % "2.12.5"
 
 // Test
 libraryDependencies += "org.scalatest" %% "scalatest" % scalaTest % "test"
