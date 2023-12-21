@@ -2,7 +2,7 @@
 *.parquet
 *.zip
 target/
-project/
+project/target/
 .bsp
 spark-warehouse/
 archived-json/
