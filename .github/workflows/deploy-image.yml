@@ -1,10 +1,14 @@
 name: Build & Deploy to Scaleway
 
 on:
+  workflow_run:
+    workflows: [Get news from websites]
+    types:
+      - completed
   push:
-    # Sequence of patterns matched against refs/heads
+    # ci is skipped on save data workflow
     branches:
-      - main
+      - main 
 
 
   # to be able to force deploy
