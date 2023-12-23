@@ -3,7 +3,7 @@ package com.github.polomarcus.main
 import com.github.polomarcus.storage.StorageService
 import com.github.polomarcus.utils.SparkService
 import com.typesafe.scalalogging.Logger
-import org.apache.spark.sql.DataFrame
+import org.apache.spark.sql.{DataFrame, SaveMode}
 
 import java.lang.Thread.sleep
 
@@ -26,15 +26,15 @@ object SaveTVNewsToPostgres {
     logger.warn(s"Connecting to $connectionUrl")
     // Overwrite new data to a JDBC source
     logger.info(s"Overwriting all previous data with new ones")
-//    newsDF.write
-//      .format("jdbc")
-//      .option("url", connectionUrl)
-//      .option("driver", "org.postgresql.Driver")
-//      .option("dbtable", dbTable)
-//      .option("user", dbUser)
-//      .option("password", dbPassword)
-//      .mode(SaveMode.Overwrite)
-//      .save()
+    newsDF.write
+      .format("jdbc")
+      .option("url", connectionUrl)
+      .option("driver", "org.postgresql.Driver")
+      .option("dbtable", dbTable)
+      .option("user", dbUser)
+      .option("password", dbPassword)
+      .mode(SaveMode.Overwrite)
+      .save()
 
     logger.info(s"Saved news inside PG database in table ${dbTable}")
 
