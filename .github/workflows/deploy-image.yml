@@ -34,7 +34,11 @@ jobs:
           username: nologin
           password: ${{ secrets.SCALEWAY_API_KEY }}
           registry: ${{ secrets.CONTAINER_REGISTRY_ENDPOINT }}
+      - name: Set yesterday date as env variable for partitioning
+        run: echo "PATH_YEAR_PARTITION=$(date -d "yesterday" +'year=%Y')" >> $GITHUB_ENV
+      - name: debug
+        run: ls -R data-news-json/media=France\ 2/${{ env.PATH_YEAR_PARTITION }}
       - name: Build scala image
-        run: docker build -f Dockerfile . -t ${{ secrets.CONTAINER_REGISTRY_ENDPOINT }}/spark_tv_news
+        run: docker build --no-cache -f Dockerfile . -t ${{ secrets.CONTAINER_REGISTRY_ENDPOINT }}/spark_tv_news
       - name: Push scala Image
         run: docker push ${{ secrets.CONTAINER_REGISTRY_ENDPOINT }}/spark_tv_news
