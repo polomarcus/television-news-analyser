@@ -28,6 +28,13 @@ object StorageService {
     logger.info(s"Change name of Spark out to be versioned by git : $output")
   }
 
+  def listLastFilesJson(): Unit = {
+    val year = "2024"
+    val output = Seq("/bin/sh", "-c", s"ls -R data-news-json/media=TF1/year=$year").!!
+
+    logger.info(s"Last json file saved: \n $output")
+  }
+
   def readNews(filterCurrentYear: Boolean = false): Dataset[News] = {
     val news = StorageService.read("./data-news-json/").as[News]
 
