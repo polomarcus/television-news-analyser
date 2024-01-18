@@ -13,6 +13,10 @@ object SaveTVNewsToPostgres {
     val sqlContext = spark.sqlContext
     val logger = Logger(this.getClass)
     val dbTable = "news_broadcast"
+
+    // Log last file of 2024 to debug scaleway registry
+    StorageService.listLastFilesJson()
+
     val newsDFTmp: DataFrame = StorageService.readNews().toDF()
     val newsDF = StorageService.resetContainsGlobalWarming(newsDFTmp)
 
@@ -26,6 +30,7 @@ object SaveTVNewsToPostgres {
     logger.warn(s"Connecting to $connectionUrl")
     // Overwrite new data to a JDBC source
     logger.info(s"Overwriting all previous data with new ones")
+
     newsDF.write
       .format("jdbc")
       .option("url", connectionUrl)
