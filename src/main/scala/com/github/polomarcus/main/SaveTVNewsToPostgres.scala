@@ -15,7 +15,7 @@ object SaveTVNewsToPostgres {
     val dbTable = "news_broadcast"
 
     // Log last file of 2024 to debug scaleway registry
-    StorageService.listLastFilesJson()
+    // StorageService.listLastFilesJson()
 
     val newsDFTmp: DataFrame = StorageService.readNews().toDF()
     val newsDF = StorageService.resetContainsGlobalWarming(newsDFTmp)
