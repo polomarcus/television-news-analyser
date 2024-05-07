@@ -222,9 +222,9 @@
 {"number_of_news":4,"containsWordGlobalWarming":true,"media":"France 3","datecharts":"2018-03","date":"03/2018"}
 {"number_of_news":1,"containsWordGlobalWarming":true,"media":"TF1","datecharts":"2018-03","date":"03/2018"}
 {"number_of_news":749,"containsWordGlobalWarming":false,"media":"France 2","datecharts":"2018-04","date":"04/2018"}
-{"number_of_news":1,"containsWordGlobalWarming":true,"media":"France 2","datecharts":"2018-04","date":"04/2018"}
 {"number_of_news":523,"containsWordGlobalWarming":false,"media":"TF1","datecharts":"2018-04","date":"04/2018"}
 {"number_of_news":7,"containsWordGlobalWarming":true,"media":"TF1","datecharts":"2018-04","date":"04/2018"}
+{"number_of_news":1,"containsWordGlobalWarming":true,"media":"France 2","datecharts":"2018-04","date":"04/2018"}
 {"number_of_news":580,"containsWordGlobalWarming":false,"media":"France 3","datecharts":"2018-04","date":"04/2018"}
 {"number_of_news":2,"containsWordGlobalWarming":true,"media":"France 3","datecharts":"2018-04","date":"04/2018"}
 {"number_of_news":781,"containsWordGlobalWarming":false,"media":"France 2","datecharts":"2018-05","date":"05/2018"}
@@ -422,8 +422,8 @@
 {"number_of_news":675,"containsWordGlobalWarming":false,"media":"France 2","datecharts":"2021-02","date":"02/2021"}
 {"number_of_news":8,"containsWordGlobalWarming":true,"media":"France 2","datecharts":"2021-02","date":"02/2021"}
 {"number_of_news":524,"containsWordGlobalWarming":false,"media":"France 3","datecharts":"2021-02","date":"02/2021"}
-{"number_of_news":4,"containsWordGlobalWarming":true,"media":"France 3","datecharts":"2021-02","date":"02/2021"}
 {"number_of_news":431,"containsWordGlobalWarming":false,"media":"TF1","datecharts":"2021-02","date":"02/2021"}
+{"number_of_news":4,"containsWordGlobalWarming":true,"media":"France 3","datecharts":"2021-02","date":"02/2021"}
 {"number_of_news":5,"containsWordGlobalWarming":true,"media":"TF1","datecharts":"2021-02","date":"02/2021"}
 {"number_of_news":749,"containsWordGlobalWarming":false,"media":"France 2","datecharts":"2021-03","date":"03/2021"}
 {"number_of_news":4,"containsWordGlobalWarming":true,"media":"France 2","datecharts":"2021-03","date":"03/2021"}
@@ -639,7 +639,7 @@
 {"number_of_news":20,"containsWordGlobalWarming":true,"media":"TF1","datecharts":"2024-04","date":"04/2024"}
 {"number_of_news":680,"containsWordGlobalWarming":false,"media":"France 2","datecharts":"2024-04","date":"04/2024"}
 {"number_of_news":20,"containsWordGlobalWarming":true,"media":"France 2","datecharts":"2024-04","date":"04/2024"}
-{"number_of_news":106,"containsWordGlobalWarming":false,"media":"TF1","datecharts":"2024-05","date":"05/2024"}
+{"number_of_news":131,"containsWordGlobalWarming":false,"media":"TF1","datecharts":"2024-05","date":"05/2024"}
 {"number_of_news":7,"containsWordGlobalWarming":true,"media":"TF1","datecharts":"2024-05","date":"05/2024"}
 {"number_of_news":3,"containsWordGlobalWarming":true,"media":"France 2","datecharts":"2024-05","date":"05/2024"}
-{"number_of_news":118,"containsWordGlobalWarming":false,"media":"France 2","datecharts":"2024-05","date":"05/2024"}
+{"number_of_news":133,"containsWordGlobalWarming":false,"media":"France 2","datecharts":"2024-05","date":"05/2024"}
