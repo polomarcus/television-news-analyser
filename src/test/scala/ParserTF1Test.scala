@@ -2,7 +2,6 @@ import com.github.polomarcus.html.ParserTF1
 import com.github.polomarcus.model.News
 import com.github.polomarcus.utils.DateService
 import org.scalatest.funsuite.AnyFunSuite
-
 class ParserTF1Test extends AnyFunSuite {
   val localhost = "http://localhost:8000"
   test("parseTF1HomeHelper") {
@@ -44,8 +43,7 @@ class ParserTF1Test extends AnyFunSuite {
       ParserTF1.parseDescriptionAuthors("/one-subject-tv-news-tf1.html", localhost)
 
     assert(
-      "▶\uFE0F Qualifiés, mais pas vraiment dominateurs, les Bleus disputeront dans trois jours le qua" == description
-        .take(90))
+      "▶\uFE0F Qualifiés, mais pas vraiment dominateurs, les Bleus disputeront dans trois jours le qua" == description.take(90))
     assert(Nil == authors)
     assert("" == editor)
     assert(List("") == editorDeputy)
