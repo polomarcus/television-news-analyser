@@ -6,6 +6,7 @@ services:
       - 8080:80
     volumes:
       - './../../../docs:/usr/share/nginx/html'
+
   nginxtest: # to test locally webpages
     image: nginx:1.25.3
     ports:
@@ -29,8 +30,9 @@ services:
       JAVA_TIMEZONE: Europe/Paris
     depends_on:
       - postgres
+
   postgres:
-    image: postgres:13.6
+    image: postgres:15
     container_name: postgres
     ports:
       - 5432:5432
@@ -41,6 +43,7 @@ services:
       POSTGRES_USER: user
       POSTGRES_DB: metabase
       POSTGRES_PASSWORD: password
+
   app:
     build:
       context: ./../../../

@@ -1,10 +1,9 @@
 package com.github.polomarcus.html
 
 import com.github.polomarcus.model.News
-import com.github.polomarcus.utils.FutureService.{waitFuture}
+import com.github.polomarcus.utils.FutureService.waitFuture
 import com.github.polomarcus.utils.{DateService, FutureService, TextService}
 import com.typesafe.scalalogging.Logger
-import net.ruippeixotog.scalascraper.browser.JsoupBrowser
 import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
 import net.ruippeixotog.scalascraper.dsl.DSL._
 
@@ -110,34 +109,20 @@ object ParserTF1 {
     try {
       logger.debug(s"Parsing news : $defaultTF1URL$url")
       val doc = browser.get(defaultTF1URL + url)
-      val subTitle = doc >> text(".ArticleChapo")
-      val description = doc >> elementList(".Paragraph")
-      val descriptionTotal = description.foldLeft("") { (acc, paragraph) =>
-        val sum = acc + " " + (paragraph >> text("p"))
-        logger.debug(s"""
-         parseDescriptionAuthors from $paragraph:
-        """)
-
-        sum
-      }
-
-      val authors = parseAuthors((description.lastOption >> text("p")).getOrElse(""))
-
+      val description = doc >> attr("content")("meta[name=twitter:description]")
       val (editor, editorDeputy) = ("", "")
 
       logger.debug(s"""
       parseDescriptionAuthors from $url:
-        $authors
         $editor
         $editorDeputy
-        $subTitle
-        $descriptionTotal
+        $description
       """)
 
-      (subTitle + " " + descriptionTotal, authors, editor, editorDeputy.split(", ").toList)
+      (description, Nil, editor, editorDeputy.split(", ").toList)
     } catch {
       case e: Exception => {
-        logger.error(s"Error parsing this subject $defaultTF1URL + $url " + e.toString)
+        logger.error(s"Error parsing this subject $defaultTF1URL$url " + e.toString)
         ("", Nil, "", Nil)
       }
     }
