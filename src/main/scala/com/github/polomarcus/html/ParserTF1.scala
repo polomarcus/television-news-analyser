@@ -109,7 +109,8 @@ object ParserTF1 {
     try {
       logger.debug(s"Parsing news : $defaultTF1URL$url")
       val doc = browser.get(defaultTF1URL + url)
-      val description = doc >> text(".RichContent__Texts__Subtitle")
+
+      val description = doc >> attr("content")("meta[name=twitter:description]")
       val (editor, editorDeputy) = ("", "")
 
       logger.debug(s"""
@@ -122,7 +123,7 @@ object ParserTF1 {
       (description, Nil, editor, editorDeputy.split(", ").toList)
     } catch {
       case e: Exception => {
-        logger.error(s"Error parsing this subject $defaultTF1URL + $url " + e.toString)
+        logger.error(s"Error parsing this subject $defaultTF1URL$url " + e.toString)
         ("", Nil, "", Nil)
       }
     }

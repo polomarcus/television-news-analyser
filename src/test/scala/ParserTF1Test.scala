@@ -9,8 +9,8 @@ class ParserTF1Test extends AnyFunSuite {
     val listNews = ParserTF1.parseTF1HomeHelper(s"$localhost/home-tv-news-tf1.html", localhost)
 
     val description =
-      "En 2023, vous avez peut-être fait partie des 27 millions de Français à avoir tenté votre chance à un jeu de hasard. Comment ces tickets sont-ils fabriqués ? Qui décide que telle ou telle carte imprimée sera gagnante ?"
-    val news = News(
+      "▶\uFE0F Qualifiés, mais pas vraiment dominateurs, les Bleus disputeront dans trois jours le quart de finale de l'Euro. Après leur victoire lundi soir à 1-0 face à la Belgique. Comment les joueurs ont-ils réagi après le match ? (Euro 2024) -  TF1 INFO"
+      val news = News(
       "JT20H - Jardinier, cadre, formateur … dans cette entreprise, les salariés sont tous handicapés",
       description,
       DateService.getTimestampTF1("Publié le 16 novembre 2016 à 20h38"),
@@ -44,7 +44,7 @@ class ParserTF1Test extends AnyFunSuite {
       ParserTF1.parseDescriptionAuthors("/one-subject-tv-news-tf1.html", localhost)
 
     assert(
-      "En 2023, vous avez peut-être fait partie des 27 millions de Français à avoir tenté votre c" == description
+      "▶\uFE0F Qualifiés, mais pas vraiment dominateurs, les Bleus disputeront dans trois jours le qua" == description
         .take(90))
     assert(Nil == authors)
     assert("" == editor)
