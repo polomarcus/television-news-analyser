@@ -8,9 +8,9 @@ on:
 
 jobs:
   click-here-to-see-data:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 #      - uses: coursier/cache-action@v6
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -46,7 +46,7 @@ jobs:
         run: |
           ls -R data-news-json/media=TF1/
       - name: Create website data and save data with git
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           clean: false
       - run: |
@@ -75,10 +75,10 @@ jobs:
           git commit -m "ci(data): saved date ${{ env.PATH_DAY_PARTITION }} and ${{ env.PATH_DAY_2_DAY_AGO_PARTITION }} and ${{ env.PATH_DAY_3_DAY_AGO_PARTITION }}"
           git push origin main
   data-quality:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs: click-here-to-see-data
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 #      - uses: coursier/cache-action@v6
       - name: Set up JDK 11
         uses: actions/setup-java@v3
