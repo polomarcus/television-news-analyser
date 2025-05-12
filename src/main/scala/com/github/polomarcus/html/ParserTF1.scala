@@ -113,7 +113,7 @@ object ParserTF1 {
     try {
       logger.debug(s"Parsing news : $defaultTF1URL$url")
       val doc = browser.get(defaultTF1URL + url)
-      val description = doc >> attr("content")("meta[name=twitter:description]")
+      val description = doc >> attr("content")("meta[name=description]")
       val (editor, editorDeputy) = ("", "")
 
       logger.debug(s"""
