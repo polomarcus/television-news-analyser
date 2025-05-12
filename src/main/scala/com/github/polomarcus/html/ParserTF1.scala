@@ -23,7 +23,8 @@ object ParserTF1 {
     val parsedTelevisionNews = Future {
       val tvNewsURL = url
       val doc = browser.get(tvNewsURL)
-      val news = doc >> elementList(".ReplayList__Content__Article li") // >> attr("href")
+      val root_html_metadata = ".ProgramVideoItem__"
+      val news = doc >> elementList(".ProgramVideoList__Content__Article li") // >> attr("href")
 
       logger.info(s"""
               This is what i got for this page $url:
@@ -32,11 +33,14 @@ object ParserTF1 {
 
       news.map(x => {
         try {
-          val title = x >> text(".ReplayItem__Title")
+          val title_metadata = s"""${root_html_metadata}Title"""
+          val data_metadata = ".ProgramVideoDate"
+          logger.debug(s"Parsing news $tvNewsURL with metadata $title_metadata and $data_metadata")
+          val title = x >> text(title_metadata)
           val linkToDescription = x >> element("a") >> attr("href")
           val (description, authors, editor, editorDeputy) =
             parseDescriptionAuthors(linkToDescription, defaultUrl)
-          val publishedDate = x >> text(".ReplayItem__Date") // Publié le 10 décembre 2020 à 20h08
+          val publishedDate = x >> text(data_metadata) // Publié le 10 décembre 2020 à 20h08
 
           logger.debug(s"""
                 I got a news for date : $publishedDate
@@ -109,7 +113,7 @@ object ParserTF1 {
     try {
       logger.debug(s"Parsing news : $defaultTF1URL$url")
       val doc = browser.get(defaultTF1URL + url)
-      val description = doc >> attr("content")("meta[name=twitter:description]")
+      val description = doc >> attr("content")("meta[name=description]")
       val (editor, editorDeputy) = ("", "")
 
       logger.debug(s"""

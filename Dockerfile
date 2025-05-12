@@ -7,6 +7,5 @@ COPY . .
 
 EXPOSE 4040
 
-CMD ["sbt", "update"]
-
 CMD ["sbt", "--batch", "-Dsbt.server.forcestart=true", "runMain com.github.polomarcus.main.SaveTVNewsToPostgres"]
+# CMD ["sbt", "--batch", "-Dsbt.server.forcestart=true", "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 2 tf1"]

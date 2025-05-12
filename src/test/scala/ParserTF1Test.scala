@@ -11,7 +11,7 @@ class ParserTF1Test extends AnyFunSuite {
     val description =
       "▶\uFE0F Qualifiés, mais pas vraiment dominateurs, les Bleus disputeront dans trois jours le quart de finale de l'Euro. Après leur victoire lundi soir à 1-0 face à la Belgique. Comment les joueurs ont-ils réagi après le match ? (Euro 2024) -  TF1 INFO"
       val news = News(
-      "JT20H - Jardinier, cadre, formateur … dans cette entreprise, les salariés sont tous handicapés",
+      "Léon XIV : un pape face aux défis des migrants",
       description,
       DateService.getTimestampTF1("Publié le 16 novembre 2016 à 20h38"),
       0,
@@ -44,7 +44,7 @@ class ParserTF1Test extends AnyFunSuite {
       ParserTF1.parseDescriptionAuthors("/one-subject-tv-news-tf1.html", localhost)
 
     assert(
-      "▶\uFE0F Qualifiés, mais pas vraiment dominateurs, les Bleus disputeront dans trois jours le qua" == description.take(90))
+      "▶️ Il y a 70 millions de catholiques aux États-Unis. L'élection d'un pape nord-américai" == description.take(90))
     assert(Nil == authors)
     assert("" == editor)
     assert(List("") == editorDeputy)

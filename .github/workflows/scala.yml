@@ -21,6 +21,6 @@ jobs:
         distribution: 'temurin'
         cache: 'sbt'
     - name: init
-      run: docker-compose -f src/test/docker/docker-compose.yml up -d
+      run: docker compose -f src/test/docker/docker-compose.yml up -d
     - name: Run tests
       run: sbt test
