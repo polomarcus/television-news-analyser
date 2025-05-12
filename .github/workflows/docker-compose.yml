@@ -14,4 +14,4 @@ jobs:
     - name: sleep
       run:  sleep 120
     - name: log
-      run: docker logs docker_app_1
+      run: docker logs docker-app-1
