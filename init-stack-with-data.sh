@@ -3,7 +3,7 @@ set -e
 
 ## Create stack
 echo "Making sure to add the latest news data, so rebuilding the app container... (a few minutes)"
-docker-compose -f src/test/docker/docker-compose.yml up -d --build app
+docker compose -f src/test/docker/docker-compose.yml up -d --build app
 sleep 3
 
 echo 'You can access Metabase to explore data with SQL : http://localhost:3000'
