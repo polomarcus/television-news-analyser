@@ -99,7 +99,7 @@ object ParserFranceTelevision {
 
   def getLinkToDescription(x: Element): String = {
     val linkToDescription = x >?> element(htmlSelectorANewsFromOneDay) >> attr("href")
-    logger.debug(s"linkToDescription: $linkToDescription")
+    logger.info(s"linkToDescription: $linkToDescription")
     linkToDescription match {
       case Some(link) => link
       case None =>
@@ -166,6 +166,7 @@ object ParserFranceTelevision {
         } else {
           news.zipWithIndex.map {
             case (x, index) => {
+              logger.debug("Parsing news :" + x)
               val title = getTitle(x)
 
               val order = index + 1 // Since oct 2022, frtv has removed the order attribute
@@ -296,12 +297,12 @@ object ParserFranceTelevision {
       defaultFrance2URL: String = "https://www.francetvinfo.fr")
     : Option[(String, List[String], String)] = {
     try {
-      val newsUrl = if (url.contains(defaultFrance2URL)) {
+      val newsUrl = if (url.contains(defaultFrance2URL) || url.contains("https://www.franceinfo.fr")) {
         url
       } else {
         defaultFrance2URL + url
       }
-      logger.debug(s"parseDescriptionAuthors from $newsUrl")
+      logger.info(s"parseDescriptionAuthors from $newsUrl")
       val doc: browser.DocumentType = browser.get(newsUrl)
       val publishedDate = getDate(doc)
 
@@ -316,7 +317,7 @@ object ParserFranceTelevision {
       }
       val authors = doc >?> text(".c-signature__names span")
 
-      logger.debug(s"""
+      logger.info(s"""
         authors: $authors
         subtitle: $subtitle
         description: $description
