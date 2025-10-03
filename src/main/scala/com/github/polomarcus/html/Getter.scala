@@ -15,9 +15,9 @@ object Getter {
   val france3UrlPagination = "https://www.francetvinfo.fr/replay-jt/france-3/19-20"
   val france313hUrlPagination = "https://www.francetvinfo.fr/replay-jt/france-3/12-13"
 
-  val tf1UrlPagination = "https://www.tf1info.fr/emission/le-20h-11001/extraits"
-  val tf1WeekendUrlPagination = "https://www.tf1info.fr/emission/le-we-12559/extraits"
-  val tf113hPagination = "https://www.tf1info.fr/emission/le-13h-10927/extraits"
+  val tf1UrlPagination = "https://www.tf1info.fr/emissions/tf1/le-20h-11001/sujets/"
+  // val tf1WeekendUrlPagination = "https://www.tf1info.fr/emission/le-we-12559/sujets"
+  val tf113hPagination = "https://www.tf1info.fr/emissions/tf1/le-13h-10927/"
 
   def getBrowser() = {
     new JsoupBrowser(
@@ -45,7 +45,7 @@ object Getter {
       media match {
         case "tf1" =>
           ParserTF1.parseTF1Home(s"$urlMedia$pagination") ++
-            ParserTF1.parseTF1Home(s"$tf1WeekendUrlPagination$pagination") ++
+            // ParserTF1.parseTF1Home(s"$tf1WeekendUrlPagination$pagination") ++
             ParserTF1.parseTF1Home(s"$urlMedia13h$pagination")
         case _ =>
           ParserFranceTelevision.parseFranceTelevisionHome(s"$urlMedia$pagination") ++
