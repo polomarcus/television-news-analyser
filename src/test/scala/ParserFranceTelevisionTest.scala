@@ -14,7 +14,7 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
     val news = News(
       "Pénurie de carburant : des avancées et des blocages dans le bras de fer entre Total et les syndicats",
       "",
-      DateService.getTimestampFranceTelevision("le 14/10/2022"),
+      DateService.getTimestampFranceTelevision("le 24/09/2022"),
       1,
       "Laurent Delahousse",
       List("J. Bigard", "A. Boulet"),
