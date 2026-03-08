@@ -49,4 +49,5 @@ jobs:
           git add .
           git status
           git commit -m "ci(data): backfill missing data from January 4 to March 8 2026"
+          git pull --rebase origin main
           git push origin main
