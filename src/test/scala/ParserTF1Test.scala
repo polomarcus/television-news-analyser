@@ -9,7 +9,7 @@ class ParserTF1Test extends AnyFunSuite {
     val listNews = ParserTF1.parseTF1HomeHelper(s"$localhost/home-tv-news-tf1.html", localhost)
 
     val description =
-      "▶\uFE0F Il y a 70 millions de catholiques aux États-Unis. L'élection d'un pape nord-américain est une première et pourrait marquer un tournant, notamment face à la crise migratoire entre le Mexique et les États-Unis. Lors d'une messe émouvante à la  frontière, le pape François avait pleuré face à cette situation. Cette nomination est perçue comme un signe d'espoir et de bénédiction. Le choix du nouveau pape de s'appeler Léon XIV s'inspire de Léon XIII, connu pour son engagement envers les pauvres. (International)."
+      "▶\uFE0F Il y a 70 millions de catholiques aux États-Unis. L'élection d'un pape nord-américain est une première et pourrait marquer un tournant, notamment face à la crise migratoire entre le Mexique et les États-Unis. Lors d\u2019une messe émouvante à la  frontière, le pape François avait pleuré face à cette situation. Cette nomination est perçue comme un signe d'espoir et de bénédiction. Le choix du nouveau pape de s'appeler Léon XIV s'inspire de Léon XIII, connu pour son engagement envers les pauvres. (International)."
       val news = News(
       "Léon XIV : un pape face aux défis des migrants",
       description,
