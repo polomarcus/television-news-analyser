@@ -56,7 +56,7 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
   }
 
   test("parseDescriptionAuthors") {
-    val (description, authors, publishedDate) =
+    val (title, description, authors, publishedDate) =
       ParserFranceTelevision
         .parseDescriptionAuthors("/one-subject-tv-news-fr2.html", localhost)
         .get
@@ -68,7 +68,7 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
   }
 
   test("parseDescriptionAuthors - old news 204/2013") {
-    val (description, authors, publishedDate) =
+    val (title, description, authors, publishedDate) =
       ParserFranceTelevision
         .parseDescriptionAuthors("/old-subject-tv-news-fr2.html", localhost)
         .get
