@@ -210,14 +210,13 @@ object ParserFranceTelevision {
           news.zipWithIndex.map {
             case (x, index) => {
               logger.debug("Parsing news :" + x)
-              val title = getTitle(x)
 
               val order = index + 1 // Since oct 2022, frtv has removed the order attribute
 
               val linkToDescription = getLinkToDescription(x)
 
               parseDescriptionAuthors(linkToDescription, defaultUrl) match {
-                case Some((description, authors, _)) => {
+                case Some((title, description, authors, _)) => {
 
                   val (editor, editorDeputy) = getEditor(editorAndDeputies, newsTimestamp)
 
@@ -346,7 +345,7 @@ object ParserFranceTelevision {
   def parseDescriptionAuthors(
       url: String,
       defaultFrance2URL: String = "https://www.francetvinfo.fr")
-    : Option[(String, List[String], String)] = {
+    : Option[(String, String, List[String], String)] = {
     try {
       val newsUrl = if (url.contains(defaultFrance2URL) || url.contains("https://www.franceinfo.fr")) {
         url
@@ -357,6 +356,7 @@ object ParserFranceTelevision {
       val doc: browser.DocumentType = browser.get(newsUrl)
       val publishedDate = getDate(doc)
 
+      val title = (doc >?> text(".c-title")).getOrElse("")
       val descriptionOption = doc >?> text(".c-body")
       val subtitle = parseSubtitle(doc)
       val description = descriptionOption match {
@@ -369,13 +369,14 @@ object ParserFranceTelevision {
       val authors = doc >?> text(".c-signature__names span")
 
       logger.info(s"""
+        title: $title
         authors: $authors
         subtitle: $subtitle
         description: $description
         publishedDate: $publishedDate
       """)
 
-      Some((subtitle + description, authors.getOrElse("").split(", ").toList, publishedDate))
+      Some((title, subtitle + description, authors.getOrElse("").split(", ").toList, publishedDate))
     } catch {
       case e: Exception => {
         logger.error(s"Error parsing this subject : $url " + e.toString)
