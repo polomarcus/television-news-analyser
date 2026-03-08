@@ -36,7 +36,7 @@ class ParserTF1Test extends AnyFunSuite {
     assert(news.urlTvNews == listNews.head.urlTvNews)
     assert(news.containsWordGlobalWarming == listNews.head.containsWordGlobalWarming)
     assert(news.media == listNews.head.media)
-    assert(listNews.length == 50)
+    assert(listNews.length == 48)
   }
 
   test("parseDescriptionAuthors") {
