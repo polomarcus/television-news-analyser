@@ -9,11 +9,11 @@ class ParserTF1Test extends AnyFunSuite {
     val listNews = ParserTF1.parseTF1HomeHelper(s"$localhost/home-tv-news-tf1.html", localhost)
 
     val description =
-      "▶\uFE0F Qualifiés, mais pas vraiment dominateurs, les Bleus disputeront dans trois jours le quart de finale de l'Euro. Après leur victoire lundi soir à 1-0 face à la Belgique. Comment les joueurs ont-ils réagi après le match ? (Euro 2024) -  TF1 INFO"
+      "▶\uFE0F Il y a 70 millions de catholiques aux États-Unis. L'élection d'un pape nord-américain est une première et pourrait marquer un tournant, notamment face à la crise migratoire entre le Mexique et les États-Unis. Lors d\u2019une messe émouvante à la  frontière, le pape François avait pleuré face à cette situation. Cette nomination est perçue comme un signe d'espoir et de bénédiction. Le choix du nouveau pape de s'appeler Léon XIV s'inspire de Léon XIII, connu pour son engagement envers les pauvres. (International)."
       val news = News(
       "Léon XIV : un pape face aux défis des migrants",
       description,
-      DateService.getTimestampTF1("Publié le 16 novembre 2016 à 20h38"),
+      DateService.getTimestampTF1("Publié le 8 mai 2025 à 20h08"),
       0,
       "",
       Nil,
@@ -36,7 +36,7 @@ class ParserTF1Test extends AnyFunSuite {
     assert(news.urlTvNews == listNews.head.urlTvNews)
     assert(news.containsWordGlobalWarming == listNews.head.containsWordGlobalWarming)
     assert(news.media == listNews.head.media)
-    assert(listNews.length == 50)
+    assert(listNews.length == 48)
   }
 
   test("parseDescriptionAuthors") {
@@ -44,7 +44,7 @@ class ParserTF1Test extends AnyFunSuite {
       ParserTF1.parseDescriptionAuthors("/one-subject-tv-news-tf1.html", localhost)
 
     assert(
-      "▶️ Il y a 70 millions de catholiques aux États-Unis. L'élection d'un pape nord-américai" == description.take(90))
+      "▶\uFE0F Il y a 70 millions de catholiques aux États-Unis. L'élection d'un pape nord-américain e" == description.take(90))
     assert(Nil == authors)
     assert("" == editor)
     assert(List("") == editorDeputy)
