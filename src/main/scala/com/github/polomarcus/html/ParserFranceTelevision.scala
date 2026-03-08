@@ -19,7 +19,7 @@ object ParserFranceTelevision {
 
   val htmlSelectorDayOfNewsList = ".page-jt article a"
   val htmlSelectorAllNewsFromOneDay = ".related-video-excerpts li"
-  val htmlSelectorANewsFromOneDay = ".related-video-excerpts__link"
+  val htmlSelectorANewsFromOneDay = ".card-article-list-s__link"
   val htmlSelectorMainDescriptionOfTheNews = ".c-chapo"
   val htmlSelectorTimeNews = ".publication-date__published time"
 
@@ -142,7 +142,7 @@ object ParserFranceTelevision {
   }
 
   def getTitle(x: Element): String = {
-    val titleOption = x >?> text(".related-video-excerpts__title-program")
+    val titleOption = x >?> text(".card-article-list-s__title")
     logger.debug(s"title: $titleOption")
 
     titleOption match {
@@ -199,6 +199,10 @@ object ParserFranceTelevision {
             presenters : ${presenters.mkString(", ")}
           """)
 
+        // Get the date from the day page itself
+        val dayPageDate = getDate(doc)
+        val newsTimestamp: Timestamp = DateService.getTimestampFranceTelevision(dayPageDate)
+
         val parsedNews: List[Option[News]] = if (news.isEmpty) {
           logger.info("No news to parse")
           List(None)
@@ -213,8 +217,7 @@ object ParserFranceTelevision {
               val linkToDescription = getLinkToDescription(x)
 
               parseDescriptionAuthors(linkToDescription, defaultUrl) match {
-                case Some((description, authors, publishedDate)) => {
-                  val newsTimestamp: Timestamp = DateService.getTimestampFranceTelevision(publishedDate)
+                case Some((description, authors, _)) => {
 
                   val (editor, editorDeputy) = getEditor(editorAndDeputies, newsTimestamp)
 
