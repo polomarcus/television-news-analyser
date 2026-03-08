@@ -232,7 +232,7 @@ object ParserFranceTelevision {
                   logger.debug(s"""
                   I got a news in order $order :
                   title: $title
-                  publishedDate: $publishedDate
+                  date: $dayPageDate
                   presenter: $presenter
                   editor: $editor
                   editorDeputy: $editorDeputy
