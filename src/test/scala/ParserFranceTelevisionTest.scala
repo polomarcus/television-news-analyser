@@ -85,6 +85,13 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
         == "Laurent Delahousse")
   }
 
+  test("getPresenter - new format without presenter in chapo") {
+    assert(
+      ParserFranceTelevision.getPresenter(
+        "Les principales informations nationales et internationales sont passées à la loupe et mises en perspective, illustrées par des reportages sur le terrain.")
+        == "")
+  }
+
   test("getEditor") {
     val arrayEditors =  Array( ("Week", List("WeekDeputy")), ("Weekend", List("WeekendDeputy")))
     val timestampWeek = DateService.getTimestampFranceTelevision("le 25/09/2023")

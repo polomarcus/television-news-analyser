@@ -91,10 +91,43 @@ object ParserFranceTelevision {
     }
   }
 
-  def getPresenter(text: String) = {
-    text
-      .split("présenté par ")(1)
-      .split(" sur France")(0)
+  def getPresenter(text: String): String = {
+    if (text.contains("présenté par ")) {
+      text.split("présenté par ")(1).split(" sur France")(0)
+    } else {
+      ""
+    }
+  }
+
+  /**
+   * Extract presenters from the program-team section on the day page.
+   * Returns an Array where index 0 = weekday presenter, index 1 = weekend presenter.
+   * The HTML structure is:
+   * <div class="program-team__info-team-content">
+   *   <li class="program-team__info-team-item"><p>Présenté par</p><p>Name</p></li>
+   *   ...
+   * </div>
+   */
+  def getPresenterFromTeamSection(doc: browser.DocumentType): Array[String] = {
+    try {
+      val teamContents = doc >> elementList(".program-team__info-team-content")
+      val presenters = teamContents.flatMap(teamContent => {
+        val items = teamContent >> elementList(".program-team__info-team-item")
+        items.flatMap(item => {
+          val paragraphs = item >> elementList("p")
+          if (paragraphs.length > 1 && paragraphs.head.text.trim.contains("Présenté par")) {
+            Some(paragraphs(1).text.trim)
+          } else {
+            None
+          }
+        }).headOption
+      }).toArray
+      if (presenters.isEmpty) Array("", "") else presenters
+    } catch {
+      case e: Exception =>
+        logger.error(s"Error parsing presenter from team section: ${e.toString}")
+        Array("", "")
+    }
   }
 
   def getLinkToDescription(x: Element): String = {
@@ -152,12 +185,18 @@ object ParserFranceTelevision {
         val doc = browser.get(tvNewsURL)
         val news = doc >> elementList(htmlSelectorAllNewsFromOneDay)
 
-        val presenter = getPresenter(doc >> text(htmlSelectorMainDescriptionOfTheNews))
+        val chapoText = (doc >?> text(htmlSelectorMainDescriptionOfTheNews)).getOrElse("")
+        val presenterFromChapo = getPresenter(chapoText)
+        val presenters: Array[String] = if (presenterFromChapo.nonEmpty) {
+          Array(presenterFromChapo, presenterFromChapo)
+        } else {
+          getPresenterFromTeamSection(doc)
+        }
 
         logger.info(s"""
             for $tvNewsURL:
             number of news: ${news.length}
-            presenter : $presenter
+            presenters : ${presenters.mkString(", ")}
           """)
 
         val parsedNews: List[Option[News]] = if (news.isEmpty) {
@@ -179,10 +218,19 @@ object ParserFranceTelevision {
 
                   val (editor, editorDeputy) = getEditor(editorAndDeputies, newsTimestamp)
 
+                  val presenter = if (presenters.length > 1 && DateService.isItaWeekendOrFridayNight(newsTimestamp)) {
+                    presenters(1)
+                  } else if (presenters.nonEmpty) {
+                    presenters(0)
+                  } else {
+                    ""
+                  }
+
                   logger.debug(s"""
                   I got a news in order $order :
                   title: $title
                   publishedDate: $publishedDate
+                  presenter: $presenter
                   editor: $editor
                   editorDeputy: $editorDeputy
                   link to description : $linkToDescription
