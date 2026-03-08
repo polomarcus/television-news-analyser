@@ -1,0 +1,52 @@
+name: Backfill past data
+
+on:
+  workflow_dispatch:
+
+jobs:
+  backfill:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'sbt'
+      - name: Scrape France 2 (15 pages ~75 days)
+        run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 15 france2"
+      - name: Scrape TF1 (10 pages)
+        run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 10 tf1"
+      - name: Merge new data into data-news-json (skip existing days)
+        run: |
+          for dir in output-france2-tv-news-json/media=France\ 2/year=*/month=*/day=*/; do
+            target="data-news-json/${dir#output-france2-tv-news-json/}"
+            if [ ! -d "$target" ]; then
+              mkdir -p "$(dirname "$target")"
+              cp -r "$dir" "$target"
+              echo "Copied $dir -> $target"
+            else
+              echo "Skipped $dir (already exists)"
+            fi
+          done
+          for dir in output-tf1-tv-news-json/media=TF1/year=*/month=*/day=*/; do
+            target="data-news-json/${dir#output-tf1-tv-news-json/}"
+            if [ ! -d "$target" ]; then
+              mkdir -p "$(dirname "$target")"
+              cp -r "$dir" "$target"
+              echo "Copied $dir -> $target"
+            else
+              echo "Skipped $dir (already exists)"
+            fi
+          done
+      - name: Update aggregations
+        run: sbt "runMain com.github.polomarcus.main.UpdateNews"
+      - name: Commit and push
+        run: |
+          git config user.name polomarcus-github-actions
+          git config user.email polomarcus-github-actions@github.com
+          git add .
+          git status
+          git commit -m "ci(data): backfill missing data from January 4 to March 8 2026"
+          git push origin main
