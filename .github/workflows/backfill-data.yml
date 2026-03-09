@@ -2,6 +2,15 @@ name: Backfill past data
 
 on:
   workflow_dispatch:
+    inputs:
+      france2_pages:
+        description: 'Number of pages to scrape for France 2 (1 page ≈ 5 days)'
+        required: false
+        default: '20'
+      tf1_pages:
+        description: 'Number of pages to scrape for TF1'
+        required: false
+        default: '10'
 
 jobs:
   backfill:
@@ -14,10 +23,10 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: 'sbt'
-      - name: Scrape France 2 (15 pages ~75 days)
-        run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 15 france2"
-      - name: Scrape TF1 (10 pages)
-        run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser 10 tf1"
+      - name: Scrape France 2
+        run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser ${{ github.event.inputs.france2_pages }} france2"
+      - name: Scrape TF1
+        run: sbt "runMain com.github.polomarcus.main.TelevisionNewsAnalyser ${{ github.event.inputs.tf1_pages }} tf1"
       - name: Merge new data into data-news-json (skip existing days)
         run: |
           for dir in output-france2-tv-news-json/media=France\ 2/year=*/month=*/day=*/; do
@@ -40,6 +49,10 @@ jobs:
               echo "Skipped $dir (already exists)"
             fi
           done
+      - name: List filled gaps
+        run: |
+          echo "=== France 2 days now in data-news-json ==="
+          ls data-news-json/media=France\ 2/year=2026/month=*/
       - name: Update aggregations
         run: sbt "runMain com.github.polomarcus.main.UpdateNews"
       - name: Commit and push
@@ -48,6 +61,6 @@ jobs:
           git config user.email polomarcus-github-actions@github.com
           git add .
           git status
-          git commit -m "ci(data): backfill missing data from January 4 to March 8 2026"
+          git commit -m "ci(data): backfill missing France 2 data for 2026 (gaps: Jan 6-14, Jan 20-29, Feb 5-15, Feb 22 - Mar 3)"
           git pull --rebase origin main
           git push origin main
