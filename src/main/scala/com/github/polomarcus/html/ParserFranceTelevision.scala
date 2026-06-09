@@ -18,10 +18,13 @@ object ParserFranceTelevision {
   val browser = Getter.getBrowser()
 
   val htmlSelectorDayOfNewsList = ".page-jt article a"
-  val htmlSelectorAllNewsFromOneDay = ".related-video-excerpts li"
+  val htmlSelectorAllNewsFromOneDay = ".generic-vertical-rebound__item"
   val htmlSelectorANewsFromOneDay = ".card-article-list-s__link"
   val htmlSelectorMainDescriptionOfTheNews = ".c-chapo"
   val htmlSelectorTimeNews = ".publication-date__published time"
+  // Since 2026, France TV loads the list of news for one day from a separate ESI
+  // (Edge Side Include) endpoint, referenced via the data-esi-url attribute on the day page.
+  val htmlSelectorSameShowEsi = "[data-esi-url*=SameShowESI]"
 
   val FRANCE2 = "France 2"
   val FRANCE3 = "France 3"
@@ -130,6 +133,34 @@ object ParserFranceTelevision {
     }
   }
 
+  /**
+   * Returns the list of news items shown on a given day page.
+   *
+   * Since 2026, France TV no longer renders the news list inline on the day page.
+   * The page contains a placeholder element with a `data-esi-url` attribute pointing
+   * to an ESI endpoint (`/esi-block/contents::SameShowESI/index/{...}.html`) that
+   * returns the actual list. We follow that URL when present, and fall back to the
+   * day page itself to preserve compatibility with older HTML structures (and tests).
+   */
+  def getNewsListForDay(doc: browser.DocumentType, defaultUrl: String): List[Element] = {
+    val inlineNews = doc >> elementList(htmlSelectorAllNewsFromOneDay)
+    if (inlineNews.nonEmpty) {
+      inlineNews
+    } else {
+      val esiUrlOpt = doc >?> element(htmlSelectorSameShowEsi) >> attr("data-esi-url")
+      esiUrlOpt match {
+        case Some(esiPath) if esiPath.nonEmpty =>
+          val esiUrl = if (esiPath.startsWith("http")) esiPath else defaultUrl + esiPath
+          logger.debug(s"Fetching news list from ESI block: $esiUrl")
+          val esiDoc = browser.get(esiUrl)
+          esiDoc >> elementList(htmlSelectorAllNewsFromOneDay)
+        case _ =>
+          logger.warn("No news list found on day page and no SameShowESI data-esi-url attribute")
+          Nil
+      }
+    }
+  }
+
   def getLinkToDescription(x: Element): String = {
     val linkToDescription = x >?> element(htmlSelectorANewsFromOneDay) >> attr("href")
     logger.info(s"linkToDescription: $linkToDescription")
@@ -183,7 +214,7 @@ object ParserFranceTelevision {
         logger.debug(s"Parsing France TV news (presenter, editor, news) : " + tvNewsURL)
 
         val doc = browser.get(tvNewsURL)
-        val news = doc >> elementList(htmlSelectorAllNewsFromOneDay)
+        val news = getNewsListForDay(doc, defaultUrl)
 
         val chapoText = (doc >?> text(htmlSelectorMainDescriptionOfTheNews)).getOrElse("")
         val presenterFromChapo = getPresenter(chapoText)
