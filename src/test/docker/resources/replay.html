@@ -215,8 +215,10 @@
 
     <div class="c-body"></div>
 
-    <!-- The news list is now loaded asynchronously from an ESI block. See esi-same-show-fr2.html. -->
-    <div class="esi-block" data-esi-url="/esi-same-show-fr2.html" data-autoload="false"></div>
+    <!-- The news list is now loaded asynchronously from an ESI block. See esi-same-show-fr2.html.
+         The query string includes "SameShowESI" so the parser's selector
+         [data-esi-url*=SameShowESI] matches it; nginx ignores query strings on static files. -->
+    <div class="esi-block" data-esi-url="/esi-same-show-fr2.html?block=SameShowESI" data-autoload="false"></div>
 
 
 
