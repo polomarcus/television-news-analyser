@@ -12,7 +12,7 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
         s"$localhost/home-tv-news-france-2.html",
         localhost)
     val news = News(
-      "Pénurie de carburant : des avancées et des blocages dans le bras de fer entre Total et les syndicats",
+      "Pénurie de carburant : la CGT adopte la stratégie du blocage",
       "",
       DateService.getTimestampFranceTelevision("le 24/09/2022"),
       1,
