@@ -215,87 +215,11 @@
 
     <div class="c-body"></div>
 
-    <section data-cy="related-video-excerpts" class="related-video-excerpts ">
-      <div class="related-video-excerpts__headline" role="heading" aria-level="2">Les sujets du JT</div>
-      <ul>
+    <!-- The news list is now loaded asynchronously from an ESI block. See esi-same-show-fr2.html.
+         The query string includes "SameShowESI" so the parser's selector
+         [data-esi-url*=SameShowESI] matches it; nginx ignores query strings on static files. -->
+    <div class="esi-block" data-esi-url="/esi-same-show-fr2.html?block=SameShowESI" data-autoload="false"></div>
 
-        <li class="related-video-excerpts__item">
-          <article>
-            <a href="http://localhost:8000/one-subject-tv-news-fr2.html" class="card-article-list-s__link ftvi-click" data-click-value="content::de-la-meme-emision::$PAGE_SLUG$::position_1-penurie-de-carburant-des-avancees-et-des-blocages-dans-le-bras-de-fer-entre-total-et-les-syndicats_5417827">
-              <div class="related-video-excerpts__image-container">
-
-
-
-                <div class="img-stamp-wrapper">
-
-
-                  <picture class="picture-wrapper">
-                    <source type="image/webp" data-srcset="https://www.francetvinfo.fr/pictures/DB7hF1ewiUSWgIk7evGOOoX1iGI/315x177/filters:format(webp)/2022/10/14/phpyeSRtG.jpg 315w, https://www.francetvinfo.fr/pictures/fpM9k2cPygZtwlgQQ274YHhsNdg/910x512/filters:format(webp)/2022/10/14/phpyeSRtG.jpg 910w" sizes="80px" srcset="https://www.francetvinfo.fr/pictures/DB7hF1ewiUSWgIk7evGOOoX1iGI/315x177/filters:format(webp)/2022/10/14/phpyeSRtG.jpg 315w, https://www.francetvinfo.fr/pictures/fpM9k2cPygZtwlgQQ274YHhsNdg/910x512/filters:format(webp)/2022/10/14/phpyeSRtG.jpg 910w">
-                    <source data-srcset="https://www.francetvinfo.fr/pictures/2ddtYbH9iylr7orstjbQUrkhRxk/315x177/2022/10/14/phpyeSRtG.jpg 315w, https://www.francetvinfo.fr/pictures/nP-ThLiIzdmd2A6SaPjwn8f4hQs/910x512/2022/10/14/phpyeSRtG.jpg 910w" sizes="80px" srcset="https://www.francetvinfo.fr/pictures/2ddtYbH9iylr7orstjbQUrkhRxk/315x177/2022/10/14/phpyeSRtG.jpg 315w, https://www.francetvinfo.fr/pictures/nP-ThLiIzdmd2A6SaPjwn8f4hQs/910x512/2022/10/14/phpyeSRtG.jpg 910w">
-
-
-
-
-                    <noscript>
-                      <img
-                              src="https://www.francetvinfo.fr/pictures/2ddtYbH9iylr7orstjbQUrkhRxk/315x177/2022/10/14/phpyeSRtG.jpg"
-                              class="related-video-excerpts__img"
-                              data-placeholder-on-error="true"
-                              alt="La CFDT et la CFE-CGC ont signé l&#039;accord sur les propositions d&#039;augmentation de salaires de 7% avec TotalEnergies, vendredi 14 octobre. La CGT, en revanche, a décidé de poursuivre et prolonger le bras de fer.&amp;nbsp; (FRANCE 2)"
-                              aria-hidden="true"
-                              channel-logo=""
-                              width="315"
-                              height="177"
-                              data-srcset="https://www.francetvinfo.fr/pictures/2ddtYbH9iylr7orstjbQUrkhRxk/315x177/2022/10/14/phpyeSRtG.jpg 315w, https://www.francetvinfo.fr/pictures/nP-ThLiIzdmd2A6SaPjwn8f4hQs/910x512/2022/10/14/phpyeSRtG.jpg 910w"
-                              data-sizes="auto"
-                      />
-                    </noscript>
-
-                    <img src="https://www.francetvinfo.fr/pictures/2ddtYbH9iylr7orstjbQUrkhRxk/315x177/2022/10/14/phpyeSRtG.jpg" data-src="https://www.francetvinfo.fr/pictures/2ddtYbH9iylr7orstjbQUrkhRxk/315x177/2022/10/14/phpyeSRtG.jpg" class="related-video-excerpts__img lazyautosizes ls-is-cached lazyloaded" data-placeholder-on-error="true" alt="La CFDT et la CFE-CGC ont signé l'accord sur les propositions d'augmentation de salaires de 7% avec TotalEnergies, vendredi 14 octobre. La CGT, en revanche, a décidé de poursuivre et prolonger le bras de fer.&amp;nbsp; (FRANCE 2)" aria-hidden="true" channel-logo="" data-srcset="https://www.francetvinfo.fr/pictures/2ddtYbH9iylr7orstjbQUrkhRxk/315x177/2022/10/14/phpyeSRtG.jpg 315w, https://www.francetvinfo.fr/pictures/nP-ThLiIzdmd2A6SaPjwn8f4hQs/910x512/2022/10/14/phpyeSRtG.jpg 910w" data-sizes="auto" sizes="80px" srcset="https://www.francetvinfo.fr/pictures/2ddtYbH9iylr7orstjbQUrkhRxk/315x177/2022/10/14/phpyeSRtG.jpg 315w, https://www.francetvinfo.fr/pictures/nP-ThLiIzdmd2A6SaPjwn8f4hQs/910x512/2022/10/14/phpyeSRtG.jpg 910w" width="315" height="177">
-
-                  </picture>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                  <noscript>
-                    <img
-                            src="/assets/common/images/icons/video-84a312c7.svg"
-                            class="img-media-stamp"
-                            width="35"
-                            height="35"
-                            alt="video"
-                    />
-                  </noscript>
-
-                  <img src="/assets/common/images/icons/video-84a312c7.svg" data-src="/assets/common/images/icons/video-84a312c7.svg" class="img-media-stamp ls-is-cached lazyloaded" alt="video" width="35" height="35">
-
-                </div>
-
-
-              </div>
-              <div class="related-video-excerpts__description">
-                <p class="card-article-list-s__title">Pénurie de carburant : des avancées et des blocages dans le bras de fer entre Total et les syndicats</p>
-                <div>
-                  <span class="related-video-excerpts__diffusion">Diffusé le 16/10/2022</span>
-                </div>
-              </div>
-            </a>
-          </article>
-        </li>
-      </ul>
-    </section>
 
 
 
