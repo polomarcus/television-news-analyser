@@ -15,3 +15,4 @@ output-*
 **_SUCCESS
 notebooks/.ipynb_checkpoints/
 notebooks/data/
+data-news-gargantext-tsv/
