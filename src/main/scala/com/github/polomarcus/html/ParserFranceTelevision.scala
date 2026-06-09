@@ -151,8 +151,14 @@ object ParserFranceTelevision {
       esiUrlOpt match {
         case Some(esiPath) if esiPath.nonEmpty =>
           val esiUrl = if (esiPath.startsWith("http")) esiPath else defaultUrl + esiPath
-          logger.debug(s"Fetching news list from ESI block: $esiUrl")
-          val esiDoc = browser.get(esiUrl)
+          // The ESI path embeds a JSON literal like /index/{"contentId":...}.html.
+          // java.net.URL rejects the unescaped braces/quotes, so percent-encode them.
+          val safeEsiUrl = esiUrl
+            .replace("{", "%7B")
+            .replace("}", "%7D")
+            .replace("\"", "%22")
+          logger.debug(s"Fetching news list from ESI block: $safeEsiUrl")
+          val esiDoc = browser.get(safeEsiUrl)
           esiDoc >> elementList(htmlSelectorAllNewsFromOneDay)
         case _ =>
           logger.warn("No news list found on day page and no SameShowESI data-esi-url attribute")
