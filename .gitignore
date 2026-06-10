@@ -16,3 +16,4 @@ output-*
 notebooks/.ipynb_checkpoints/
 notebooks/data/
 data-news-gargantext-tsv/
+data-news-csv/

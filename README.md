@@ -13,7 +13,6 @@
 
 ### Data sinks
 * JSON ➡️ https://github.com/polomarcus/television-news-analyser/tree/main/data-news-json/
-* CSV or actually Tab Separated Values (TSV) compressed ([if you don't know how to uncompressed these data](https://www.wikihow.com/Extract-a-Gz-File)) ➡️️ https://github.com/polomarcus/television-news-analyser/tree/main/data-news-csv/
 
 JSON data can be stored inside Postgres and displayed on a Metabase dashboard (read "Run" on this readme), or can be found on [this website](https://observatoire.climatmedias.org/) :
 
