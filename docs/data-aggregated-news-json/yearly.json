@@ -1,0 +1,1045 @@
+{
+ "2013": {
+  "media": {
+   "France 2": {
+    "total": 8224,
+    "climat": 35,
+    "pct": 0.43
+   }
+  },
+  "themes": {
+   "Météo extrême": 533,
+   "Guerre / international": 659,
+   "Santé": 303,
+   "Tourisme / vacances": 862,
+   "Voiture / carburant": 636,
+   "Agriculture / alimentation": 334,
+   "Consommation / fêtes": 456,
+   "Énergie": 263,
+   "Politique climatique": 10,
+   "Climat (nommé)": 35
+  },
+  "worst": [
+   {
+    "date": "2013-09-23",
+    "media": "France 2",
+    "title": "Saint-Nazaire : construire le plus grand paquebot du monde",
+    "url": "https://www.francetvinfo.fr/saint-nazaire-construire-le-plus-grand-paquebot-du-monde_418443.html",
+    "why": "promo croisière"
+   },
+   {
+    "date": "2013-06-05",
+    "media": "France 2",
+    "title": "Projet : des bateaux de croisière sur la Seine ?",
+    "url": "https://www.francetvinfo.fr/projet-des-bateaux-de-croisiere-sur-la-seine_341006.html",
+    "why": "promo croisière, carte postale pendant canicule/sécheresse"
+   },
+   {
+    "date": "2013-07-19",
+    "media": "France 2",
+    "title": "Tourisme : en croisière",
+    "url": "https://www.francetvinfo.fr/tourisme-en-croisiere_373726.html",
+    "why": "promo croisière, carte postale pendant canicule/sécheresse"
+   }
+  ],
+  "best": [
+   {
+    "date": "2013-06-08",
+    "media": "France 2",
+    "title": "Réchauffement climatique : direction l'Arctique",
+    "url": "https://www.francetvinfo.fr/rechauffement-climatique-direction-l-arctique_343238.html",
+    "why": "nomme les causes, climat dans le titre"
+   },
+   {
+    "date": "2013-09-27",
+    "media": "France 2",
+    "title": "Réchauffement climatique : quelles conclusions ?",
+    "url": "https://www.francetvinfo.fr/rechauffement-climatique-quelles-conclusions_421923.html",
+    "why": "nomme les causes, climat dans le titre"
+   },
+   {
+    "date": "2013-09-27",
+    "media": "France 2",
+    "title": "Réchauffement climatique : la disparition des saisons ?",
+    "url": "https://www.francetvinfo.fr/rechauffement-climatique-la-disparition-des-saisons_422295.html",
+    "why": "nomme les causes, climat dans le titre"
+   }
+  ]
+ },
+ "2014": {
+  "media": {
+   "France 2": {
+    "total": 11537,
+    "climat": 36,
+    "pct": 0.31
+   },
+   "France 3": {
+    "total": 272,
+    "climat": 2,
+    "pct": 0.74
+   }
+  },
+  "themes": {
+   "Météo extrême": 715,
+   "Guerre / international": 1582,
+   "Santé": 477,
+   "Tourisme / vacances": 1219,
+   "Voiture / carburant": 851,
+   "Agriculture / alimentation": 483,
+   "Consommation / fêtes": 592,
+   "Énergie": 266,
+   "Politique climatique": 8,
+   "Climat (nommé)": 38
+  },
+  "worst": [
+   {
+    "date": "2014-03-01",
+    "media": "France 2",
+    "title": "Découverte : deux jours à Marrakech",
+    "url": "https://www.francetvinfo.fr/decouverte-deux-jours-a-marrakech_542431.html",
+    "why": "promo long-courrier en plein hiver"
+   },
+   {
+    "date": "2014-08-08",
+    "media": "France 2",
+    "title": "Vacances d'été : le temps d'une croisière",
+    "url": "https://www.francetvinfo.fr/vacances-d-ete-le-temps-d-une-croisiere_666119.html",
+    "why": "promo croisière, carte postale pendant canicule/sécheresse"
+   },
+   {
+    "date": "2014-05-10",
+    "media": "France 2",
+    "title": "Tourisme : le succès des croisières",
+    "url": "https://www.francetvinfo.fr/tourisme-le-succes-des-croisieres_597039.html",
+    "why": "promo croisière"
+   }
+  ],
+  "best": [
+   {
+    "date": "2014-12-14",
+    "media": "France 2",
+    "title": "Conférence de Lima : un accord sur le climat \"a minima\"",
+    "url": "https://www.francetvinfo.fr/meteo/climat/video-conference-de-lima-un-accord-sur-le-climat-a-minima_772563.html",
+    "why": "nomme les causes, ouverture du JT"
+   },
+   {
+    "date": "2014-09-23",
+    "media": "France 2",
+    "title": "Environnement : les conséquences possibles du réchauffement climatique",
+    "url": "https://www.francetvinfo.fr/environnement-les-consequences-possibles-du-rechauffement-climatique_701665.html",
+    "why": "nomme les causes, climat dans le titre"
+   },
+   {
+    "date": "2014-11-02",
+    "media": "France 2",
+    "title": "Réchauffement climatique : les experts lancent un cri d'alarme",
+    "url": "https://www.francetvinfo.fr/monde/environnement/video-rechauffement-climatique-les-experts-lancent-un-cri-d-alarme_734819.html",
+    "why": "nomme les causes, climat dans le titre"
+   }
+  ]
+ },
+ "2015": {
+  "media": {
+   "France 2": {
+    "total": 10111,
+    "climat": 110,
+    "pct": 1.09
+   },
+   "France 3": {
+    "total": 3483,
+    "climat": 42,
+    "pct": 1.21
+   }
+  },
+  "themes": {
+   "Météo extrême": 687,
+   "Guerre / international": 2528,
+   "Santé": 459,
+   "Tourisme / vacances": 1365,
+   "Voiture / carburant": 1053,
+   "Agriculture / alimentation": 724,
+   "Consommation / fêtes": 502,
+   "Énergie": 381,
+   "Politique climatique": 178,
+   "Climat (nommé)": 152
+  },
+  "worst": [
+   {
+    "date": "2015-08-04",
+    "media": "France 2",
+    "title": "Les croisières ont de plus en plus de succès",
+    "url": "https://www.francetvinfo.fr/economie/les-croisieres-ont-de-plus-en-plus-de-succes_1028959.html",
+    "why": "promo croisière, carte postale pendant canicule/sécheresse"
+   },
+   {
+    "date": "2015-08-04",
+    "media": "France 2",
+    "title": "Les croisières se démocratisent",
+    "url": "https://www.francetvinfo.fr/economie/les-croisieres-se-democratisent_1028971.html",
+    "why": "promo croisière, carte postale pendant canicule/sécheresse"
+   },
+   {
+    "date": "2015-08-09",
+    "media": "France 2",
+    "title": "Marseille, la ville des bateaux de croisière",
+    "url": "https://www.francetvinfo.fr/france/marseille-la-ville-des-bateaux-de-croisiere_1035425.html",
+    "why": "promo croisière, carte postale pendant canicule/sécheresse"
+   }
+  ],
+  "best": [
+   {
+    "date": "2015-08-20",
+    "media": "France 3",
+    "title": "L'été 2015 bat des records de chaleur",
+    "url": "https://www.francetvinfo.fr/monde/l-ete-2015-bat-des-records-de-chaleur_1049547.html",
+    "why": "nomme les causes, ouverture du JT"
+   },
+   {
+    "date": "2015-11-04",
+    "media": "France 2",
+    "title": "Réchauffement climatique : le défi des énergies renouvelables",
+    "url": "https://www.francetvinfo.fr/meteo/climat/cop21/rechauffement-climatique-le-defi-des-energies-renouvelables_1159665.html",
+    "why": "nomme les causes, climat dans le titre, énergies fossiles nommées"
+   },
+   {
+    "date": "2015-11-30",
+    "media": "France 2",
+    "title": "Réchauffement climatique : les différents scénarios possibles",
+    "url": "https://www.francetvinfo.fr/meteo/climat/cop21/rechauffement-climatique-les-differents-scenarios-possibles_1199727.html",
+    "why": "nomme les causes, climat dans le titre, énergies fossiles nommées"
+   }
+  ]
+ },
+ "2016": {
+  "media": {
+   "France 2": {
+    "total": 9601,
+    "climat": 37,
+    "pct": 0.39
+   },
+   "France 3": {
+    "total": 4892,
+    "climat": 22,
+    "pct": 0.45
+   },
+   "TF1": {
+    "total": 318,
+    "climat": 1,
+    "pct": 0.31
+   }
+  },
+  "themes": {
+   "Météo extrême": 922,
+   "Guerre / international": 2520,
+   "Santé": 591,
+   "Tourisme / vacances": 1212,
+   "Voiture / carburant": 1169,
+   "Agriculture / alimentation": 754,
+   "Consommation / fêtes": 629,
+   "Énergie": 416,
+   "Politique climatique": 39,
+   "Climat (nommé)": 60
+  },
+  "worst": [
+   {
+    "date": "2016-01-07",
+    "media": "France 3",
+    "title": "A bord d'un paquebot de croisière",
+    "url": "https://www.francetvinfo.fr/decouverte/vacances/a-bord-d-un-paquebot-de-croisiere_1257843.html",
+    "why": "promo croisière"
+   },
+   {
+    "date": "2016-02-08",
+    "media": "France 2",
+    "title": "Vacances : comment se passe une croisière autour du monde ?",
+    "url": "https://www.francetvinfo.fr/decouverte/vacances/vacances-comment-se-passe-une-croisiere-autour-du-monde_1305892.html",
+    "why": "promo croisière"
+   },
+   {
+    "date": "2016-05-12",
+    "media": "France 2",
+    "title": "Le plus gros paquebot de croisière du monde est prêt à partir en croisière",
+    "url": "https://www.francetvinfo.fr/economie/transports/chantiers-navals-de-saint-nazaire/le-plus-gros-paquebot-de-croisiere-du-monde-est-pret-a-partir-en-croisiere_1447819.html",
+    "why": "promo croisière"
+   }
+  ],
+  "best": [
+   {
+    "date": "2016-08-03",
+    "media": "France 3",
+    "title": "Climat : 2015, année de tous les records",
+    "url": "https://www.francetvinfo.fr/economie/emploi/metiers/agriculture/climat-2015-annee-de-tous-les-records_1575441.html",
+    "why": "nomme les causes, ouverture du JT"
+   },
+   {
+    "date": "2016-09-03",
+    "media": "France 3",
+    "title": "La Chine signe l'accord sur le climat",
+    "url": "https://www.francetvinfo.fr/meteo/climat/cop21/la-chine-signe-l-accord-sur-le-climat_1808107.html",
+    "why": "nomme les causes, ouverture du JT"
+   },
+   {
+    "date": "2016-05-18",
+    "media": "France 2",
+    "title": "Réchauffement climatique : des températures records dans le monde depuis un an",
+    "url": "https://www.francetvinfo.fr/monde/environnement/rechauffement-climatique-des-temperatures-records-dans-le-monde-depuis-un-an_1456565.html",
+    "why": "nomme les causes, climat dans le titre"
+   }
+  ]
+ },
+ "2017": {
+  "media": {
+   "France 2": {
+    "total": 9210,
+    "climat": 73,
+    "pct": 0.79
+   },
+   "France 3": {
+    "total": 6539,
+    "climat": 60,
+    "pct": 0.92
+   },
+   "TF1": {
+    "total": 4056,
+    "climat": 20,
+    "pct": 0.49
+   }
+  },
+  "themes": {
+   "Météo extrême": 1535,
+   "Guerre / international": 2386,
+   "Santé": 717,
+   "Tourisme / vacances": 1418,
+   "Voiture / carburant": 1334,
+   "Agriculture / alimentation": 933,
+   "Consommation / fêtes": 833,
+   "Énergie": 560,
+   "Politique climatique": 149,
+   "Climat (nommé)": 153
+  },
+  "worst": [
+   {
+    "date": "2017-05-27",
+    "media": "France 2",
+    "title": "Monoï : l'huile qui vaut de l'or",
+    "url": "https://www.francetvinfo.fr/economie/industrie/monoi-l-huile-qui-vaut-de-l-or_2209730.html",
+    "why": "promo long-courrier"
+   },
+   {
+    "date": "2017-07-28",
+    "media": "France 2",
+    "title": "Saint-Eustache : l'île des Caraïbes aux perles bleues",
+    "url": "https://www.francetvinfo.fr/france/polynesie-francaise/saint-eustache-lile-des-caraibes-aux-perles-bleues_2304343.html",
+    "why": "carte postale pendant canicule"
+   },
+   {
+    "date": "2017-01-20",
+    "media": "France 2",
+    "title": "Croisières : un air pas si pur",
+    "url": "https://www.francetvinfo.fr/decouverte/vacances/croisieres-un-air-pas-si-pur_2028448.html",
+    "why": "promo croisière"
+   }
+  ],
+  "best": [
+   {
+    "date": "2017-12-12",
+    "media": "France 2",
+    "title": "Sommet sur le climat : la France tente de remobiliser pour atteindre les objectifs de l'accord de Paris",
+    "url": "https://www.francetvinfo.fr/meteo/climat/sommet-sur-le-climat-l-appel-aux-puissants_2512077.html",
+    "why": "nomme les causes, ouverture du JT, énergies fossiles nommées, adaptation"
+   },
+   {
+    "date": "2017-06-03",
+    "media": "France 3",
+    "title": "Climat : le front vert",
+    "url": "https://www.francetvinfo.fr/monde/environnement/retrait-americain-de-l-accord-de-paris/climat-le-front-vert_2220659.html",
+    "why": "nomme les causes, ouverture du JT"
+   },
+   {
+    "date": "2017-01-16",
+    "media": "France 2",
+    "title": "Les États-Unis relancent le pétrole et le charbon",
+    "url": "https://www.francetvinfo.fr/monde/usa/presidentielle/donald-trump/les-etats-unis-relancent-le-petrole-et-le-charbon_2021494.html",
+    "why": "nomme les causes, énergies fossiles nommées"
+   }
+  ]
+ },
+ "2018": {
+  "media": {
+   "France 2": {
+    "total": 9230,
+    "climat": 69,
+    "pct": 0.75
+   },
+   "France 3": {
+    "total": 6998,
+    "climat": 50,
+    "pct": 0.71
+   },
+   "TF1": {
+    "total": 6186,
+    "climat": 54,
+    "pct": 0.87
+   }
+  },
+  "themes": {
+   "Météo extrême": 2044,
+   "Guerre / international": 2028,
+   "Santé": 838,
+   "Tourisme / vacances": 1942,
+   "Voiture / carburant": 2192,
+   "Agriculture / alimentation": 1146,
+   "Consommation / fêtes": 1285,
+   "Énergie": 813,
+   "Politique climatique": 202,
+   "Climat (nommé)": 173
+  },
+  "worst": [
+   {
+    "date": "2018-07-18",
+    "media": "France 2",
+    "title": "Vacances : le succès des croisières fluviales",
+    "url": "https://www.francetvinfo.fr/decouverte/vacances/vacances-le-succes-des-croisieres-fluviales_2856031.html",
+    "why": "promo croisière, carte postale pendant canicule/sécheresse"
+   },
+   {
+    "date": "2018-07-24",
+    "media": "France 2",
+    "title": "Vacances : à la découverte de l'île de Zanzibar",
+    "url": "https://www.francetvinfo.fr/decouverte/vacances/vacances-a-la-decouverte-de-l-ile-de-zanzibar_2865013.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   },
+   {
+    "date": "2018-08-12",
+    "media": "TF1",
+    "title": "Seychelles, se marier sur une plage paradisiaque",
+    "url": "https://www.tf1info.fr/international/seychelles-se-marier-sur-une-plage-paradisiaque-2095560.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   }
+  ],
+  "best": [
+   {
+    "date": "2018-09-08",
+    "media": "France 2",
+    "title": "Climat : la planète se mobilise",
+    "url": "https://www.francetvinfo.fr/monde/usa/incendies-en-californie/climat-la-planete-se-mobilise_2931137.html",
+    "why": "nomme les causes, ouverture du JT, énergies fossiles nommées"
+   },
+   {
+    "date": "2018-09-26",
+    "media": "France 3",
+    "title": "Climat : quelle météo pour 2050 ?",
+    "url": "https://www.francetvinfo.fr/meteo/climat/climat-quelle-meteo-pour-2050_2958441.html",
+    "why": "nomme les causes, ouverture du JT"
+   },
+   {
+    "date": "2018-10-08",
+    "media": "France 3",
+    "title": "Climat : le scénario catastrophe des scientifiques",
+    "url": "https://www.francetvinfo.fr/meteo/climat/climat-le-scenario-catastrophe-des-scientifiques_2976121.html",
+    "why": "nomme les causes, ouverture du JT"
+   }
+  ]
+ },
+ "2019": {
+  "media": {
+   "France 2": {
+    "total": 8525,
+    "climat": 141,
+    "pct": 1.65
+   },
+   "France 3": {
+    "total": 7192,
+    "climat": 118,
+    "pct": 1.64
+   },
+   "TF1": {
+    "total": 6321,
+    "climat": 65,
+    "pct": 1.03
+   }
+  },
+  "themes": {
+   "Météo extrême": 2702,
+   "Guerre / international": 1401,
+   "Santé": 867,
+   "Tourisme / vacances": 2016,
+   "Voiture / carburant": 1562,
+   "Agriculture / alimentation": 1401,
+   "Consommation / fêtes": 1031,
+   "Énergie": 635,
+   "Politique climatique": 226,
+   "Climat (nommé)": 324
+  },
+  "worst": [
+   {
+    "date": "2019-07-30",
+    "media": "TF1",
+    "title": "Croisières : des parcs de loisirs flottants",
+    "url": "https://www.tf1info.fr/culture/croisieres-des-parcs-de-loisirs-flottants-2128533.html",
+    "why": "promo croisière, carte postale pendant canicule/sécheresse"
+   },
+   {
+    "date": "2019-06-14",
+    "media": "France 3",
+    "title": "Polynésie : nager avec les requins",
+    "url": "https://www.francetvinfo.fr/faits-divers/requins/polynesie-nager-avec-les-requins_3490257.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   },
+   {
+    "date": "2019-06-23",
+    "media": "France 2",
+    "title": "Tourisme : la Polynésie à prix réduit",
+    "url": "https://www.francetvinfo.fr/economie/tourisme-la-polynesie-a-prix-reduit_3503955.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   }
+  ],
+  "best": [
+   {
+    "date": "2019-09-17",
+    "media": "France 2",
+    "title": "Réchauffement climatique : les prévisions encore plus sombres",
+    "url": "https://www.francetvinfo.fr/meteo/climat/rechauffement-climatique-les-previsions-encore-plus-sombres_3620737.html",
+    "why": "nomme les causes, ouverture du JT, climat dans le titre, énergies fossiles nommées"
+   },
+   {
+    "date": "2019-08-08",
+    "media": "France 3",
+    "title": "Agriculture : changer les habitudes face au réchauffement climatique",
+    "url": "https://www.francetvinfo.fr/economie/emploi/metiers/agriculture/agriculture-changer-les-habitudes-face-au-rechauffement-climatique_3569405.html",
+    "why": "nomme les causes, ouverture du JT, climat dans le titre"
+   },
+   {
+    "date": "2019-09-17",
+    "media": "France 3",
+    "title": "Réchauffement climatique : le scénario catastrophe des scientifiques",
+    "url": "https://www.francetvinfo.fr/meteo/climat/rechauffement-climatique-le-scenario-catastrophe-des-scientifiques_3620347.html",
+    "why": "nomme les causes, ouverture du JT, climat dans le titre"
+   }
+  ]
+ },
+ "2020": {
+  "media": {
+   "France 2": {
+    "total": 6755,
+    "climat": 54,
+    "pct": 0.8
+   },
+   "France 3": {
+    "total": 6979,
+    "climat": 76,
+    "pct": 1.09
+   },
+   "TF1": {
+    "total": 7485,
+    "climat": 43,
+    "pct": 0.57
+   }
+  },
+  "themes": {
+   "Météo extrême": 1158,
+   "Guerre / international": 1074,
+   "Santé": 8445,
+   "Tourisme / vacances": 2403,
+   "Voiture / carburant": 1109,
+   "Agriculture / alimentation": 762,
+   "Consommation / fêtes": 1105,
+   "Énergie": 342,
+   "Politique climatique": 88,
+   "Climat (nommé)": 173
+  },
+  "worst": [
+   {
+    "date": "2020-07-02",
+    "media": "France 2",
+    "title": "Impressions d’ailleurs : Au large de la Corse, un air de Seychelles",
+    "url": "https://www.francetvinfo.fr/france/corse/corse/impressions-dailleurs-au-large-de-la-corse-un-air-de-seychelles_4033571.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   },
+   {
+    "date": "2020-01-04",
+    "media": "TF1",
+    "title": "Station de ski : les vacanciers s'apprêtent à partir",
+    "url": "https://www.tf1info.fr/societe/video-station-de-ski-les-vacanciers-s-appretent-a-partir-2141915.html",
+    "why": "douceur hivernale célébrée"
+   },
+   {
+    "date": "2020-01-04",
+    "media": "France 3",
+    "title": "Hérault : un dernier week-end à la plage",
+    "url": "https://www.francetvinfo.fr/france/occitanie/herault/herault-un-dernier-week-end-a-la-plage_3771307.html",
+    "why": "douceur hivernale célébrée"
+   }
+  ],
+  "best": [
+   {
+    "date": "2020-01-02",
+    "media": "France 2",
+    "title": "Incendies en Australie : le réchauffement climatique en cause ?",
+    "url": "https://www.francetvinfo.fr/faits-divers/incendie/incendies-en-australie-le-rechauffement-climatique-en-cause_3768633.html",
+    "why": "nomme les causes, climat dans le titre"
+   },
+   {
+    "date": "2020-02-09",
+    "media": "France 2",
+    "title": "Réchauffement climatique : les projections alarmantes de l'Agence européenne pour l'environnement",
+    "url": "https://www.francetvinfo.fr/meteo/inondations/rechauffement-climatique-les-projections-alarmantes-de-l-agence-europeenne-pour-l-environnement_3820647.html",
+    "why": "nomme les causes, climat dans le titre"
+   },
+   {
+    "date": "2020-08-16",
+    "media": "France 2",
+    "title": "Réchauffement climatique : le point de non-retour",
+    "url": "https://www.francetvinfo.fr/meteo/climat/rechauffement-climatique-le-point-de-non-retour_4077723.html",
+    "why": "nomme les causes, climat dans le titre"
+   }
+  ]
+ },
+ "2021": {
+  "media": {
+   "France 2": {
+    "total": 6679,
+    "climat": 91,
+    "pct": 1.36
+   },
+   "France 3": {
+    "total": 6753,
+    "climat": 85,
+    "pct": 1.26
+   },
+   "TF1": {
+    "total": 5462,
+    "climat": 73,
+    "pct": 1.34
+   }
+  },
+  "themes": {
+   "Météo extrême": 1199,
+   "Guerre / international": 1088,
+   "Santé": 5996,
+   "Tourisme / vacances": 2466,
+   "Voiture / carburant": 1337,
+   "Agriculture / alimentation": 977,
+   "Consommation / fêtes": 1097,
+   "Énergie": 579,
+   "Politique climatique": 144,
+   "Climat (nommé)": 249
+  },
+  "worst": [
+   {
+    "date": "2021-08-20",
+    "media": "TF1",
+    "title": "Paquebots de croisière : la folie des grandeurs",
+    "url": "https://www.tf1info.fr/societe/video-paquebots-de-croisiere-la-folie-des-grandeurs-2194255.html",
+    "why": "promo croisière, carte postale pendant canicule/sécheresse"
+   },
+   {
+    "date": "2021-06-05",
+    "media": "TF1",
+    "title": "Seychelles : relancer le tourisme à tout prix",
+    "url": "https://www.tf1info.fr/international/video-seychelles-relancer-le-tourisme-a-tout-prix-2187978.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   },
+   {
+    "date": "2021-07-16",
+    "media": "TF1",
+    "title": "À la découverte d'Anse Source d'Argent aux Seychelles, l’une des plus belles plages du monde",
+    "url": "https://www.tf1info.fr/voyages/video-a-la-decouverte-d-anse-source-d-argent-aux-seychelles-l-une-des-plus-belles-plages-du-monde-2191679.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   }
+  ],
+  "best": [
+   {
+    "date": "2021-11-03",
+    "media": "France 2",
+    "title": "Environnement : les émissions de carbone repartent à la hausse",
+    "url": "https://www.francetvinfo.fr/economie/automobile/diesel/environnement-les-emissions-de-carbone-repartent-a-la-hausse_4833139.html",
+    "why": "nomme les causes, ouverture du JT, énergies fossiles nommées"
+   },
+   {
+    "date": "2021-05-04",
+    "media": "France 3",
+    "title": "Météo : de plus en plus de phénomènes extrêmes",
+    "url": "https://www.francetvinfo.fr/meteo/climat/meteo-de-plus-en-plus-de-phenomenes-extremes_4610729.html",
+    "why": "nomme les causes, ouverture du JT"
+   },
+   {
+    "date": "2021-10-26",
+    "media": "France 3",
+    "title": "Côte-d'Or : les agriculteurs de Dijon s'adaptent au changement climatique",
+    "url": "https://www.francetvinfo.fr/economie/emploi/metiers/agriculture/cote-d-or-les-agriculteurs-de-dijon-s-adaptent-au-changement-climatique_4822481.html",
+    "why": "nomme les causes, climat dans le titre, adaptation"
+   }
+  ]
+ },
+ "2022": {
+  "media": {
+   "France 2": {
+    "total": 7720,
+    "climat": 216,
+    "pct": 2.8
+   },
+   "France 3": {
+    "total": 6913,
+    "climat": 160,
+    "pct": 2.31
+   },
+   "TF1": {
+    "total": 8072,
+    "climat": 135,
+    "pct": 1.67
+   }
+  },
+  "themes": {
+   "Météo extrême": 3135,
+   "Guerre / international": 3127,
+   "Santé": 2152,
+   "Tourisme / vacances": 2993,
+   "Voiture / carburant": 2914,
+   "Agriculture / alimentation": 1870,
+   "Consommation / fêtes": 1901,
+   "Énergie": 1572,
+   "Politique climatique": 174,
+   "Climat (nommé)": 511
+  },
+  "worst": [
+   {
+    "date": "2022-11-25",
+    "media": "France 2",
+    "title": "Black Friday : beaucoup de Français misent sur les promotions pour faire leurs achats de Noël",
+    "url": "https://www.francetvinfo.fr/economie/pouvoir-achat/black-friday-beaucoup-de-francais-misent-sur-les-promotions-pour-faire-leurs-achats-de-noel_5501157.html",
+    "why": "black friday en fête, année des mégafeux"
+   },
+   {
+    "date": "2022-07-06",
+    "media": "France 2",
+    "title": "Croisières : des paquebots plus écolos?",
+    "url": "https://www.francetvinfo.fr/monde/environnement/crise-climatique/paquebots-un-gaz-plus-ecologique-comme-carburant_5242033.html",
+    "why": "promo croisière, carte postale pendant canicule/sécheresse"
+   },
+   {
+    "date": "2022-08-30",
+    "media": "France 2",
+    "title": "Espagne : la croisière ferroviaire, un voyage luxueux",
+    "url": "https://www.francetvinfo.fr/economie/tourisme/espagne-la-croisiere-ferroviaire-un-voyage-luxueux_5334364.html",
+    "why": "promo croisière, carte postale pendant canicule/sécheresse"
+   }
+  ],
+  "best": [
+   {
+    "date": "2022-11-20",
+    "media": "France 2",
+    "title": "COP27 : une édition en demi-teinte malgré la création d'un fonds pour les pays pauvres",
+    "url": "https://www.francetvinfo.fr/monde/environnement/cop/cop27-une-edition-en-demi-teinte-malgre-la-creation-d-un-fonds-pour-les-pays-pauvres_5488584.html",
+    "why": "nomme les causes, ouverture du JT, énergies fossiles nommées"
+   },
+   {
+    "date": "2022-11-20",
+    "media": "France 2",
+    "title": "COP 27 : une édition décevante et sans ambition",
+    "url": "https://www.francetvinfo.fr/monde/environnement/cop/cop-27-une-edition-decevante-et-sans-ambition_5488956.html",
+    "why": "nomme les causes, ouverture du JT, énergies fossiles nommées"
+   },
+   {
+    "date": "2022-04-05",
+    "media": "TF1",
+    "title": "Climat : les recommandations du Giec pour éviter le pire",
+    "url": "https://www.tf1info.fr/environnement-ecologie/video-climat-dix-ans-pour-agir-2215647.html",
+    "why": "nomme les causes, climat dans le titre, énergies fossiles nommées"
+   }
+  ]
+ },
+ "2023": {
+  "media": {
+   "France 2": {
+    "total": 8325,
+    "climat": 297,
+    "pct": 3.57
+   },
+   "France 3": {
+    "total": 4585,
+    "climat": 160,
+    "pct": 3.49
+   },
+   "TF1": {
+    "total": 7230,
+    "climat": 210,
+    "pct": 2.9
+   }
+  },
+  "themes": {
+   "Météo extrême": 2971,
+   "Guerre / international": 1720,
+   "Santé": 1139,
+   "Tourisme / vacances": 2796,
+   "Voiture / carburant": 2387,
+   "Agriculture / alimentation": 1557,
+   "Consommation / fêtes": 1362,
+   "Énergie": 992,
+   "Politique climatique": 176,
+   "Climat (nommé)": 667
+  },
+  "worst": [
+   {
+    "date": "2023-09-22",
+    "media": "France 2",
+    "title": "Croisière : le plus grand paquebot du monde embarquera 10 000 personnes",
+    "url": "https://www.francetvinfo.fr/economie/tourisme/croisiere-le-plus-grand-paquebot-du-monde-embarquera-10-000-personnes_6078288.html",
+    "why": "promo croisière, année la plus chaude jamais mesurée alors"
+   },
+   {
+    "date": "2023-06-26",
+    "media": "TF1",
+    "title": "VIDÉO - Les Seychelles, un paradis où l'homme n'est plus qu'un humble invité",
+    "url": "https://www.tf1info.fr/voyages/video-voyage-idee-destination-paradisiaque-archipel-seychelles-un-paradis-ou-l-homme-n-est-plus-qu-un-humble-invite-2261499.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   },
+   {
+    "date": "2023-08-01",
+    "media": "TF1",
+    "title": "REPORTAGE - Entre la Polynésie et le Cap vert : un tour du monde vertigineux sur les paradis fragiles",
+    "url": "https://www.tf1info.fr/voyages/reportage-entre-la-polynesie-et-le-cap-vert-un-tour-du-monde-vertigineux-sur-les-paradis-fragiles-2265341.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   }
+  ],
+  "best": [
+   {
+    "date": "2023-03-20",
+    "media": "France 2",
+    "title": "Réchauffement climatique : les scientifiques du Giec sonnent à nouveau l’alerte",
+    "url": "https://www.francetvinfo.fr/monde/environnement/rechauffement-climatique-les-scientifiques-du-giec-sonnent-a-nouveau-l-alerte_5722727.html",
+    "why": "nomme les causes, climat dans le titre, énergies fossiles nommées"
+   },
+   {
+    "date": "2023-03-22",
+    "media": "TF1",
+    "title": "VIDÉO - Des arbres qui résistent au changement climatique : le test dans la forêt de Guéméné-Penfao",
+    "url": "https://www.tf1info.fr/environnement-ecologie/video-des-arbres-qui-resistent-au-changement-climatique-le-test-dans-la-foret-de-guemene-penfao-2251726.html",
+    "why": "nomme les causes, climat dans le titre, adaptation"
+   },
+   {
+    "date": "2023-07-06",
+    "media": "France 2",
+    "title": "Maisons fissurées, stations de ski fermées, récoltes en baisse... Une étude alerte sur les impacts du réchauffement climatique en France d'ici à 2050",
+    "url": "https://www.francetvinfo.fr/monde/environnement/crise-climatique/maisons-fissurees-stations-de-ski-fermees-recoltes-en-baisse-une-etude-alerte-sur-les-impacts-du-rechauffement-climatique-en-france-d-ici-a-2050_5932529.html",
+    "why": "nomme les causes, climat dans le titre, adaptation"
+   }
+  ]
+ },
+ "2024": {
+  "media": {
+   "France 2": {
+    "total": 8358,
+    "climat": 232,
+    "pct": 2.78
+   },
+   "TF1": {
+    "total": 8848,
+    "climat": 162,
+    "pct": 1.83
+   }
+  },
+  "themes": {
+   "Météo extrême": 1992,
+   "Guerre / international": 1349,
+   "Santé": 605,
+   "Tourisme / vacances": 1678,
+   "Voiture / carburant": 1717,
+   "Agriculture / alimentation": 1267,
+   "Consommation / fêtes": 960,
+   "Énergie": 556,
+   "Politique climatique": 90,
+   "Climat (nommé)": 394
+  },
+  "worst": [
+   {
+    "date": "2024-11-29",
+    "media": "TF1",
+    "title": "Nos petits commerçants se mettent au Black Friday",
+    "url": "https://www.tf1info.fr/conso/videos/video-nos-petits-commercants-se-mettent-au-black-friday-4567-2336832.html",
+    "why": "black friday en fête"
+   },
+   {
+    "date": "2024-09-12",
+    "media": "France 2",
+    "title": "Jeux olympiques 2024 : une croisière sur les traces de Paris 2024",
+    "url": "https://www.francetvinfo.fr/les-jeux-olympiques/jeux-olympiques-2024-une-croisiere-sur-les-traces-de-paris-2024_6777811.html",
+    "why": "promo croisière"
+   },
+   {
+    "date": "2024-01-02",
+    "media": "TF1",
+    "title": "Même sans neige, cette station de ski des Pyrénées-Atlantiques fait fièrement le plein",
+    "url": "https://www.tf1info.fr/voyages/video-laruns-meteo-montagne-meme-sans-neige-sans-ski-cette-station-de-ski-des-pyrenees-atlantiques-fait-fierement-le-plein-2281341.html",
+    "why": "douceur hivernale célébrée"
+   }
+  ],
+  "best": [
+   {
+    "date": "2024-04-16",
+    "media": "TF1",
+    "title": "Aux origines du réchauffement climatique : la vidéo exceptionnelle de TF1 pour tout comprendre en 6 minutes",
+    "url": "https://www.tf1info.fr/environnement-ecologie/aux-origines-du-rechauffement-climatique-la-video-exceptionnelle-en-realite-augmentee-de-tf1-pour-tout-comprendre-en-6-minutes-2277936.html",
+    "why": "pédagogie des causes"
+   },
+   {
+    "date": "2024-12-11",
+    "media": "France 2",
+    "title": "Réchauffement climatique : l'explosion des émissions de gaz à effet de serre liées au tourisme",
+    "url": "https://www.francetvinfo.fr/monde/environnement/crise-climatique/rechauffement-climatique-l-explosion-des-emissions-de-gaz-a-effet-de-serre-liees-au-tourisme_6949730.html",
+    "why": "nomme les causes, y compris celles du JT"
+   },
+   {
+    "date": "2024-02-20",
+    "media": "France 2",
+    "title": "Réchauffement climatique : les Français sont-ils prêts à manger moins de viande ?",
+    "url": "https://www.francetvinfo.fr/monde/environnement/rechauffement-climatique-les-francais-sont-ils-prets-a-manger-moins-de-viande_6377740.html",
+    "why": "leviers de demande (GIEC WG3)"
+   }
+  ]
+ },
+ "2025": {
+  "media": {
+   "France 2": {
+    "total": 8823,
+    "climat": 255,
+    "pct": 2.89
+   },
+   "TF1": {
+    "total": 8386,
+    "climat": 75,
+    "pct": 0.89
+   }
+  },
+  "themes": {
+   "Météo extrême": 1933,
+   "Guerre / international": 1659,
+   "Santé": 769,
+   "Tourisme / vacances": 1881,
+   "Voiture / carburant": 1896,
+   "Agriculture / alimentation": 1048,
+   "Consommation / fêtes": 896,
+   "Énergie": 612,
+   "Politique climatique": 57,
+   "Climat (nommé)": 330
+  },
+  "worst": [
+   {
+    "date": "2025-03-27",
+    "media": "TF1",
+    "title": "Six piscines, 33 bars restaurants... à bord d'un géant",
+    "url": "https://www.tf1info.fr/regions/videos/video-six-piscines-33-bars-restaurants-a-bord-d-un-geant-80337-2361817.html",
+    "why": "promo croisière"
+   },
+   {
+    "date": "2025-07-10",
+    "media": "France 2",
+    "title": "Hôtels exceptionnels : à Zanzibar, dormir avec les poissons pour mieux les protéger",
+    "url": "https://www.franceinfo.fr/replay-jt/france-2/13-heures/hotels-exceptionnels-a-zanzibar-dormir-avec-les-poissons-pour-mieux-les-proteger_7369348.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   },
+   {
+    "date": "2025-07-21",
+    "media": "France 2",
+    "title": "Maldives : une symphonie des bleus à préserver",
+    "url": "https://www.franceinfo.fr/culture/maldives-une-symphonie-des-bleus-a-preserver_7390594.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   }
+  ],
+  "best": [
+   {
+    "date": "2025-01-17",
+    "media": "France 2",
+    "title": "Inondations : un simulateur en réalité virtuelle pour anticiper les risques",
+    "url": "https://www.francetvinfo.fr/meteo/climat/inondations-un-simulateur-en-realite-virtuelle-pour-anticiper-les-risques_7020389.html",
+    "why": "nomme les causes, adaptation"
+   },
+   {
+    "date": "2025-02-16",
+    "media": "France 2",
+    "title": "Crise climatique : incendies, montée des eaux… Le paradis californien vire-t-il à l'enfer ?",
+    "url": "https://www.francetvinfo.fr/environnement/crise-climatique/crise-climatique-incendies-montee-des-eaux-le-paradis-californien-vire-t-il-a-l-enfer_7078677.html",
+    "why": "nomme les causes, climat dans le titre"
+   },
+   {
+    "date": "2025-06-19",
+    "media": "France 2",
+    "title": "Réchauffement climatique : la limite de 1,5 degré fixée par l'accord de Paris n'est plus atteignable",
+    "url": "https://www.franceinfo.fr/environnement/crise-climatique/donnees-climatiques/rechauffement-climatique-la-limite-de-1-5-degre-fixee-par-l-accord-de-paris-n-est-plus-atteignable_7324587.html",
+    "why": "nomme les causes, climat dans le titre"
+   }
+  ]
+ },
+ "2026": {
+  "media": {
+   "France 2": {
+    "total": 4472,
+    "climat": 157,
+    "pct": 3.51
+   },
+   "TF1": {
+    "total": 3161,
+    "climat": 32,
+    "pct": 1.01
+   }
+  },
+  "themes": {
+   "Météo extrême": 1625,
+   "Guerre / international": 1058,
+   "Santé": 379,
+   "Tourisme / vacances": 1014,
+   "Voiture / carburant": 1170,
+   "Agriculture / alimentation": 560,
+   "Consommation / fêtes": 323,
+   "Énergie": 509,
+   "Politique climatique": 24,
+   "Climat (nommé)": 189
+  },
+  "worst": [
+   {
+    "date": "2026-05-30",
+    "media": "France 2",
+    "title": "Croisières fluviales : de plus en plus de touristes se laissent tenter",
+    "url": "https://www.francetvinfo.fr/replay-jt/france-2/13-heures/croisieres-fluviales-de-plus-en-plus-de-touristes-se-laissent-tenter_8037215.html",
+    "why": "promo croisière, un mois avant la canicule"
+   },
+   {
+    "date": "2026-07-14",
+    "media": "France 2",
+    "title": "Les Maldives : à la découverte de ces îles d’exception",
+    "url": "https://www.francetvinfo.fr/replay-jt/france-2/13-heures/les-maldives-a-la-decouverte-de-ces-iles-d-exception_8107721.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   },
+   {
+    "date": "2026-07-21",
+    "media": "TF1",
+    "title": "À la découverte du joyau caché des Seychelles",
+    "url": "https://www.tf1info.fr/voyages/videos/video-a-la-decouverte-du-joyau-cache-des-seychelles-8607-2454395.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   }
+  ],
+  "best": [
+   {
+    "date": "2026-05-26",
+    "media": "France 2",
+    "title": "\"Les solutions sont déjà là\" : face au réchauffement, la géographe Magali Reghezza-Zitt estime qu'il va falloir changer nos habitudes de vie",
+    "url": "https://www.francetvinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/les-solutions-sont-deja-la-face-au-rechauffement-la-geographe-magali-reghezza-zitt-estime-qu-il-va-falloir-changer-nos-habitudes-de-vie_8030114.html",
+    "why": "nomme les causes, climat dans le titre, adaptation"
+   },
+   {
+    "date": "2026-03-26",
+    "media": "France 2",
+    "title": "Le retour de la neige en basse altitude, \"un marqueur du changement climatique\"",
+    "url": "https://www.francetvinfo.fr/environnement/meteo/neige/le-retour-de-la-neige-en-basse-altitude-un-marqueur-du-changement-climatique_7896344.html",
+    "why": "ouverture du JT, climat dans le titre"
+   },
+   {
+    "date": "2026-04-11",
+    "media": "France 2",
+    "title": "Energie : qui va bénéficier du plan d'électrification du gouvernement ?",
+    "url": "https://www.francetvinfo.fr/replay-jt/france-2/13-heures/energie-qui-va-beneficier-du-plan-d-electrification-du-gouvernement_7930973.html",
+    "why": "nomme les causes, énergies fossiles nommées"
+   }
+  ]
+ }
+}
