@@ -178,6 +178,12 @@ object ParserFranceTelevision {
     }
   }
 
+  // The ESI block returns relative hrefs (e.g. /replay-jt/...): store them absolute
+  // so the published data does not point to the wrong domain
+  def toAbsoluteUrl(link: String, defaultUrl: String): String = {
+    if (link.isEmpty || link.startsWith("http")) link else defaultUrl + link
+  }
+
   def getTitle(x: Element): String = {
     val titleOption = x >?> text(".card-article-list-s__title")
     logger.debug(s"title: $titleOption")
@@ -250,7 +256,7 @@ object ParserFranceTelevision {
 
               val order = index + 1 // Since oct 2022, frtv has removed the order attribute
 
-              val linkToDescription = getLinkToDescription(x)
+              val linkToDescription = toAbsoluteUrl(getLinkToDescription(x), defaultUrl)
 
               parseDescriptionAuthors(linkToDescription, defaultUrl) match {
                 case Some((title, description, authors, _)) => {
