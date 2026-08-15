@@ -399,7 +399,10 @@ object ParserFranceTelevision {
       val doc: browser.DocumentType = browser.get(newsUrl)
       val publishedDate = getDate(doc)
 
-      val title = (doc >?> text(".c-title")).getOrElse("")
+      // Since June 2026, France TV article pages use .hero-video__title instead of .c-title
+      val title = (doc >?> text(".c-title"))
+        .orElse(doc >?> text(".hero-video__title"))
+        .getOrElse("")
       val descriptionOption = doc >?> text(".c-body")
       val subtitle = parseSubtitle(doc)
       val description = descriptionOption match {

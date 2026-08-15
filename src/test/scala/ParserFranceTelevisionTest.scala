@@ -67,6 +67,19 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
     assert(List("J. Bigard", "A. Boulet") == authors)
   }
 
+  test("parseDescriptionAuthors - new layout since June 2026 (hero-video__title)") {
+    val (title, description, authors, publishedDate) =
+      ParserFranceTelevision
+        .parseDescriptionAuthors("/one-subject-tv-news-fr2-2026.html", localhost)
+        .get
+
+    assert(
+      title == "\"Il n'y a pas de profil type\" : ces personnes qui souffrent d’éco-anxiété")
+    assert(publishedDate == "le 10/06/2026 21:12")
+    assert(description.contains("éco-anxiété touche tous les âges"))
+    assert(List("C. Dubois", "M. Martin") == authors)
+  }
+
   test("parseDescriptionAuthors - old news 204/2013") {
     val (title, description, authors, publishedDate) =
       ParserFranceTelevision
