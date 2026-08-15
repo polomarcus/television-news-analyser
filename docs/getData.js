@@ -3,6 +3,13 @@ fetch( "https://observatoire.climatmedias.org/data-aggregated-news-json/latest-n
     const rawData = await r.text();
     const parsedData = '[' + rawData.split("\n{").join(',{') + ']'
     const latestNews = JSON.parse(parsedData);
+    // Some scraped news have relative URLs (from the France TV ESI block): make them absolute
+    // so links do not resolve against this website's domain and 404
+    latestNews.forEach(news => {
+        if (news.url && news.url.startsWith("/")) {
+            news.url = "https://www.francetvinfo.fr" + news.url;
+        }
+    });
     console.log("latestNews" , latestNews)
 
     //create Tabulator on DOM element with id "example-table"

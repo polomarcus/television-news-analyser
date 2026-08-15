@@ -78,6 +78,22 @@ class ParserFranceTelevisionTest extends AnyFunSuite {
       "Le régime d'Assad assure que les experts seront libres. Les inspecteurs des Nations Unies devrait entamer leurs investigations demain. L'objectif est de déterminer si, oui ou non, le régime a utilisé des armes chimiques. La présence militaire est renforcée en Méditerranée. Avec 4 navires de guerre déployées dans la zone, les USA ont décidé de placer la Syrie à porter de tirs. Va-t-on vers une intervention militaire occidentale contre le régime de Bachar al Assad? L'état major américain a présenté les options existantes pour intervenir. Nous avons envisagé toutes les options. La limite d'intervention est d'envoyer des milices. Les Occidentaux peuvent-ils obtenir un mandat de l'ONU pour une intervention ? Il faudrait que les Russes renoncent à utiliser leur droit de véto comme en 2011 lorsqu'ils avaient laisse voter l'intervention militaire en Lybie. Moscou ne semble pas prête à lâcher son allié Bachar al Assad. En témoigne ce communiqué. Les Russes incitent également les Américains à ne pas reproduire \"l'aventure de la guerre en lrak\". Même sans mandat de l'ONU, les Américains et leurs alliés pourraient décider d'intervenir comme en 1999 au Kosovo. Malgré l'opposition des Russes, il fallait stopper les massacres des Serbes de Milosevic. " == description)
   }
 
+  test("toAbsoluteUrl") {
+    assert(
+      ParserFranceTelevision.toAbsoluteUrl(
+        "/replay-jt/france-2/20-heures/subject_8146616.html",
+        "https://www.francetvinfo.fr")
+        == "https://www.francetvinfo.fr/replay-jt/france-2/20-heures/subject_8146616.html")
+
+    assert(
+      ParserFranceTelevision.toAbsoluteUrl(
+        "https://www.francetvinfo.fr/replay-jt/france-2/20-heures/subject_8146616.html",
+        "https://www.francetvinfo.fr")
+        == "https://www.francetvinfo.fr/replay-jt/france-2/20-heures/subject_8146616.html")
+
+    assert(ParserFranceTelevision.toAbsoluteUrl("", "https://www.francetvinfo.fr") == "")
+  }
+
   test("getPresenter") {
     assert(
       ParserFranceTelevision.getPresenter(
