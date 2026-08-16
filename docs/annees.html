@@ -122,15 +122,34 @@ fetch("data-aggregated-news-json/yearly.json")
 
       const isAll = y === "all";
       const CAT_LABELS = {
-        consequences_constat: "Constat des conséquences", mention_passagere: "Mention passagère",
-        adaptation: "Adaptation", science_rapports: "Science / rapports",
+        consequences_constat: "Constat des dégâts", mention_passagere: "Climat cité en passant",
+        adaptation: "Adaptation aux impacts", science_rapports: "Science / rapports",
         politique_negociations: "Politique / négociations", solutions_collectives: "Solutions collectives",
         causes: "Causes expliquées", solutions_individuelles: "Écogestes individuels"
       };
+      const CAT_DEFS = {
+        consequences_constat: "Le reportage décrit les impacts (canicule, sécheresse, incendies, fonte…) sans expliquer les causes ni traiter de solutions",
+        mention_passagere: "Le climat n'est cité qu'au passage, dans un reportage qui parle d'autre chose",
+        adaptation: "S'adapter aux impacts : urbanisme, agriculture, littoral, bâtiment…",
+        science_rapports: "Rapport du GIEC, étude scientifique, bilan chiffré de l'état du climat",
+        politique_negociations: "COP, accords internationaux, lois climat, débat politique",
+        solutions_collectives: "Politiques publiques, technologies, transformation de secteurs entiers",
+        causes: "Le reportage explique d'où vient le dérèglement : émissions, énergies fossiles, secteurs émetteurs",
+        solutions_individuelles: "Écogestes et comportements individuels de consommation"
+      };
       const QUI_LABELS = {
-        politique: "Politique", scientifique: "Scientifique", temoin: "Témoin / habitant",
-        militant: "Militant / ONG", aucun: "Aucun intervenant", professionnel_touche: "Professionnel touché",
-        industriel: "Industriel / entreprise"
+        politique: "Élu / gouvernement", scientifique: "Scientifique", temoin: "Habitant / victime",
+        militant: "Militant / ONG", aucun: "Personne (voix off seule)", professionnel_touche: "Professionnel touché",
+        industriel: "Entreprise / lobby"
+      };
+      const QUI_DEFS = {
+        politique: "Élu, ministre, institution politique",
+        scientifique: "Climatologue, chercheur, GIEC, Météo-France",
+        temoin: "Citoyen anonyme qui subit : habitant, sinistré, passant",
+        militant: "ONG, association, activiste",
+        aucun: "Personne n'est interviewé : le journaliste raconte seul",
+        professionnel_touche: "Un métier impacté qui témoigne : agriculteur, ostréiculteur, pompier, moniteur de ski…",
+        industriel: "Entreprise, fédération professionnelle, lobbyiste"
       };
       const SEC_LABELS = {
         logement_energie: "Logement / énergie", transport_routier: "Transport routier",
@@ -138,10 +157,26 @@ fetch("data-aggregated-news-json/yearly.json")
         aerien: "Aérien", energies_fossiles_general: "Énergies fossiles (général)",
         alimentation_viande: "Viande / élevage", numerique: "Numérique"
       };
-      const miniBars = (obj, labels, n, highlight) => {
+      const SEC_DEFS = {
+        alimentation_viande: "Élevage et viande cités comme source d'émissions — l'un des premiers postes de l'empreinte carbone des Français (nosgestesclimat.fr), le moins nommé",
+        logement_energie: "Chauffage, passoires thermiques, production d'électricité fossile",
+        transport_routier: "Voiture, camion, carburants routiers cités comme émetteurs",
+        maritime: "Paquebots, fret maritime", aerien: "Avion, aviation",
+        agriculture_autre: "Engrais, cultures citées comme source d'émissions",
+        industrie: "Usines, ciment, acier, pétrochimie", numerique: "Data centers, numérique",
+        energies_fossiles_general: "Pétrole / charbon / gaz cités sans secteur précis"
+      };
+      const CONSEQ_LABELS = {
+        chaleur_canicule: "Canicule / chaleur", secheresse_eau: "Sécheresse / manque d'eau",
+        incendies: "Incendies", inondations_tempetes: "Inondations / tempêtes",
+        fonte_montee_eaux: "Fonte des glaces / montée des eaux", biodiversite: "Biodiversité / vivant",
+        agriculture_impacts: "Récoltes / élevages touchés", sante: "Santé humaine",
+        records_mesures: "Records / mesures du climat", autre: "Autre"
+      };
+      const miniBars = (obj, labels, n, highlight, defs) => {
         const entries = Object.entries(obj).sort((a,b) => b[1]-a[1]);
         const mx = Math.max(...entries.map(e => e[1]), 1);
-        return entries.map(([k,v]) => `<div class="theme-row" title="${labels[k]||k} : ${v} reportages (${(100*v/n).toFixed(1)} %)">
+        return entries.map(([k,v]) => `<div class="theme-row" title="${((defs && defs[k]) || labels[k] || k).replace(/"/g,'&quot;')} — ${v} reportages (${(100*v/n).toFixed(1)} %)">
             <div class="label">${highlight && highlight.includes(k) ? "<strong>"+(labels[k]||k)+"</strong>" : (labels[k]||k)}</div>
             <div class="theme-track"><div class="theme-fill${highlight && highlight.includes(k) ? " climat" : ""}" style="width:${Math.max(100*v/mx,0.8)}%"></div></div>
             <div class="count">${(100*v/n).toFixed(0)} %</div>
@@ -150,22 +185,30 @@ fetch("data-aggregated-news-json/yearly.json")
       let classifBlock = "";
       if (d.classif) {
         const c = d.classif;
+        const conseqCol = c.conseq ? `
+          <div class="col-md-3">
+            <div class="section-h mb-2" style="font-weight:600">Le constat, de quels dégâts ?</div>
+            <p class="disclaimer mb-2">Détail des ${(c.cats.consequences_constat||0).toLocaleString("fr-FR")} reportages « constat »</p>
+            ${miniBars(c.conseq, CONSEQ_LABELS, c.cats.consequences_constat || 1, null, null)}
+          </div>` : "";
         classifBlock = `
         <hr class="my-4">
         <div class="section-h mb-1">Que disent les ${c.n.toLocaleString("fr-FR")} reportages qui nomment le climat${isAll ? " (2013–2026)" : " en " + y} ?</div>
-        <p class="disclaimer mb-3">Classification par IA (voir <a href="https://github.com/polomarcus/television-news-analyser/blob/main/docs/data-aggregated-news-json/classification-climat.README.md">méthodologie</a>) — « fond » = causes + politique + science : <strong>${c.fond_pct.toLocaleString("fr-FR")} %</strong> · énergies fossiles nommées comme cause : ${c.fossile_pct.toLocaleString("fr-FR")} % · aucun secteur émetteur nommé : ${c.aucun_secteur_pct.toLocaleString("fr-FR")} %</p>
+        <p class="disclaimer mb-1">Classification par IA (voir <a href="https://github.com/polomarcus/television-news-analyser/blob/main/docs/data-aggregated-news-json/classification-climat.README.md">méthodologie</a>) — survolez chaque barre pour la définition de la catégorie.</p>
+        <p class="disclaimer mb-3">Reportages « de fond » (causes + politique + science) : <strong>${c.fond_pct.toLocaleString("fr-FR")} %</strong> · énergies fossiles nommées comme cause : ${c.fossile_pct.toLocaleString("fr-FR")} % · aucun secteur émetteur nommé : ${c.aucun_secteur_pct.toLocaleString("fr-FR")} % · <span class="bg-warning text-dark bg-opacity-25 px-1">en ambre</span> : les trois marqueurs d'un traitement de fond — expliquer les causes, faire parler la science, nommer la viande/élevage (gros poste d'émissions, le moins cité).</p>
         <div class="row g-4">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="section-h mb-2" style="font-weight:600">Angle du reportage</div>
-            ${miniBars(c.cats, CAT_LABELS, c.n, ["causes"])}
+            ${miniBars(c.cats, CAT_LABELS, c.n, ["causes"], CAT_DEFS)}
           </div>
-          <div class="col-md-4">
-            <div class="section-h mb-2" style="font-weight:600">Qui parle ?</div>
-            ${miniBars(c.qui, QUI_LABELS, c.n, ["scientifique"])}
+          ${conseqCol}
+          <div class="col-md-3">
+            <div class="section-h mb-2" style="font-weight:600">Qui est interviewé ?</div>
+            ${miniBars(c.qui, QUI_LABELS, c.n, ["scientifique"], QUI_DEFS)}
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="section-h mb-2" style="font-weight:600">Secteurs émetteurs nommés</div>
-            ${miniBars(c.secteurs, SEC_LABELS, c.n, ["alimentation_viande"])}
+            ${miniBars(c.secteurs, SEC_LABELS, c.n, ["alimentation_viande"], SEC_DEFS)}
           </div>
         </div>`;
       }

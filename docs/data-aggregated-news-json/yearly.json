@@ -95,7 +95,14 @@
     "logement_energie": 1,
     "industrie": 1
    },
-   "aucun_secteur_pct": 77.1
+   "aucun_secteur_pct": 77.1,
+   "conseq": {
+    "records_mesures": 2,
+    "fonte_montee_eaux": 2,
+    "sante": 2,
+    "inondations_tempetes": 2,
+    "secheresse_eau": 5
+   }
   }
  },
  "2014": {
@@ -199,7 +206,14 @@
     "maritime": 1,
     "aerien": 1
    },
-   "aucun_secteur_pct": 73.7
+   "aucun_secteur_pct": 73.7,
+   "conseq": {
+    "biodiversite": 1,
+    "inondations_tempetes": 4,
+    "records_mesures": 1,
+    "secheresse_eau": 2,
+    "incendies": 1
+   }
   }
  },
  "2015": {
@@ -303,7 +317,15 @@
     "energies_fossiles_general": 2,
     "numerique": 1
    },
-   "aucun_secteur_pct": 82.2
+   "aucun_secteur_pct": 82.2,
+   "conseq": {
+    "inondations_tempetes": 1,
+    "chaleur_canicule": 8,
+    "fonte_montee_eaux": 1,
+    "secheresse_eau": 3,
+    "records_mesures": 2,
+    "agriculture_impacts": 3
+   }
   }
  },
  "2016": {
@@ -409,7 +431,14 @@
     "alimentation_viande": 2,
     "energies_fossiles_general": 2
    },
-   "aucun_secteur_pct": 86.7
+   "aucun_secteur_pct": 86.7,
+   "conseq": {
+    "chaleur_canicule": 5,
+    "fonte_montee_eaux": 2,
+    "inondations_tempetes": 2,
+    "records_mesures": 2,
+    "agriculture_impacts": 1
+   }
   }
  },
  "2017": {
@@ -519,7 +548,19 @@
     "alimentation_viande": 1,
     "agriculture_autre": 1
    },
-   "aucun_secteur_pct": 76.5
+   "aucun_secteur_pct": 76.5,
+   "conseq": {
+    "records_mesures": 5,
+    "inondations_tempetes": 3,
+    "agriculture_impacts": 5,
+    "chaleur_canicule": 9,
+    "biodiversite": 3,
+    "secheresse_eau": 2,
+    "sante": 2,
+    "fonte_montee_eaux": 3,
+    "incendies": 2,
+    "autre": 2
+   }
   }
  },
  "2018": {
@@ -631,7 +672,19 @@
     "maritime": 2,
     "agriculture_autre": 3
    },
-   "aucun_secteur_pct": 71.7
+   "aucun_secteur_pct": 71.7,
+   "conseq": {
+    "secheresse_eau": 13,
+    "inondations_tempetes": 6,
+    "chaleur_canicule": 11,
+    "incendies": 5,
+    "records_mesures": 13,
+    "biodiversite": 1,
+    "agriculture_impacts": 19,
+    "sante": 1,
+    "fonte_montee_eaux": 7,
+    "autre": 1
+   }
   }
  },
  "2019": {
@@ -744,7 +797,19 @@
     "numerique": 4,
     "alimentation_viande": 19
    },
-   "aucun_secteur_pct": 64.2
+   "aucun_secteur_pct": 64.2,
+   "conseq": {
+    "inondations_tempetes": 17,
+    "secheresse_eau": 34,
+    "agriculture_impacts": 16,
+    "fonte_montee_eaux": 29,
+    "chaleur_canicule": 16,
+    "records_mesures": 14,
+    "biodiversite": 11,
+    "autre": 3,
+    "incendies": 5,
+    "sante": 2
+   }
   }
  },
  "2020": {
@@ -857,7 +922,18 @@
     "numerique": 1,
     "agriculture_autre": 7
    },
-   "aucun_secteur_pct": 69.9
+   "aucun_secteur_pct": 69.9,
+   "conseq": {
+    "incendies": 9,
+    "secheresse_eau": 14,
+    "inondations_tempetes": 13,
+    "records_mesures": 12,
+    "fonte_montee_eaux": 11,
+    "biodiversite": 5,
+    "chaleur_canicule": 9,
+    "autre": 1,
+    "agriculture_impacts": 3
+   }
   }
  },
  "2021": {
@@ -970,7 +1046,19 @@
     "maritime": 10,
     "numerique": 4
    },
-   "aucun_secteur_pct": 60.2
+   "aucun_secteur_pct": 60.2,
+   "conseq": {
+    "incendies": 11,
+    "inondations_tempetes": 16,
+    "records_mesures": 9,
+    "secheresse_eau": 14,
+    "chaleur_canicule": 20,
+    "biodiversite": 10,
+    "fonte_montee_eaux": 17,
+    "agriculture_impacts": 9,
+    "sante": 1,
+    "autre": 2
+   }
   }
  },
  "2022": {
@@ -1083,7 +1171,18 @@
     "energies_fossiles_general": 19,
     "numerique": 4
    },
-   "aucun_secteur_pct": 44.2
+   "aucun_secteur_pct": 44.2,
+   "conseq": {
+    "secheresse_eau": 47,
+    "biodiversite": 11,
+    "fonte_montee_eaux": 12,
+    "chaleur_canicule": 62,
+    "records_mesures": 35,
+    "autre": 5,
+    "inondations_tempetes": 19,
+    "agriculture_impacts": 10,
+    "incendies": 11
+   }
   }
  },
  "2023": {
@@ -1196,7 +1295,19 @@
     "logement_energie": 110,
     "numerique": 21
    },
-   "aucun_secteur_pct": 36.3
+   "aucun_secteur_pct": 36.3,
+   "conseq": {
+    "chaleur_canicule": 62,
+    "secheresse_eau": 51,
+    "biodiversite": 13,
+    "inondations_tempetes": 27,
+    "records_mesures": 40,
+    "fonte_montee_eaux": 16,
+    "autre": 4,
+    "incendies": 13,
+    "sante": 1,
+    "agriculture_impacts": 5
+   }
   }
  },
  "2024": {
@@ -1304,7 +1415,18 @@
     "aerien": 22,
     "alimentation_viande": 16
    },
-   "aucun_secteur_pct": 48.5
+   "aucun_secteur_pct": 48.5,
+   "conseq": {
+    "secheresse_eau": 16,
+    "inondations_tempetes": 29,
+    "records_mesures": 25,
+    "chaleur_canicule": 25,
+    "biodiversite": 8,
+    "autre": 5,
+    "incendies": 4,
+    "sante": 3,
+    "fonte_montee_eaux": 7
+   }
   }
  },
  "2025": {
@@ -1412,7 +1534,19 @@
     "energies_fossiles_general": 10,
     "aerien": 13
    },
-   "aucun_secteur_pct": 51.5
+   "aucun_secteur_pct": 51.5,
+   "conseq": {
+    "biodiversite": 5,
+    "chaleur_canicule": 20,
+    "records_mesures": 19,
+    "sante": 4,
+    "inondations_tempetes": 43,
+    "secheresse_eau": 24,
+    "agriculture_impacts": 12,
+    "autre": 2,
+    "incendies": 1,
+    "fonte_montee_eaux": 9
+   }
   }
  },
  "2026": {
@@ -1520,7 +1654,17 @@
     "industrie": 5,
     "agriculture_autre": 1
    },
-   "aucun_secteur_pct": 80.4
+   "aucun_secteur_pct": 80.4,
+   "conseq": {
+    "inondations_tempetes": 14,
+    "fonte_montee_eaux": 5,
+    "agriculture_impacts": 8,
+    "records_mesures": 13,
+    "chaleur_canicule": 25,
+    "secheresse_eau": 16,
+    "sante": 5,
+    "incendies": 2
+   }
   }
  },
  "all": {
@@ -1731,7 +1875,19 @@
     "alimentation_viande": 124,
     "numerique": 59
    },
-   "aucun_secteur_pct": 56.1
+   "aucun_secteur_pct": 56.1,
+   "conseq": {
+    "records_mesures": 192,
+    "fonte_montee_eaux": 121,
+    "sante": 21,
+    "inondations_tempetes": 196,
+    "secheresse_eau": 241,
+    "biodiversite": 68,
+    "incendies": 64,
+    "chaleur_canicule": 272,
+    "agriculture_impacts": 91,
+    "autre": 25
+   }
   }
  }
 }

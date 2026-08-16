@@ -233,11 +233,18 @@ def main():
                 aucun_secteur += 1
             for s in r.get("secteurs", []):
                 sec[s] = sec.get(s, 0) + 1
+        conseq = {}
+        for r in rows:
+            if r.get("conseq"):
+                conseq[r["conseq"]] = conseq.get(r["conseq"], 0) + 1
         fond = cats.get("causes", 0) + cats.get("politique_negociations", 0) + cats.get("science_rapports", 0)
-        return {"n": n, "cats": cats, "fond_pct": round(100 * fond / n, 1),
-                "fossile_pct": round(100 * sum(1 for r in rows if r.get("fossile")) / n, 1),
-                "qui": qui, "secteurs": sec,
-                "aucun_secteur_pct": round(100 * aucun_secteur / n, 1)}
+        out_agg = {"n": n, "cats": cats, "fond_pct": round(100 * fond / n, 1),
+                   "fossile_pct": round(100 * sum(1 for r in rows if r.get("fossile")) / n, 1),
+                   "qui": qui, "secteurs": sec,
+                   "aucun_secteur_pct": round(100 * aucun_secteur / n, 1)}
+        if conseq:
+            out_agg["conseq"] = conseq
+        return out_agg
 
     for y in out:
         rows = classif if y == "all" else by_year_cl.get(y, [])
