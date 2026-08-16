@@ -65,6 +65,18 @@
     "why": "nomme les causes, climat dans le titre"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 3066,
+    "climat": 7,
+    "pct": 0.23
+   },
+   "20H": {
+    "total": 5158,
+    "climat": 28,
+    "pct": 0.54
+   }
+  },
   "classif": {
    "n": 35,
    "cats": {
@@ -176,6 +188,18 @@
     "why": "nomme les causes, climat dans le titre"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 5479,
+    "climat": 10,
+    "pct": 0.18
+   },
+   "20H": {
+    "total": 6058,
+    "climat": 26,
+    "pct": 0.43
+   }
+  },
   "classif": {
    "n": 38,
    "cats": {
@@ -287,6 +311,18 @@
     "why": "nomme les causes, climat dans le titre, énergies fossiles nommées"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 4876,
+    "climat": 43,
+    "pct": 0.88
+   },
+   "20H": {
+    "total": 5235,
+    "climat": 67,
+    "pct": 1.28
+   }
+  },
   "classif": {
    "n": 152,
    "cats": {
@@ -404,6 +440,18 @@
     "why": "nomme les causes, climat dans le titre"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 4668,
+    "climat": 15,
+    "pct": 0.32
+   },
+   "20H": {
+    "total": 4933,
+    "climat": 22,
+    "pct": 0.45
+   }
+  },
   "classif": {
    "n": 60,
    "cats": {
@@ -517,6 +565,18 @@
     "why": "nomme les causes, énergies fossiles nommées"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 4529,
+    "climat": 21,
+    "pct": 0.46
+   },
+   "20H": {
+    "total": 4681,
+    "climat": 52,
+    "pct": 1.11
+   }
+  },
   "classif": {
    "n": 153,
    "cats": {
@@ -639,6 +699,18 @@
     "why": "nomme les causes, ouverture du JT"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 4443,
+    "climat": 20,
+    "pct": 0.45
+   },
+   "20H": {
+    "total": 4787,
+    "climat": 49,
+    "pct": 1.02
+   }
+  },
   "classif": {
    "n": 173,
    "cats": {
@@ -763,6 +835,18 @@
     "why": "nomme les causes, ouverture du JT, climat dans le titre"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 3940,
+    "climat": 46,
+    "pct": 1.17
+   },
+   "20H": {
+    "total": 4585,
+    "climat": 95,
+    "pct": 2.07
+   }
+  },
   "classif": {
    "n": 324,
    "cats": {
@@ -888,6 +972,18 @@
     "why": "nomme les causes, climat dans le titre"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 2686,
+    "climat": 25,
+    "pct": 0.93
+   },
+   "20H": {
+    "total": 4069,
+    "climat": 29,
+    "pct": 0.71
+   }
+  },
   "classif": {
    "n": 173,
    "cats": {
@@ -1012,6 +1108,18 @@
     "why": "nomme les causes, climat dans le titre, adaptation"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 2218,
+    "climat": 17,
+    "pct": 0.77
+   },
+   "20H": {
+    "total": 4461,
+    "climat": 74,
+    "pct": 1.66
+   }
+  },
   "classif": {
    "n": 249,
    "cats": {
@@ -1137,6 +1245,18 @@
     "why": "nomme les causes, climat dans le titre, énergies fossiles nommées"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 3277,
+    "climat": 59,
+    "pct": 1.8
+   },
+   "20H": {
+    "total": 4443,
+    "climat": 157,
+    "pct": 3.53
+   }
+  },
   "classif": {
    "n": 511,
    "cats": {
@@ -1261,6 +1381,18 @@
     "why": "nomme les causes, climat dans le titre, adaptation"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 3945,
+    "climat": 105,
+    "pct": 2.66
+   },
+   "20H": {
+    "total": 4380,
+    "climat": 192,
+    "pct": 4.38
+   }
+  },
   "classif": {
    "n": 667,
    "cats": {
@@ -1381,6 +1513,18 @@
     "why": "leviers de demande (GIEC WG3)"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 4068,
+    "climat": 93,
+    "pct": 2.29
+   },
+   "20H": {
+    "total": 4290,
+    "climat": 139,
+    "pct": 3.24
+   }
+  },
   "classif": {
    "n": 394,
    "cats": {
@@ -1500,6 +1644,18 @@
     "why": "nomme les causes, climat dans le titre"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 4193,
+    "climat": 106,
+    "pct": 2.53
+   },
+   "20H": {
+    "total": 4630,
+    "climat": 149,
+    "pct": 3.22
+   }
+  },
   "classif": {
    "n": 330,
    "cats": {
@@ -1552,27 +1708,27 @@
  "2026": {
   "media": {
    "France 2": {
-    "total": 4472,
-    "climat": 157,
-    "pct": 3.51
+    "total": 4493,
+    "climat": 158,
+    "pct": 3.52
    },
    "TF1": {
-    "total": 3161,
+    "total": 3176,
     "climat": 32,
     "pct": 1.01
    }
   },
   "themes": {
-   "Météo extrême": 1625,
-   "Guerre / international": 1058,
-   "Santé": 379,
-   "Tourisme / vacances": 1014,
-   "Voiture / carburant": 1170,
-   "Agriculture / alimentation": 560,
+   "Météo extrême": 1638,
+   "Guerre / international": 1059,
+   "Santé": 381,
+   "Tourisme / vacances": 1026,
+   "Voiture / carburant": 1173,
+   "Agriculture / alimentation": 563,
    "Consommation / fêtes": 323,
    "Énergie": 509,
    "Politique climatique": 24,
-   "Climat (nommé)": 189
+   "Climat (nommé)": 190
   },
   "worst": [
    {
@@ -1620,6 +1776,18 @@
     "why": "nomme les causes, énergies fossiles nommées"
    }
   ],
+  "editions": {
+   "13H": {
+    "total": 2139,
+    "climat": 56,
+    "pct": 2.62
+   },
+   "20H": {
+    "total": 2354,
+    "climat": 102,
+    "pct": 4.33
+   }
+  },
   "classif": {
    "n": 189,
    "cats": {
@@ -1670,8 +1838,8 @@
  "all": {
   "media": {
    "France 2": {
-    "total": 117570,
-    "climat": 1803,
+    "total": 117591,
+    "climat": 1804,
     "pct": 1.53
    },
    "France 3": {
@@ -1680,22 +1848,34 @@
     "pct": 1.42
    },
    "TF1": {
-    "total": 65525,
+    "total": 65540,
     "climat": 870,
     "pct": 1.33
    }
   },
   "themes": {
-   "Météo extrême": 23151,
-   "Guerre / international": 24179,
-   "Santé": 23737,
-   "Tourisme / vacances": 25265,
-   "Voiture / carburant": 21327,
-   "Agriculture / alimentation": 13816,
+   "Météo extrême": 23164,
+   "Guerre / international": 24180,
+   "Santé": 23739,
+   "Tourisme / vacances": 25277,
+   "Voiture / carburant": 21330,
+   "Agriculture / alimentation": 13819,
    "Consommation / fêtes": 12972,
    "Énergie": 8496,
    "Politique climatique": 1565,
-   "Climat (nommé)": 3448
+   "Climat (nommé)": 3449
+  },
+  "editions": {
+   "13H": {
+    "total": 53527,
+    "climat": 623,
+    "pct": 1.16
+   },
+   "20H": {
+    "total": 64064,
+    "climat": 1181,
+    "pct": 1.84
+   }
   },
   "worst": [
    {
