@@ -64,7 +64,39 @@
     "url": "https://www.francetvinfo.fr/rechauffement-climatique-la-disparition-des-saisons_422295.html",
     "why": "nomme les causes, climat dans le titre"
    }
-  ]
+  ],
+  "classif": {
+   "n": 35,
+   "cats": {
+    "consequences_constat": 13,
+    "mention_passagere": 6,
+    "adaptation": 3,
+    "science_rapports": 9,
+    "politique_negociations": 2,
+    "solutions_collectives": 1,
+    "causes": 1
+   },
+   "fond_pct": 34.3,
+   "fossile_pct": 11.4,
+   "qui": {
+    "politique": 6,
+    "temoin": 6,
+    "scientifique": 15,
+    "professionnel_touche": 5,
+    "aucun": 8,
+    "militant": 12,
+    "industriel": 4
+   },
+   "secteurs": {
+    "transport_routier": 4,
+    "maritime": 2,
+    "aerien": 1,
+    "energies_fossiles_general": 1,
+    "logement_energie": 1,
+    "industrie": 1
+   },
+   "aucun_secteur_pct": 77.1
+  }
  },
  "2014": {
   "media": {
@@ -136,7 +168,39 @@
     "url": "https://www.francetvinfo.fr/monde/environnement/video-rechauffement-climatique-les-experts-lancent-un-cri-d-alarme_734819.html",
     "why": "nomme les causes, climat dans le titre"
    }
-  ]
+  ],
+  "classif": {
+   "n": 38,
+   "cats": {
+    "adaptation": 3,
+    "consequences_constat": 9,
+    "politique_negociations": 7,
+    "science_rapports": 12,
+    "mention_passagere": 5,
+    "solutions_individuelles": 1,
+    "solutions_collectives": 1
+   },
+   "fond_pct": 50.0,
+   "fossile_pct": 2.6,
+   "qui": {
+    "temoin": 7,
+    "scientifique": 11,
+    "politique": 14,
+    "militant": 9,
+    "aucun": 10,
+    "industriel": 3,
+    "professionnel_touche": 4
+   },
+   "secteurs": {
+    "transport_routier": 5,
+    "energies_fossiles_general": 2,
+    "industrie": 3,
+    "agriculture_autre": 1,
+    "maritime": 1,
+    "aerien": 1
+   },
+   "aucun_secteur_pct": 73.7
+  }
  },
  "2015": {
   "media": {
@@ -208,7 +272,39 @@
     "url": "https://www.francetvinfo.fr/meteo/climat/cop21/rechauffement-climatique-les-differents-scenarios-possibles_1199727.html",
     "why": "nomme les causes, climat dans le titre, énergies fossiles nommées"
    }
-  ]
+  ],
+  "classif": {
+   "n": 152,
+   "cats": {
+    "science_rapports": 50,
+    "politique_negociations": 12,
+    "adaptation": 51,
+    "consequences_constat": 18,
+    "solutions_collectives": 6,
+    "solutions_individuelles": 15
+   },
+   "fond_pct": 40.8,
+   "fossile_pct": 19.1,
+   "qui": {
+    "scientifique": 32,
+    "politique": 66,
+    "militant": 28,
+    "temoin": 30,
+    "aucun": 40,
+    "industriel": 11,
+    "professionnel_touche": 9
+   },
+   "secteurs": {
+    "transport_routier": 15,
+    "logement_energie": 3,
+    "industrie": 5,
+    "aerien": 5,
+    "agriculture_autre": 1,
+    "energies_fossiles_general": 2,
+    "numerique": 1
+   },
+   "aucun_secteur_pct": 82.2
+  }
  },
  "2016": {
   "media": {
@@ -285,7 +381,36 @@
     "url": "https://www.francetvinfo.fr/monde/environnement/rechauffement-climatique-des-temperatures-records-dans-le-monde-depuis-un-an_1456565.html",
     "why": "nomme les causes, climat dans le titre"
    }
-  ]
+  ],
+  "classif": {
+   "n": 60,
+   "cats": {
+    "adaptation": 20,
+    "science_rapports": 18,
+    "solutions_individuelles": 2,
+    "consequences_constat": 12,
+    "politique_negociations": 7,
+    "solutions_collectives": 1
+   },
+   "fond_pct": 41.7,
+   "fossile_pct": 31.7,
+   "qui": {
+    "temoin": 1,
+    "aucun": 26,
+    "scientifique": 13,
+    "politique": 21,
+    "industriel": 3,
+    "militant": 2,
+    "professionnel_touche": 2
+   },
+   "secteurs": {
+    "transport_routier": 4,
+    "agriculture_autre": 1,
+    "alimentation_viande": 2,
+    "energies_fossiles_general": 2
+   },
+   "aucun_secteur_pct": 86.7
+  }
  },
  "2017": {
   "media": {
@@ -362,7 +487,40 @@
     "url": "https://www.francetvinfo.fr/monde/usa/presidentielle/donald-trump/les-etats-unis-relancent-le-petrole-et-le-charbon_2021494.html",
     "why": "nomme les causes, énergies fossiles nommées"
    }
-  ]
+  ],
+  "classif": {
+   "n": 153,
+   "cats": {
+    "science_rapports": 37,
+    "adaptation": 37,
+    "solutions_individuelles": 11,
+    "solutions_collectives": 10,
+    "consequences_constat": 36,
+    "politique_negociations": 19,
+    "causes": 3
+   },
+   "fond_pct": 38.6,
+   "fossile_pct": 17.0,
+   "qui": {
+    "politique": 68,
+    "industriel": 15,
+    "scientifique": 36,
+    "militant": 24,
+    "temoin": 13,
+    "professionnel_touche": 5,
+    "aucun": 37
+   },
+   "secteurs": {
+    "energies_fossiles_general": 9,
+    "industrie": 4,
+    "transport_routier": 18,
+    "logement_energie": 4,
+    "maritime": 2,
+    "alimentation_viande": 1,
+    "agriculture_autre": 1
+   },
+   "aucun_secteur_pct": 76.5
+  }
  },
  "2018": {
   "media": {
@@ -439,7 +597,42 @@
     "url": "https://www.francetvinfo.fr/meteo/climat/climat-le-scenario-catastrophe-des-scientifiques_2976121.html",
     "why": "nomme les causes, ouverture du JT"
    }
-  ]
+  ],
+  "classif": {
+   "n": 173,
+   "cats": {
+    "adaptation": 30,
+    "science_rapports": 19,
+    "solutions_collectives": 8,
+    "politique_negociations": 20,
+    "mention_passagere": 6,
+    "solutions_individuelles": 1,
+    "consequences_constat": 77,
+    "causes": 12
+   },
+   "fond_pct": 29.5,
+   "fossile_pct": 19.7,
+   "qui": {
+    "scientifique": 63,
+    "temoin": 12,
+    "aucun": 28,
+    "militant": 25,
+    "politique": 51,
+    "industriel": 21,
+    "professionnel_touche": 10
+   },
+   "secteurs": {
+    "transport_routier": 10,
+    "aerien": 8,
+    "alimentation_viande": 5,
+    "logement_energie": 20,
+    "industrie": 10,
+    "energies_fossiles_general": 5,
+    "maritime": 2,
+    "agriculture_autre": 3
+   },
+   "aucun_secteur_pct": 71.7
+  }
  },
  "2019": {
   "media": {
@@ -516,7 +709,43 @@
     "url": "https://www.francetvinfo.fr/meteo/climat/rechauffement-climatique-le-scenario-catastrophe-des-scientifiques_3620347.html",
     "why": "nomme les causes, ouverture du JT, climat dans le titre"
    }
-  ]
+  ],
+  "classif": {
+   "n": 324,
+   "cats": {
+    "politique_negociations": 49,
+    "adaptation": 47,
+    "consequences_constat": 147,
+    "solutions_collectives": 16,
+    "causes": 22,
+    "science_rapports": 17,
+    "solutions_individuelles": 3,
+    "mention_passagere": 23
+   },
+   "fond_pct": 27.2,
+   "fossile_pct": 12.0,
+   "qui": {
+    "politique": 113,
+    "professionnel_touche": 42,
+    "scientifique": 91,
+    "militant": 49,
+    "industriel": 20,
+    "temoin": 18,
+    "aucun": 24
+   },
+   "secteurs": {
+    "maritime": 24,
+    "transport_routier": 19,
+    "agriculture_autre": 16,
+    "energies_fossiles_general": 9,
+    "aerien": 19,
+    "logement_energie": 42,
+    "industrie": 15,
+    "numerique": 4,
+    "alimentation_viande": 19
+   },
+   "aucun_secteur_pct": 64.2
+  }
  },
  "2020": {
   "media": {
@@ -593,7 +822,43 @@
     "url": "https://www.francetvinfo.fr/meteo/climat/rechauffement-climatique-le-point-de-non-retour_4077723.html",
     "why": "nomme les causes, climat dans le titre"
    }
-  ]
+  ],
+  "classif": {
+   "n": 173,
+   "cats": {
+    "politique_negociations": 24,
+    "solutions_individuelles": 3,
+    "solutions_collectives": 8,
+    "consequences_constat": 77,
+    "adaptation": 23,
+    "causes": 16,
+    "science_rapports": 1,
+    "mention_passagere": 21
+   },
+   "fond_pct": 23.7,
+   "fossile_pct": 10.4,
+   "qui": {
+    "politique": 63,
+    "professionnel_touche": 19,
+    "scientifique": 43,
+    "temoin": 6,
+    "industriel": 19,
+    "militant": 16,
+    "aucun": 14
+   },
+   "secteurs": {
+    "energies_fossiles_general": 8,
+    "industrie": 7,
+    "logement_energie": 22,
+    "aerien": 7,
+    "transport_routier": 10,
+    "alimentation_viande": 4,
+    "maritime": 3,
+    "numerique": 1,
+    "agriculture_autre": 7
+   },
+   "aucun_secteur_pct": 69.9
+  }
  },
  "2021": {
   "media": {
@@ -670,7 +935,43 @@
     "url": "https://www.francetvinfo.fr/economie/emploi/metiers/agriculture/cote-d-or-les-agriculteurs-de-dijon-s-adaptent-au-changement-climatique_4822481.html",
     "why": "nomme les causes, climat dans le titre, adaptation"
    }
-  ]
+  ],
+  "classif": {
+   "n": 249,
+   "cats": {
+    "causes": 28,
+    "solutions_collectives": 11,
+    "consequences_constat": 109,
+    "adaptation": 29,
+    "science_rapports": 12,
+    "politique_negociations": 33,
+    "solutions_individuelles": 8,
+    "mention_passagere": 19
+   },
+   "fond_pct": 29.3,
+   "fossile_pct": 14.1,
+   "qui": {
+    "professionnel_touche": 36,
+    "temoin": 33,
+    "industriel": 25,
+    "scientifique": 67,
+    "politique": 91,
+    "militant": 32,
+    "aucun": 14
+   },
+   "secteurs": {
+    "industrie": 13,
+    "agriculture_autre": 32,
+    "logement_energie": 29,
+    "transport_routier": 16,
+    "alimentation_viande": 11,
+    "energies_fossiles_general": 12,
+    "aerien": 6,
+    "maritime": 10,
+    "numerique": 4
+   },
+   "aucun_secteur_pct": 60.2
+  }
  },
  "2022": {
   "media": {
@@ -747,7 +1048,43 @@
     "url": "https://www.tf1info.fr/environnement-ecologie/video-climat-dix-ans-pour-agir-2215647.html",
     "why": "nomme les causes, climat dans le titre, énergies fossiles nommées"
    }
-  ]
+  ],
+  "classif": {
+   "n": 511,
+   "cats": {
+    "consequences_constat": 212,
+    "adaptation": 63,
+    "politique_negociations": 38,
+    "mention_passagere": 81,
+    "science_rapports": 53,
+    "solutions_collectives": 26,
+    "causes": 19,
+    "solutions_individuelles": 19
+   },
+   "fond_pct": 21.5,
+   "fossile_pct": 5.3,
+   "qui": {
+    "politique": 138,
+    "professionnel_touche": 95,
+    "temoin": 159,
+    "scientifique": 160,
+    "militant": 105,
+    "industriel": 67,
+    "aucun": 42
+   },
+   "secteurs": {
+    "alimentation_viande": 20,
+    "transport_routier": 55,
+    "maritime": 62,
+    "agriculture_autre": 82,
+    "aerien": 57,
+    "industrie": 52,
+    "logement_energie": 49,
+    "energies_fossiles_general": 19,
+    "numerique": 4
+   },
+   "aucun_secteur_pct": 44.2
+  }
  },
  "2023": {
   "media": {
@@ -824,7 +1161,43 @@
     "url": "https://www.francetvinfo.fr/monde/environnement/crise-climatique/maisons-fissurees-stations-de-ski-fermees-recoltes-en-baisse-une-etude-alerte-sur-les-impacts-du-rechauffement-climatique-en-france-d-ici-a-2050_5932529.html",
     "why": "nomme les causes, climat dans le titre, adaptation"
    }
-  ]
+  ],
+  "classif": {
+   "n": 667,
+   "cats": {
+    "science_rapports": 79,
+    "mention_passagere": 124,
+    "consequences_constat": 232,
+    "causes": 28,
+    "solutions_collectives": 56,
+    "adaptation": 77,
+    "solutions_individuelles": 36,
+    "politique_negociations": 35
+   },
+   "fond_pct": 21.3,
+   "fossile_pct": 9.1,
+   "qui": {
+    "scientifique": 288,
+    "politique": 187,
+    "militant": 128,
+    "temoin": 285,
+    "industriel": 109,
+    "aucun": 33,
+    "professionnel_touche": 105
+   },
+   "secteurs": {
+    "maritime": 128,
+    "agriculture_autre": 91,
+    "alimentation_viande": 33,
+    "energies_fossiles_general": 52,
+    "transport_routier": 81,
+    "aerien": 76,
+    "industrie": 81,
+    "logement_energie": 110,
+    "numerique": 21
+   },
+   "aucun_secteur_pct": 36.3
+  }
  },
  "2024": {
   "media": {
@@ -896,7 +1269,43 @@
     "url": "https://www.francetvinfo.fr/monde/environnement/rechauffement-climatique-les-francais-sont-ils-prets-a-manger-moins-de-viande_6377740.html",
     "why": "leviers de demande (GIEC WG3)"
    }
-  ]
+  ],
+  "classif": {
+   "n": 394,
+   "cats": {
+    "consequences_constat": 122,
+    "adaptation": 44,
+    "solutions_collectives": 45,
+    "mention_passagere": 78,
+    "causes": 17,
+    "solutions_individuelles": 14,
+    "science_rapports": 60,
+    "politique_negociations": 14
+   },
+   "fond_pct": 23.1,
+   "fossile_pct": 8.9,
+   "qui": {
+    "scientifique": 138,
+    "temoin": 130,
+    "politique": 118,
+    "militant": 52,
+    "professionnel_touche": 50,
+    "aucun": 41,
+    "industriel": 51
+   },
+   "secteurs": {
+    "maritime": 38,
+    "numerique": 15,
+    "transport_routier": 61,
+    "agriculture_autre": 26,
+    "energies_fossiles_general": 23,
+    "logement_energie": 54,
+    "industrie": 28,
+    "aerien": 22,
+    "alimentation_viande": 16
+   },
+   "aucun_secteur_pct": 48.5
+  }
  },
  "2025": {
   "media": {
@@ -968,7 +1377,43 @@
     "url": "https://www.franceinfo.fr/environnement/crise-climatique/donnees-climatiques/rechauffement-climatique-la-limite-de-1-5-degre-fixee-par-l-accord-de-paris-n-est-plus-atteignable_7324587.html",
     "why": "nomme les causes, climat dans le titre"
    }
-  ]
+  ],
+  "classif": {
+   "n": 330,
+   "cats": {
+    "consequences_constat": 139,
+    "mention_passagere": 77,
+    "adaptation": 19,
+    "causes": 23,
+    "solutions_collectives": 23,
+    "science_rapports": 33,
+    "politique_negociations": 7,
+    "solutions_individuelles": 9
+   },
+   "fond_pct": 19.1,
+   "fossile_pct": 7.6,
+   "qui": {
+    "industriel": 26,
+    "professionnel_touche": 28,
+    "politique": 82,
+    "militant": 17,
+    "scientifique": 34,
+    "temoin": 54,
+    "aucun": 67
+   },
+   "secteurs": {
+    "alimentation_viande": 11,
+    "transport_routier": 51,
+    "maritime": 24,
+    "agriculture_autre": 10,
+    "logement_energie": 52,
+    "industrie": 23,
+    "numerique": 8,
+    "energies_fossiles_general": 10,
+    "aerien": 13
+   },
+   "aucun_secteur_pct": 51.5
+  }
  },
  "2026": {
   "media": {
@@ -1040,7 +1485,43 @@
     "url": "https://www.francetvinfo.fr/replay-jt/france-2/13-heures/energie-qui-va-beneficier-du-plan-d-electrification-du-gouvernement_7930973.html",
     "why": "nomme les causes, énergies fossiles nommées"
    }
-  ]
+  ],
+  "classif": {
+   "n": 189,
+   "cats": {
+    "politique_negociations": 6,
+    "science_rapports": 18,
+    "consequences_constat": 88,
+    "adaptation": 12,
+    "solutions_collectives": 7,
+    "mention_passagere": 41,
+    "solutions_individuelles": 13,
+    "causes": 4
+   },
+   "fond_pct": 14.8,
+   "fossile_pct": 4.2,
+   "qui": {
+    "politique": 23,
+    "aucun": 115,
+    "temoin": 16,
+    "scientifique": 20,
+    "militant": 6,
+    "industriel": 10,
+    "professionnel_touche": 8
+   },
+   "secteurs": {
+    "alimentation_viande": 2,
+    "transport_routier": 14,
+    "logement_energie": 8,
+    "energies_fossiles_general": 4,
+    "numerique": 1,
+    "aerien": 3,
+    "maritime": 6,
+    "industrie": 5,
+    "agriculture_autre": 1
+   },
+   "aucun_secteur_pct": 80.4
+  }
  },
  "all": {
   "media": {
@@ -1215,6 +1696,42 @@
     "url": "https://www.francetvinfo.fr/meteo/climat/climat-le-scenario-catastrophe-des-scientifiques_2976121.html",
     "why": "nomme les causes, ouverture du JT"
    }
-  ]
+  ],
+  "classif": {
+   "n": 3448,
+   "cats": {
+    "consequences_constat": 1291,
+    "mention_passagere": 481,
+    "adaptation": 458,
+    "science_rapports": 418,
+    "politique_negociations": 273,
+    "solutions_collectives": 219,
+    "causes": 173,
+    "solutions_individuelles": 135
+   },
+   "fond_pct": 25.1,
+   "fossile_pct": 10.5,
+   "qui": {
+    "politique": 1041,
+    "temoin": 770,
+    "scientifique": 1011,
+    "professionnel_touche": 418,
+    "aucun": 499,
+    "militant": 505,
+    "industriel": 384
+   },
+   "secteurs": {
+    "transport_routier": 363,
+    "maritime": 302,
+    "aerien": 218,
+    "energies_fossiles_general": 158,
+    "logement_energie": 394,
+    "industrie": 247,
+    "agriculture_autre": 272,
+    "alimentation_viande": 124,
+    "numerique": 59
+   },
+   "aucun_secteur_pct": 56.1
+  }
  }
 }
