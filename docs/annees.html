@@ -69,14 +69,16 @@
 fetch("data-aggregated-news-json/yearly.json")
   .then(r => r.json())
   .then(data => {
-    const years = Object.keys(data).sort().reverse();
+    const years = Object.keys(data).filter(y => y !== "all").sort().reverse();
+    if (data.all) years.unshift("all");
+    const label = y => y === "all" ? "★ Tout 2013–2026" : y;
     const tabs = document.getElementById("yearTabs");
     const content = document.getElementById("yearContent");
 
     years.forEach((y, i) => {
       const li = document.createElement("li");
       li.className = "nav-item";
-      li.innerHTML = `<button class="nav-link${i===0?" active":""}" data-bs-toggle="pill" data-bs-target="#y${y}" type="button">${y}</button>`;
+      li.innerHTML = `<button class="nav-link${i===0?" active":""}" data-bs-toggle="pill" data-bs-target="#y${y}" type="button">${label(y)}</button>`;
       tabs.appendChild(li);
     });
 
@@ -118,21 +120,25 @@ fetch("data-aggregated-news-json/yearly.json")
           <div class="why">${p.why}</div>
         </div>`;
 
+      const isAll = y === "all";
+      const themesTitle = isAll ? "Les grands thèmes, 2013–2026" : `Les grands thèmes de ${y}`;
+      const worstTitle = isAll ? "🔴 Top 10 du pire — parler d'autre chose" : "🔴 Le pire — parler d'autre chose";
+      const bestTitle = isAll ? "🟢 Top 10 du meilleur — nommer et expliquer" : "🟢 Le meilleur — nommer et expliquer";
       pane.innerHTML = `
         <div class="row g-2 mb-4">${tiles}</div>
         <div class="row g-4">
           <div class="col-lg-5">
-            <div class="section-h mb-2">Les grands thèmes de ${y}</div>
+            <div class="section-h mb-2">${themesTitle}</div>
             ${bars}
           </div>
           <div class="col-lg-7">
             <div class="row g-3">
               <div class="col-md-6">
-                <div class="section-h mb-2" style="color:var(--bad)">🔴 Le pire — parler d'autre chose</div>
+                <div class="section-h mb-2" style="color:var(--bad)">${worstTitle}</div>
                 ${d.worst.map(p => pickCard(p, "bad")).join("") || '<p class="text-muted">Rien détecté cette année.</p>'}
               </div>
               <div class="col-md-6">
-                <div class="section-h mb-2" style="color:var(--good)">🟢 Le meilleur — nommer et expliquer</div>
+                <div class="section-h mb-2" style="color:var(--good)">${bestTitle}</div>
                 ${d.best.map(p => pickCard(p, "good")).join("") || '<p class="text-muted">Rien détecté cette année.</p>'}
               </div>
             </div>

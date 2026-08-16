@@ -59,6 +59,36 @@ PINNED = {
 # drug busts, economy pieces, listing-page artifacts, critical/eco-guilt angles
 BLACKLIST = ["drogue", "saisie record", "vent en poupe", "a suivre :", "si je voulais partir"]
 
+# The all-years top 10, fully hand-curated. Entries referencing a yearly pick
+# use ("ref", year, kind, title_prefix) so the URL stays single-sourced;
+# extras carry their own verified URL.
+ALL_TIME = {
+    "worst": [
+        ("ref", "2023", "worst", "Croisière : le plus grand paquebot"),
+        ("2026-06-27", "France 2", "Paysages à couper le souffle, thé noir… À la découverte du train bleu du Sri Lanka", "https://www.francetvinfo.fr/replay-jt/france-2/13-heures/paysages-a-couper-le-souffle-the-noir-a-la-decouverte-du-train-bleu-du-sri-lanka_8082641.html", "diffusé le lendemain de l'interview de Jancovici au 20H, en pleine canicule"),
+        ("ref", "2026", "worst", "Les Maldives : à la découverte"),
+        ("ref", "2025", "worst", "Six piscines, 33 bars restaurants"),
+        ("ref", "2021", "worst", "Paquebots de croisière : la folie"),
+        ("2026-08-08", "France 2", "En Allemagne, l'île de Rügen offre un petit coin de paradis sur la Baltique", "https://www.francetvinfo.fr/replay-jt/france-2/13-heures/en-allemagne-l-ile-de-rugen-offre-un-petit-coin-de-paradis-sur-la-baltique_8139836.html", "dans la même édition que l'angoisse des agriculteurs face à la sécheresse"),
+        ("ref", "2018", "worst", "Seychelles, se marier"),
+        ("ref", "2016", "worst", "Le plus gros paquebot de croisière"),
+        ("ref", "2024", "worst", "Même sans neige, cette station de ski"),
+        ("ref", "2022", "worst", "Black Friday : beaucoup de Français"),
+    ],
+    "best": [
+        ("2026-06-26", "France 2", "Environnement : malgré 50 ans d'alerte, un dérèglement climatique qui s'accentue inexorablement", "https://www.francetvinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/environnement-malgre-50-ans-d-alerte-un-dereglement-climatique-qui-s-accentue-inexorablement_8081801.html", "le soir de l'interview de Jancovici, nommer le dérèglement en pleine canicule"),
+        ("ref", "2024", "best", "Aux origines du réchauffement climatique"),
+        ("ref", "2026", "best", "Le retour de la neige en basse altitude"),
+        ("ref", "2024", "best", "Réchauffement climatique : l'explosion des émissions"),
+        ("ref", "2023", "best", "Réchauffement climatique : les scientifiques du Giec"),
+        ("ref", "2026", "best", "\"Les solutions sont déjà là\""),
+        ("ref", "2022", "best", "Climat : les recommandations du Giec"),
+        ("ref", "2024", "best", "Réchauffement climatique : les Français sont-ils prêts"),
+        ("ref", "2021", "best", "Environnement : les émissions de carbone"),
+        ("ref", "2018", "best", "Climat : le scénario catastrophe"),
+    ],
+}
+
 def load_records():
     recs = []
     for f in glob.glob("data-news-json/media=*/year=*/month=*/day=*/*.json"):
@@ -147,6 +177,35 @@ def main():
             pinned_keys = {norm(p["title"])[:40] for p in pinned}
             rest = [e for e in out[y][kind] if norm(e["title"])[:40] not in pinned_keys]
             out[y][kind] = (pinned + rest)[:3]
+
+    # all-years tab: aggregated stats + hand-curated top 10
+    all_media = {}
+    for m in ["France 2", "France 3", "TF1"]:
+        sub = [r for r in recs if r["media"] == m]
+        if sub:
+            c = sum(1 for r in sub if r["clim"])
+            all_media[m] = {"total": len(sub), "climat": c, "pct": round(100 * c / len(sub), 2)}
+    all_themes = {t: sum(1 for r in recs if has(r, kws)) for t, kws in THEMES.items()}
+    all_themes["Climat (nommé)"] = sum(1 for r in recs if r["clim"])
+
+    def resolve_all(entries):
+        res = []
+        for e in entries:
+            if e[0] == "ref":
+                _, y, kind, prefix = e
+                match = next((p for p in out[y][kind] if norm(p["title"]).startswith(norm(prefix))), None)
+                if match is None:
+                    print(f"WARNING: all-time ref not found: {y}/{kind}/{prefix!r}")
+                    continue
+                res.append(match)
+            else:
+                date, media, title, url, why = e
+                res.append({"date": date, "media": media, "title": title, "url": url, "why": why})
+        return res
+
+    out["all"] = {"media": all_media, "themes": all_themes,
+                  "worst": resolve_all(ALL_TIME["worst"]),
+                  "best": resolve_all(ALL_TIME["best"])}
 
     path = "docs/data-aggregated-news-json/yearly.json"
     with open(path, "w") as fp:
