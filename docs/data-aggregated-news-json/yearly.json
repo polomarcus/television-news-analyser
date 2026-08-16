@@ -1041,5 +1041,180 @@
     "why": "nomme les causes, énergies fossiles nommées"
    }
   ]
+ },
+ "all": {
+  "media": {
+   "France 2": {
+    "total": 117570,
+    "climat": 1803,
+    "pct": 1.53
+   },
+   "France 3": {
+    "total": 54606,
+    "climat": 775,
+    "pct": 1.42
+   },
+   "TF1": {
+    "total": 65525,
+    "climat": 870,
+    "pct": 1.33
+   }
+  },
+  "themes": {
+   "Météo extrême": 23151,
+   "Guerre / international": 24179,
+   "Santé": 23737,
+   "Tourisme / vacances": 25265,
+   "Voiture / carburant": 21327,
+   "Agriculture / alimentation": 13816,
+   "Consommation / fêtes": 12972,
+   "Énergie": 8496,
+   "Politique climatique": 1565,
+   "Climat (nommé)": 3448
+  },
+  "worst": [
+   {
+    "date": "2023-09-22",
+    "media": "France 2",
+    "title": "Croisière : le plus grand paquebot du monde embarquera 10 000 personnes",
+    "url": "https://www.francetvinfo.fr/economie/tourisme/croisiere-le-plus-grand-paquebot-du-monde-embarquera-10-000-personnes_6078288.html",
+    "why": "promo croisière, année la plus chaude jamais mesurée alors"
+   },
+   {
+    "date": "2026-06-27",
+    "media": "France 2",
+    "title": "Paysages à couper le souffle, thé noir… À la découverte du train bleu du Sri Lanka",
+    "url": "https://www.francetvinfo.fr/replay-jt/france-2/13-heures/paysages-a-couper-le-souffle-the-noir-a-la-decouverte-du-train-bleu-du-sri-lanka_8082641.html",
+    "why": "diffusé le lendemain de l'interview de Jancovici au 20H, en pleine canicule"
+   },
+   {
+    "date": "2026-07-14",
+    "media": "France 2",
+    "title": "Les Maldives : à la découverte de ces îles d’exception",
+    "url": "https://www.francetvinfo.fr/replay-jt/france-2/13-heures/les-maldives-a-la-decouverte-de-ces-iles-d-exception_8107721.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   },
+   {
+    "date": "2025-03-27",
+    "media": "TF1",
+    "title": "Six piscines, 33 bars restaurants... à bord d'un géant",
+    "url": "https://www.tf1info.fr/regions/videos/video-six-piscines-33-bars-restaurants-a-bord-d-un-geant-80337-2361817.html",
+    "why": "promo croisière"
+   },
+   {
+    "date": "2021-08-20",
+    "media": "TF1",
+    "title": "Paquebots de croisière : la folie des grandeurs",
+    "url": "https://www.tf1info.fr/societe/video-paquebots-de-croisiere-la-folie-des-grandeurs-2194255.html",
+    "why": "promo croisière, carte postale pendant canicule/sécheresse"
+   },
+   {
+    "date": "2026-08-08",
+    "media": "France 2",
+    "title": "En Allemagne, l'île de Rügen offre un petit coin de paradis sur la Baltique",
+    "url": "https://www.francetvinfo.fr/replay-jt/france-2/13-heures/en-allemagne-l-ile-de-rugen-offre-un-petit-coin-de-paradis-sur-la-baltique_8139836.html",
+    "why": "dans la même édition que l'angoisse des agriculteurs face à la sécheresse"
+   },
+   {
+    "date": "2018-08-12",
+    "media": "TF1",
+    "title": "Seychelles, se marier sur une plage paradisiaque",
+    "url": "https://www.tf1info.fr/international/seychelles-se-marier-sur-une-plage-paradisiaque-2095560.html",
+    "why": "carte postale pendant canicule/sécheresse, promo long-courrier"
+   },
+   {
+    "date": "2016-05-12",
+    "media": "France 2",
+    "title": "Le plus gros paquebot de croisière du monde est prêt à partir en croisière",
+    "url": "https://www.francetvinfo.fr/economie/transports/chantiers-navals-de-saint-nazaire/le-plus-gros-paquebot-de-croisiere-du-monde-est-pret-a-partir-en-croisiere_1447819.html",
+    "why": "promo croisière"
+   },
+   {
+    "date": "2024-01-02",
+    "media": "TF1",
+    "title": "Même sans neige, cette station de ski des Pyrénées-Atlantiques fait fièrement le plein",
+    "url": "https://www.tf1info.fr/voyages/video-laruns-meteo-montagne-meme-sans-neige-sans-ski-cette-station-de-ski-des-pyrenees-atlantiques-fait-fierement-le-plein-2281341.html",
+    "why": "douceur hivernale célébrée"
+   },
+   {
+    "date": "2022-11-25",
+    "media": "France 2",
+    "title": "Black Friday : beaucoup de Français misent sur les promotions pour faire leurs achats de Noël",
+    "url": "https://www.francetvinfo.fr/economie/pouvoir-achat/black-friday-beaucoup-de-francais-misent-sur-les-promotions-pour-faire-leurs-achats-de-noel_5501157.html",
+    "why": "black friday en fête, année des mégafeux"
+   }
+  ],
+  "best": [
+   {
+    "date": "2026-06-26",
+    "media": "France 2",
+    "title": "Environnement : malgré 50 ans d'alerte, un dérèglement climatique qui s'accentue inexorablement",
+    "url": "https://www.francetvinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/environnement-malgre-50-ans-d-alerte-un-dereglement-climatique-qui-s-accentue-inexorablement_8081801.html",
+    "why": "le soir de l'interview de Jancovici, nommer le dérèglement en pleine canicule"
+   },
+   {
+    "date": "2024-04-16",
+    "media": "TF1",
+    "title": "Aux origines du réchauffement climatique : la vidéo exceptionnelle de TF1 pour tout comprendre en 6 minutes",
+    "url": "https://www.tf1info.fr/environnement-ecologie/aux-origines-du-rechauffement-climatique-la-video-exceptionnelle-en-realite-augmentee-de-tf1-pour-tout-comprendre-en-6-minutes-2277936.html",
+    "why": "pédagogie des causes"
+   },
+   {
+    "date": "2026-03-26",
+    "media": "France 2",
+    "title": "Le retour de la neige en basse altitude, \"un marqueur du changement climatique\"",
+    "url": "https://www.francetvinfo.fr/environnement/meteo/neige/le-retour-de-la-neige-en-basse-altitude-un-marqueur-du-changement-climatique_7896344.html",
+    "why": "ouverture du JT, climat dans le titre"
+   },
+   {
+    "date": "2024-12-11",
+    "media": "France 2",
+    "title": "Réchauffement climatique : l'explosion des émissions de gaz à effet de serre liées au tourisme",
+    "url": "https://www.francetvinfo.fr/monde/environnement/crise-climatique/rechauffement-climatique-l-explosion-des-emissions-de-gaz-a-effet-de-serre-liees-au-tourisme_6949730.html",
+    "why": "nomme les causes, y compris celles du JT"
+   },
+   {
+    "date": "2023-03-20",
+    "media": "France 2",
+    "title": "Réchauffement climatique : les scientifiques du Giec sonnent à nouveau l’alerte",
+    "url": "https://www.francetvinfo.fr/monde/environnement/rechauffement-climatique-les-scientifiques-du-giec-sonnent-a-nouveau-l-alerte_5722727.html",
+    "why": "nomme les causes, climat dans le titre, énergies fossiles nommées"
+   },
+   {
+    "date": "2026-05-26",
+    "media": "France 2",
+    "title": "\"Les solutions sont déjà là\" : face au réchauffement, la géographe Magali Reghezza-Zitt estime qu'il va falloir changer nos habitudes de vie",
+    "url": "https://www.francetvinfo.fr/environnement/evenements-meteorologiques-extremes/vagues-de-chaleur-canicules/les-solutions-sont-deja-la-face-au-rechauffement-la-geographe-magali-reghezza-zitt-estime-qu-il-va-falloir-changer-nos-habitudes-de-vie_8030114.html",
+    "why": "nomme les causes, climat dans le titre, adaptation"
+   },
+   {
+    "date": "2022-04-05",
+    "media": "TF1",
+    "title": "Climat : les recommandations du Giec pour éviter le pire",
+    "url": "https://www.tf1info.fr/environnement-ecologie/video-climat-dix-ans-pour-agir-2215647.html",
+    "why": "nomme les causes, climat dans le titre, énergies fossiles nommées"
+   },
+   {
+    "date": "2024-02-20",
+    "media": "France 2",
+    "title": "Réchauffement climatique : les Français sont-ils prêts à manger moins de viande ?",
+    "url": "https://www.francetvinfo.fr/monde/environnement/rechauffement-climatique-les-francais-sont-ils-prets-a-manger-moins-de-viande_6377740.html",
+    "why": "leviers de demande (GIEC WG3)"
+   },
+   {
+    "date": "2021-11-03",
+    "media": "France 2",
+    "title": "Environnement : les émissions de carbone repartent à la hausse",
+    "url": "https://www.francetvinfo.fr/economie/automobile/diesel/environnement-les-emissions-de-carbone-repartent-a-la-hausse_4833139.html",
+    "why": "nomme les causes, ouverture du JT, énergies fossiles nommées"
+   },
+   {
+    "date": "2018-10-08",
+    "media": "France 3",
+    "title": "Climat : le scénario catastrophe des scientifiques",
+    "url": "https://www.francetvinfo.fr/meteo/climat/climat-le-scenario-catastrophe-des-scientifiques_2976121.html",
+    "why": "nomme les causes, ouverture du JT"
+   }
+  ]
  }
 }
