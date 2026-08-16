@@ -36,3 +36,24 @@ description de chaque reportage.
   automatiquement — regénération à la demande (voir l'historique du projet).
 - Ordres de grandeur robustes, frontières de catégories approximatives : pour toute
   citation publique, vérifier les exemples individuels (le champ `url` est là pour ça).
+
+## Validation par juge indépendant (août 2026)
+
+98 reportages tirés au sort (stratifiés par année) ont été ré-annotés en aveugle
+par un modèle plus puissant (Claude Sonnet) muni d'une consigne reformulée
+indépendamment (définitions réécrites, ordre des catégories mélangé, aucun accès
+aux labels de production). Résultats :
+
+- accord brut sur les 8 catégories : **54 %** (kappa de Cohen : 0,44) ;
+- accord sur la dichotomie « fond » (causes + politique + science) vs reste,
+  qui porte le résultat principal : **80 %** ;
+- les désaccords se concentrent aux frontières sémantiques
+  (constat ↔ science_rapports, constat ↔ adaptation) et vont majoritairement
+  dans le sens d'une sous-estimation du « fond » par la classification de
+  production ;
+- la tendance centrale est robuste au changement d'annotateur : sur ce même
+  échantillon, la part de « fond » passe de 47 % (2013–2021) à 22 % (2022–2026)
+  selon la production, et de 53 % à 25 % selon le juge.
+
+Conclusion : les effectifs par catégorie fine sont à ±quelques points, la
+dichotomie fond/non-fond et sa trajectoire sont fiables.
