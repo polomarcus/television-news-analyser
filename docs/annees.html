@@ -121,6 +121,54 @@ fetch("data-aggregated-news-json/yearly.json")
         </div>`;
 
       const isAll = y === "all";
+      const CAT_LABELS = {
+        consequences_constat: "Constat des conséquences", mention_passagere: "Mention passagère",
+        adaptation: "Adaptation", science_rapports: "Science / rapports",
+        politique_negociations: "Politique / négociations", solutions_collectives: "Solutions collectives",
+        causes: "Causes expliquées", solutions_individuelles: "Écogestes individuels"
+      };
+      const QUI_LABELS = {
+        politique: "Politique", scientifique: "Scientifique", temoin: "Témoin / habitant",
+        militant: "Militant / ONG", aucun: "Aucun intervenant", professionnel_touche: "Professionnel touché",
+        industriel: "Industriel / entreprise"
+      };
+      const SEC_LABELS = {
+        logement_energie: "Logement / énergie", transport_routier: "Transport routier",
+        maritime: "Maritime", agriculture_autre: "Agriculture (hors viande)", industrie: "Industrie",
+        aerien: "Aérien", energies_fossiles_general: "Énergies fossiles (général)",
+        alimentation_viande: "Viande / élevage", numerique: "Numérique"
+      };
+      const miniBars = (obj, labels, n, highlight) => {
+        const entries = Object.entries(obj).sort((a,b) => b[1]-a[1]);
+        const mx = Math.max(...entries.map(e => e[1]), 1);
+        return entries.map(([k,v]) => `<div class="theme-row" title="${labels[k]||k} : ${v} reportages (${(100*v/n).toFixed(1)} %)">
+            <div class="label">${highlight && highlight.includes(k) ? "<strong>"+(labels[k]||k)+"</strong>" : (labels[k]||k)}</div>
+            <div class="theme-track"><div class="theme-fill${highlight && highlight.includes(k) ? " climat" : ""}" style="width:${Math.max(100*v/mx,0.8)}%"></div></div>
+            <div class="count">${(100*v/n).toFixed(0)} %</div>
+          </div>`).join("");
+      };
+      let classifBlock = "";
+      if (d.classif) {
+        const c = d.classif;
+        classifBlock = `
+        <hr class="my-4">
+        <div class="section-h mb-1">Que disent les ${c.n.toLocaleString("fr-FR")} reportages qui nomment le climat${isAll ? " (2013–2026)" : " en " + y} ?</div>
+        <p class="disclaimer mb-3">Classification par IA (voir <a href="https://github.com/polomarcus/television-news-analyser/blob/main/docs/data-aggregated-news-json/classification-climat.README.md">méthodologie</a>) — « fond » = causes + politique + science : <strong>${c.fond_pct.toLocaleString("fr-FR")} %</strong> · énergies fossiles nommées comme cause : ${c.fossile_pct.toLocaleString("fr-FR")} % · aucun secteur émetteur nommé : ${c.aucun_secteur_pct.toLocaleString("fr-FR")} %</p>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="section-h mb-2" style="font-weight:600">Angle du reportage</div>
+            ${miniBars(c.cats, CAT_LABELS, c.n, ["causes"])}
+          </div>
+          <div class="col-md-4">
+            <div class="section-h mb-2" style="font-weight:600">Qui parle ?</div>
+            ${miniBars(c.qui, QUI_LABELS, c.n, ["scientifique"])}
+          </div>
+          <div class="col-md-4">
+            <div class="section-h mb-2" style="font-weight:600">Secteurs émetteurs nommés</div>
+            ${miniBars(c.secteurs, SEC_LABELS, c.n, ["alimentation_viande"])}
+          </div>
+        </div>`;
+      }
       const themesTitle = isAll ? "Les grands thèmes, 2013–2026" : `Les grands thèmes de ${y}`;
       const worstTitle = isAll ? "🔴 Top 10 du pire — parler d'autre chose" : "🔴 Le pire — parler d'autre chose";
       const bestTitle = isAll ? "🟢 Top 10 du meilleur — nommer et expliquer" : "🟢 Le meilleur — nommer et expliquer";
@@ -143,7 +191,8 @@ fetch("data-aggregated-news-json/yearly.json")
               </div>
             </div>
           </div>
-        </div>`;
+        </div>
+        ${classifBlock}`;
       paneWrap.appendChild(pane);
     });
   })

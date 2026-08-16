@@ -207,6 +207,44 @@ def main():
                   "worst": resolve_all(ALL_TIME["worst"]),
                   "best": resolve_all(ALL_TIME["best"])}
 
+    # join the LLM classification of climate reports (see classification-climat.README.md)
+    try:
+        classif = json.load(open("docs/data-aggregated-news-json/classification-climat.json"))
+    except FileNotFoundError:
+        classif = []
+    by_year_cl = {}
+    for c in classif:
+        by_year_cl.setdefault(c["date"][:4], []).append(c)
+
+    def classif_agg(rows):
+        n = len(rows)
+        if not n:
+            return None
+        cats = {}
+        for r in rows:
+            if r.get("cat"):
+                cats[r["cat"]] = cats.get(r["cat"], 0) + 1
+        qui, sec = {}, {}
+        aucun_secteur = 0
+        for r in rows:
+            for q in r.get("qui", []):
+                qui[q] = qui.get(q, 0) + 1
+            if not r.get("secteurs"):
+                aucun_secteur += 1
+            for s in r.get("secteurs", []):
+                sec[s] = sec.get(s, 0) + 1
+        fond = cats.get("causes", 0) + cats.get("politique_negociations", 0) + cats.get("science_rapports", 0)
+        return {"n": n, "cats": cats, "fond_pct": round(100 * fond / n, 1),
+                "fossile_pct": round(100 * sum(1 for r in rows if r.get("fossile")) / n, 1),
+                "qui": qui, "secteurs": sec,
+                "aucun_secteur_pct": round(100 * aucun_secteur / n, 1)}
+
+    for y in out:
+        rows = classif if y == "all" else by_year_cl.get(y, [])
+        agg = classif_agg(rows)
+        if agg:
+            out[y]["classif"] = agg
+
     path = "docs/data-aggregated-news-json/yearly.json"
     with open(path, "w") as fp:
         json.dump(out, fp, ensure_ascii=False, indent=1)
