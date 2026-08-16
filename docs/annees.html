@@ -100,6 +100,14 @@ fetch("data-aggregated-news-json/yearly.json")
           <div class="sub">${media} — ${s.climat.toLocaleString("fr-FR")} reportages climat sur ${s.total.toLocaleString("fr-FR")}</div>
         </div></div>`;
       }
+      if (d.editions) {
+        for (const [ed, s] of Object.entries(d.editions)) {
+          tiles += `<div class="col-6 col-md-3"><div class="stat-tile">
+            <div class="big">${s.pct.toLocaleString("fr-FR")} %</div>
+            <div class="sub">France 2, ${ed} seul — ${s.climat.toLocaleString("fr-FR")} reportages climat sur ${s.total.toLocaleString("fr-FR")}</div>
+          </div></div>`;
+        }
+      }
 
       // theme bars (sorted desc, climat highlighted)
       const themes = Object.entries(d.themes).sort((a,b) => b[1]-a[1]);

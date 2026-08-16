@@ -89,6 +89,11 @@ ALL_TIME = {
     ],
 }
 
+def edition(tv):
+    if "20-heures" in tv: return "20H"
+    if "13-heures" in tv: return "13H"
+    return None
+
 def load_records():
     recs = []
     for f in glob.glob("data-news-json/media=*/year=*/month=*/day=*/*.json"):
@@ -101,6 +106,7 @@ def load_records():
             recs.append({"media": media, "date": r["date"][:10], "year": int(r["date"][:4]),
                          "month": int(r["date"][5:7]), "order": r.get("order", 0),
                          "title": r.get("title") or "", "url": r.get("url") or "",
+                         "edition": edition(r.get("urlTvNews") or "") if media == "France 2" else None,
                          "clim": bool(r.get("containsWordGlobalWarming")),
                          "text": norm((r.get("title") or "") + " " + (r.get("description") or ""))})
     return recs
@@ -167,7 +173,15 @@ def main():
                     best.append((s, r, w))
         themes = {t: sum(1 for r in yr if has(r, kws)) for t, kws in THEMES.items()}
         themes["Climat (nommé)"] = sum(1 for r in yr if r["clim"])
+        editions = {}
+        for ed in ("13H", "20H"):
+            sub = [r for r in yr if r.get("edition") == ed]
+            if sub:
+                c = sum(1 for r in sub if r["clim"])
+                editions[ed] = {"total": len(sub), "climat": c, "pct": round(100 * c / len(sub), 2)}
         out[str(y)] = {"media": media_stats, "themes": themes, "worst": top3(worst), "best": top3(best)}
+        if editions:
+            out[str(y)]["editions"] = editions
 
     for kind in ("worst", "best"):
         for y, pins in PINNED[kind].items():
@@ -187,6 +201,12 @@ def main():
             all_media[m] = {"total": len(sub), "climat": c, "pct": round(100 * c / len(sub), 2)}
     all_themes = {t: sum(1 for r in recs if has(r, kws)) for t, kws in THEMES.items()}
     all_themes["Climat (nommé)"] = sum(1 for r in recs if r["clim"])
+    all_editions = {}
+    for ed in ("13H", "20H"):
+        sub = [r for r in recs if r.get("edition") == ed]
+        if sub:
+            c = sum(1 for r in sub if r["clim"])
+            all_editions[ed] = {"total": len(sub), "climat": c, "pct": round(100 * c / len(sub), 2)}
 
     def resolve_all(entries):
         res = []
@@ -204,6 +224,7 @@ def main():
         return res
 
     out["all"] = {"media": all_media, "themes": all_themes,
+                  "editions": all_editions,
                   "worst": resolve_all(ALL_TIME["worst"]),
                   "best": resolve_all(ALL_TIME["best"])}
 
