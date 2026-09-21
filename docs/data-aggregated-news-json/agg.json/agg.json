@@ -222,9 +222,9 @@
 {"number_of_news":4,"containsWordGlobalWarming":true,"media":"France 3","datecharts":"2018-03","date":"03/2018"}
 {"number_of_news":1,"containsWordGlobalWarming":true,"media":"TF1","datecharts":"2018-03","date":"03/2018"}
 {"number_of_news":749,"containsWordGlobalWarming":false,"media":"France 2","datecharts":"2018-04","date":"04/2018"}
+{"number_of_news":1,"containsWordGlobalWarming":true,"media":"France 2","datecharts":"2018-04","date":"04/2018"}
 {"number_of_news":523,"containsWordGlobalWarming":false,"media":"TF1","datecharts":"2018-04","date":"04/2018"}
 {"number_of_news":7,"containsWordGlobalWarming":true,"media":"TF1","datecharts":"2018-04","date":"04/2018"}
-{"number_of_news":1,"containsWordGlobalWarming":true,"media":"France 2","datecharts":"2018-04","date":"04/2018"}
 {"number_of_news":580,"containsWordGlobalWarming":false,"media":"France 3","datecharts":"2018-04","date":"04/2018"}
 {"number_of_news":2,"containsWordGlobalWarming":true,"media":"France 3","datecharts":"2018-04","date":"04/2018"}
 {"number_of_news":781,"containsWordGlobalWarming":false,"media":"France 2","datecharts":"2018-05","date":"05/2018"}
@@ -750,7 +750,7 @@
 {"number_of_news":666,"containsWordGlobalWarming":false,"media":"France 2","datecharts":"2026-08","date":"08/2026"}
 {"number_of_news":431,"containsWordGlobalWarming":false,"media":"TF1","datecharts":"2026-08","date":"08/2026"}
 {"number_of_news":12,"containsWordGlobalWarming":true,"media":"TF1","datecharts":"2026-08","date":"08/2026"}
-{"number_of_news":16,"containsWordGlobalWarming":true,"media":"France 2","datecharts":"2026-09","date":"09/2026"}
-{"number_of_news":422,"containsWordGlobalWarming":false,"media":"France 2","datecharts":"2026-09","date":"09/2026"}
-{"number_of_news":258,"containsWordGlobalWarming":false,"media":"TF1","datecharts":"2026-09","date":"09/2026"}
+{"number_of_news":17,"containsWordGlobalWarming":true,"media":"France 2","datecharts":"2026-09","date":"09/2026"}
+{"number_of_news":449,"containsWordGlobalWarming":false,"media":"France 2","datecharts":"2026-09","date":"09/2026"}
+{"number_of_news":273,"containsWordGlobalWarming":false,"media":"TF1","datecharts":"2026-09","date":"09/2026"}
 {"number_of_news":4,"containsWordGlobalWarming":true,"media":"TF1","datecharts":"2026-09","date":"09/2026"}
