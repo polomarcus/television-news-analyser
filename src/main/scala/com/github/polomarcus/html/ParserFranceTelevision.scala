@@ -25,6 +25,11 @@ object ParserFranceTelevision {
   // Since 2026, France TV loads the list of news for one day from a separate ESI
   // (Edge Side Include) endpoint, referenced via the data-esi-url attribute on the day page.
   val htmlSelectorSameShowEsi = "[data-esi-url*=SameShowESI]"
+  // Since Oct 2026, the JT team (presenter, editor in chief and deputies) is rendered inline
+  // on the replay page, in a "L'équipe du JT" section : one block for the week team,
+  // one for the week-end team. The old ESI endpoint (@see parseTeam) now answers a 404.
+  val htmlSelectorTeamContent = ".program-team__info-team-content"
+  val htmlSelectorTeamItem = ".program-team__info-team-item"
 
   val FRANCE2 = "France 2"
   val FRANCE3 = "France 3"
@@ -42,7 +47,9 @@ object ParserFranceTelevision {
     val allTelevisionNews = doc >> elementList(htmlSelectorDayOfNewsList) >> attr("href")
     val media = getMediaFranceTelevision(url)
     val arrayEditorAndDeputiesWeekorWeekend = if (media == FRANCE2) {
-      Some(parseTeam(is13hTVShow(url)))
+      // the team is now part of the replay page itself, the ESI endpoint is only a fallback
+      // for older pages
+      parseTeamFromDoc(doc).orElse(parseTeamSafely(is13hTVShow(url)))
     } else {
       None
     }
@@ -113,17 +120,10 @@ object ParserFranceTelevision {
    */
   def getPresenterFromTeamSection(doc: browser.DocumentType): Array[String] = {
     try {
-      val teamContents = doc >> elementList(".program-team__info-team-content")
-      val presenters = teamContents.flatMap(teamContent => {
-        val items = teamContent >> elementList(".program-team__info-team-item")
-        items.flatMap(item => {
-          val paragraphs = item >> elementList("p")
-          if (paragraphs.length > 1 && paragraphs.head.text.trim.contains("Présenté par")) {
-            Some(paragraphs(1).text.trim)
-          } else {
-            None
-          }
-        }).headOption
+      val presenters = (doc >> elementList(htmlSelectorTeamContent)).flatMap(teamContent => {
+        getTeamItems(teamContent).collectFirst {
+          case (label, name) if label.contains("Présenté par") => name
+        }
       }).toArray
       if (presenters.isEmpty) Array("", "") else presenters
     } catch {
@@ -143,6 +143,22 @@ object ParserFranceTelevision {
    * day page itself to preserve compatibility with older HTML structures (and tests).
    */
   def getNewsListForDay(doc: browser.DocumentType, defaultUrl: String): List[Element] = {
+    getNewsListForDayHelper(doc, defaultUrl).filterNot(news =>
+      isLinkToAnotherTVShow(getLinkToDescription(news)))
+  }
+
+  /**
+   * We scrap a JT shortly after it has been broadcast : its subjects are sometimes not published
+   * yet, and the "Les sujets du JT" block then falls back to listing the other JT of the week.
+   * Those are not news subjects, e.g. /replay-jt/france-2/20-heures/jt-de-20h-du-jeudi-01-octobre-2026_8187524.html
+   */
+  def isLinkToAnotherTVShow(link: String): Boolean = {
+    link.contains("/jt-de-")
+  }
+
+  private def getNewsListForDayHelper(
+      doc: browser.DocumentType,
+      defaultUrl: String): List[Element] = {
     val inlineNews = doc >> elementList(htmlSelectorAllNewsFromOneDay)
     if (inlineNews.nonEmpty) {
       inlineNews
@@ -312,6 +328,87 @@ object ParserFranceTelevision {
           Nil
         }
       }
+    }
+  }
+
+  /**
+   * Reads the "L'équipe du JT" section rendered inline on a replay page (since Oct 2026).
+   *
+   * Each `.program-team__info-team-content` block is a team (1st : week, 2nd : week-end) made of
+   * `<li><p>label</p><p>name(s)</p></li>` items, e.g. :
+   *   Présenté par / Jean-Baptiste Marteau
+   *   Rédacteurs en chef / Elsa Pallot
+   *   Rédacteurs en chef adjoints / Julien Gasparutto, Margaux Manière
+   *
+   * @return None when the section is absent, so the caller can fall back to the ESI endpoint.
+   *         Otherwise 1st element week team, 2nd element week-end team.
+   */
+  def parseTeamFromDoc(doc: browser.DocumentType): Option[Array[(String, List[String])]] = {
+    try {
+      val teams = (doc >> elementList(htmlSelectorTeamContent)).map(parseTeamContent).toArray
+
+      teams.length match {
+        case 0 => None
+        // only one team published : use it for the week and the week-end
+        case 1 => Some(Array(teams(0), teams(0)))
+        case _ => Some(teams.take(2))
+      }
+    } catch {
+      case e: Exception =>
+        logger.error(s"Error parsing the team section: ${e.toString}")
+        None
+    }
+  }
+
+  /**
+   * @return label -> value of every item of a team block, e.g. ("Rédacteurs en chef", "Elsa Pallot")
+   */
+  def getTeamItems(teamContent: Element): List[(String, String)] = {
+    (teamContent >> elementList(htmlSelectorTeamItem)).flatMap(item => {
+      val paragraphs = item >> elementList("p")
+      if (paragraphs.length > 1) {
+        Some((paragraphs.head.text.trim, paragraphs(1).text.trim))
+      } else {
+        None
+      }
+    }).toList
+  }
+
+  def parseTeamContent(teamContent: Element): (String, List[String]) = {
+    val items = getTeamItems(teamContent)
+    // "Rédacteurs en chef" vs "Rédacteurs en chef adjoints" (the website used to write
+    // "Rédaction en chef" and "Rédaction en chef-adjointe")
+    val isEditorLabel = (label: String) => label.toLowerCase.contains("en chef")
+    val isDeputyLabel = (label: String) => label.toLowerCase.contains("adjoint")
+
+    val editor = items.collectFirst {
+      case (label, names) if isEditorLabel(label) && !isDeputyLabel(label) => names
+    }.getOrElse("")
+
+    val editorDeputy = items.collectFirst {
+      case (label, names) if isEditorLabel(label) && isDeputyLabel(label) =>
+        names.replaceFirst(" et ", ", ").split(", ").toList
+    }.getOrElse(List(""))
+
+    logger.debug(s"parseTeamContent : $editor, $editorDeputy")
+    (editor, editorDeputy)
+  }
+
+  /**
+   * The ESI endpoint used by [[parseTeam]] has been answering a 404 since Oct 2026 : never let it
+   * break the parsing of a whole day of news.
+   */
+  def parseTeamSafely(
+      noonNews: Boolean,
+      default13hTeamURL: String =
+        "https://www.francetvinfo.fr/esi/www/taxonomy/block-program-team-by-type-and-channel/channel/france-2/type/jt/taxonomyUrl/13-heures")
+    : Option[Array[(String, List[String])]] = {
+    try {
+      Some(parseTeam(noonNews, default13hTeamURL))
+    } catch {
+      case e: Exception =>
+        logger.warn(s"Could not get the team from the ESI endpoint : ${e.toString}")
+        None
     }
   }
 
